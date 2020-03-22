@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using SimpleInjector;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.Bootstrap;
@@ -27,6 +28,15 @@ namespace UszyjMaseczke.WebApi
         {
             services.AddControllers();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "HelpMed",
+                    Version = "v1"
+                });
+            });
+
             services.AddDbContext<UszyjMaseczkeDbContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("UszyjMaseczkeContext")));
 
@@ -45,6 +55,12 @@ namespace UszyjMaseczke.WebApi
 
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "HelpMed Api");
+            });
 
             app.UseRouting();
 

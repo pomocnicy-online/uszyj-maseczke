@@ -24,11 +24,12 @@ namespace UszyjMaseczke.WebApi.Controllers
             return Ok(await _dbContext.Requests.ToListAsync());
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(CreateRequestDto createRequestDto)
-        {
-            return Ok(await _dbContext.Requests.ToListAsync());
-        }
+        // ???
+        // [HttpGet(Name="GetRequests2")]
+        // public async Task<IActionResult> Get(CreateRequestDto createRequestDto)
+        // {
+        //     return Ok(await _dbContext.Requests.ToListAsync());
+        // }
 
         [HttpPost(Name = "CreateRequest")]
         public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto createRequestDto)
