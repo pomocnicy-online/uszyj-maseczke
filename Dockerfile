@@ -5,6 +5,7 @@ EXPOSE 5011
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
 COPY . .
+COPY UszyjMaseczke.WebApi/appsettings.Production.json UszyjMaseczke.WebApi/appsettings.json
 RUN dotnet restore
 WORKDIR /src/UszyjMaseczke.WebApi
 RUN dotnet build -c Release -o /app
