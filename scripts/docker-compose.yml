@@ -15,14 +15,14 @@ services:
     networks:
       - uszyj-maseczke-network
 
-  web:
-    build: ../
-    ports:
-      - "5011:5011"
-    depends_on:
-      - db
-    networks:
-      - uszyj-maseczke-network
+#  web:
+#    build: ../
+#    ports:
+#      - "5011:5011"
+#    depends_on:
+#      - db
+#    networks:
+#      - uszyj-maseczke-network
 
 volumes:
   postgres-data:

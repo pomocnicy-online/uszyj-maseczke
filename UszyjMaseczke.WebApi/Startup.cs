@@ -53,7 +53,8 @@ namespace UszyjMaseczke.WebApi
         {
             ContainerInitializer.Initialize(_container, Configuration, app);
             app.UseSimpleInjector(_container);
-
+            
+            InitializeDatabase(app);
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
@@ -66,6 +67,14 @@ namespace UszyjMaseczke.WebApi
             app.UseRouting();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        }
+        
+        private void InitializeDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetRequiredService<UszyjMaseczkeDbContext>().Database.Migrate();
+            }
         }
     }
 }
