@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+using UszyjMaseczke.Domain.Gloves;
 
-namespace UszyjMaseczke.Domain.Gloves
+namespace UszyjMaseczke.WebApi.DTOs
 {
-    public class GloveRequest
+    public class CreateRequestGloveRequestDto
     {
-        public int Id { get; set; }
         public GloveType GloveType { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
+
     }
 }

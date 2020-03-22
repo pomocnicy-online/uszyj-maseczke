@@ -14,6 +14,8 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasOne(x => x.MedicalCentre);
             builder.HasMany(x => x.GroceryRequestPositions);
+            builder.HasMany(x => x.MaskRequests);
+            builder.HasMany(x => x.GlovesRequests);
         }
     }
 }

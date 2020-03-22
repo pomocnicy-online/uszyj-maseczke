@@ -1,8 +1,9 @@
-namespace UszyjMaseczke.Domain.Masks
+using UszyjMaseczke.Domain.Masks;
+
+namespace UszyjMaseczke.WebApi.DTOs
 {
-    public class MaskRequest
+    public class CreateRequestMaskRequestDto
     {
-        public int Id { get; set; }
         public MaskType MaskType { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }

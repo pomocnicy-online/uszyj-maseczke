@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UszyjMaseczke.WebApi", "Usz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UszyjMaseczke.Infrastructure", "UszyjMaseczke.Infrastructure\UszyjMaseczke.Infrastructure.csproj", "{5CB39742-DF43-4F96-BF84-5B7456EA3B25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UszyjMaseczke.Migrations", "UszyjMaseczke.Migrations\UszyjMaseczke.Migrations.csproj", "{3054795B-22B3-4F42-B328-99F0D2AF05A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{5CB39742-DF43-4F96-BF84-5B7456EA3B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CB39742-DF43-4F96-BF84-5B7456EA3B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CB39742-DF43-4F96-BF84-5B7456EA3B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3054795B-22B3-4F42-B328-99F0D2AF05A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3054795B-22B3-4F42-B328-99F0D2AF05A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3054795B-22B3-4F42-B328-99F0D2AF05A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3054795B-22B3-4F42-B328-99F0D2AF05A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

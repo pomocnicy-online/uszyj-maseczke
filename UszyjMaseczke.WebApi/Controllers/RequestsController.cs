@@ -1,4 +1,5 @@
-﻿using System.Linq;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,9 @@ using UszyjMaseczke.Domain.Dungarees;
 using UszyjMaseczke.Domain.Groceries;
 using UszyjMaseczke.Domain.OtherCleaningMaterials;
 using UszyjMaseczke.Domain.PsychologicalSupport;
+using UszyjMaseczke.Domain.Gloves;
+using UszyjMaseczke.Domain.Masks;
+using UszyjMaseczke.Domain.MedicalCentre;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.DTOs;
 
@@ -44,6 +48,8 @@ namespace UszyjMaseczke.WebApi.Controllers
                     LegalName = createRequestDto.MedicalCentre.LegalName,
                     PhoneNumber = createRequestDto.MedicalCentre.PhoneNumber
                 },
+                MaskRequests = new List<MaskRequest>(),
+                GlovesRequests = new List<GloveRequest>(),
                 GroceryRequestPositions = createRequestDto.Groceries
                     .Select(x => new GroceryRequest
                     {
@@ -70,6 +76,25 @@ namespace UszyjMaseczke.WebApi.Controllers
                     }).ToList()
             };
 
+            foreach (var maskRequest in createRequestDto.MaskRequests)
+            {
+                request.MaskRequests.Add(new MaskRequest()
+                {
+                    Quantity = maskRequest.Quantity,
+                    MaskType = maskRequest.MaskType,
+                    Description = maskRequest.Description
+                });
+            }
+            foreach (var maskRequest in createRequestDto.GloveRequests)
+            {
+                request.GlovesRequests.Add(new GloveRequest()
+                {
+                    Quantity = maskRequest.Quantity,
+                    GloveType = maskRequest.GloveType,
+                    Description = maskRequest.Description
+
+                });
+            }
             await _dbContext.AddAsync(request);
             await _dbContext.SaveChangesAsync();
             return Ok();

@@ -13,8 +13,12 @@ namespace UszyjMaseczke.Infrastructure
     {
         private readonly ILoggerFactory _loggerFactory;
 
-        public UszyjMaseczkeDbContext(DbContextOptions<UszyjMaseczkeDbContext> options,
-            ILoggerFactory loggerFactory) : base(options)
+        public UszyjMaseczkeDbContext()
+        {
+            
+        }
+        
+        public UszyjMaseczkeDbContext(DbContextOptions<UszyjMaseczkeDbContext> options, ILoggerFactory loggerFactory) : base(options)
         {
             _loggerFactory = loggerFactory;
         }
@@ -31,7 +35,8 @@ namespace UszyjMaseczke.Infrastructure
             modelBuilder.ApplyConfiguration(new MedicalCentreMappings());
             modelBuilder.ApplyConfiguration(new HelperRequestMappings());
             modelBuilder.ApplyConfiguration(new HelperMappings());
-            
+            modelBuilder.ApplyConfiguration(new MaskRequestMappings());
+            modelBuilder.ApplyConfiguration(new GloveRequestMappings());
             modelBuilder.ApplyConfiguration(new GroceryRequestMappings());
             modelBuilder.ApplyConfiguration(new DungareesRequestMappings());
             modelBuilder.ApplyConfiguration(new OtherCleaningMaterialRequestMappings());

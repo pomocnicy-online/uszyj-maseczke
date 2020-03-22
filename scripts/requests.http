@@ -16,5 +16,26 @@ content-type: application/json
         "BuildingNumber": "10",
         "LegalName": "Szpital MSWiA",
         "PhoneNumber": "123456789"
-    }
+    },
+    "MaskRequests": [
+        {
+            "MaskType": 0,
+            "Quantity": 1
+        },
+        {
+            "MaskType": 1,
+            "Quantity": 10
+        }
+    ],
+    "GloveRequests": [
+        {
+            "GloveType": 0,
+            "Quantity": 1
+        },
+        {
+            "GloveType": 1,
+            "Quantity": 10,
+            "Description": "Tralalalal"
+        }
+    ]
 }
