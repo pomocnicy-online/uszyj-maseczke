@@ -14,7 +14,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Quantity);
             builder.Property(x => x.MaskType);
-            builder.Property(x => x.Description);
+            builder.Property(x => x.Description).HasColumnType("nvarchar(255)");;
 
         }
     }

@@ -26,7 +26,7 @@ CREATE TABLE MaskRequests(
 
 CREATE TABLE GloveRequests(
 	Id int NOT NULL PRIMARY KEY IDENTITY,
-	MaskType int NOT NULL,
+	GloveType int NOT NULL,
 	Quantity int NOT NULL,
 	Description nvarchar(255),
 	RequestId int NULL)

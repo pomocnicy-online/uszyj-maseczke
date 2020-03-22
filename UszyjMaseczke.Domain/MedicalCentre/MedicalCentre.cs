@@ -1,4 +1,4 @@
-namespace UszyjMaseczke.Domain
+namespace UszyjMaseczke.Domain.MedicalCentre
 {
     public class MedicalCentre
     {
