@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+    db:
+        image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
+        ports:
+            - "1433:1433"
+        environment:
+            SA_PASSWORD: "yourStrong(!)Password"
+            ACCEPT_EULA: "Y"
+        volumes:
+            - mssql_data:/var/lib/mssql
+        restart: always
+        networks:
+            - uszyj-maseczke-network
+
+    web:
+        build: ../
+        ports:
+            - "5011:5011"
+        depends_on:
+            - db
+        networks:
+            - uszyj-maseczke-network    
+
+volumes:
+    mssql_data:
+
+networks:
+    uszyj-maseczke-network:
+        driver: bridge

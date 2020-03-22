@@ -23,8 +23,8 @@ namespace UszyjMaseczke.WebApi
                     webBuilder.UseUrls("http://*:5011");
                     webBuilder.ConfigureAppConfiguration((builderContext, config) =>
                     {
-                        config.AddJsonFile("appsettings.json", false, true)
-                            .AddJsonFile("appsettings.Development.json", false, true)
+                        config.AddJsonFile("appsettings.Development.json", false, true)
+                            .AddJsonFile("appsettings.json", false, true)
                             .AddEnvironmentVariables();
                     });
                     webBuilder.ConfigureKestrel(options =>
