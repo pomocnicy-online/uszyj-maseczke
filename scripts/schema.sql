@@ -24,6 +24,13 @@ CREATE TABLE MaskRequests(
 	Description nvarchar(255),
 	RequestId int NULL)
 
+CREATE TABLE GloveRequests(
+	Id int NOT NULL PRIMARY KEY IDENTITY,
+	MaskType int NOT NULL,
+	Quantity int NOT NULL,
+	Description nvarchar(255),
+	RequestId int NULL)
+
 
 ALTER TABLE Requests
 ADD CONSTRAINT FK_Requests_MedicalCentres
@@ -31,6 +38,10 @@ FOREIGN KEY (MedicalCentreId) REFERENCES MedicalCentres(Id);
 
 ALTER TABLE MaskRequests
 ADD CONSTRAINT FK_MaskRequests_Request
+FOREIGN KEY (RequestId) REFERENCES Requests(Id);
+
+ALTER TABLE GloveRequests
+ADD CONSTRAINT FK_GloveRequests_Request
 FOREIGN KEY (RequestId) REFERENCES Requests(Id);
 
 GO

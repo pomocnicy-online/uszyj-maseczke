@@ -5,6 +5,8 @@ namespace UszyjMaseczke.Domain.Gloves
     public class GloveRequest
     {
         public int Id { get; set; }
-        public IList<GloveRequestPosition> GloveRequests { get; set; }
+        public GloveType GloveType { get; set; }
+        public int Quantity { get; set; }
+        public string Description { get; set; }
     }
 }

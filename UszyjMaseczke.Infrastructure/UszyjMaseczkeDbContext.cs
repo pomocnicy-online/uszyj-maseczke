@@ -28,6 +28,7 @@ namespace UszyjMaseczke.Infrastructure
             modelBuilder.ApplyConfiguration(new HelperRequestMappings());
             modelBuilder.ApplyConfiguration(new HelperMappings());
             modelBuilder.ApplyConfiguration(new MaskRequestMappings());
+            modelBuilder.ApplyConfiguration(new GloveRequestMappings());
 
         }
     }
