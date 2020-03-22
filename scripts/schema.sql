@@ -22,4 +22,16 @@ ADD CONSTRAINT FK_MedicalCentres
 FOREIGN KEY (MedicalCentreId) REFERENCES MedicalCentres(Id);
 
 
+
+CREATE TABLE GroceryRequests(
+	Id INT NOT NULL PRIMARY KEY IDENTITY ,
+	GroceryType INT NOT NULL,
+	Quantity INT NOT NULL,
+	RequestId INT NULL)
+
+ALTER TABLE GroceryRequests
+ADD CONSTRAINT FK_Request
+FOREIGN KEY (RequestId) REFERENCES Requests(Id);
+
+
 GO

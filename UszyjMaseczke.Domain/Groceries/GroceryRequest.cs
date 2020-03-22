@@ -1,0 +1,10 @@
+namespace UszyjMaseczke.Domain.Groceries
+{
+    public class GroceryRequest
+    {
+        public int Id { get; set; }
+        public GroceryType GroceryType { get; set; }
+        public int Quantity { get; set; }
+        public Request Request { get; set; }
+    }
+}

@@ -1,7 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UszyjMaseczke.Domain;
+using UszyjMaseczke.Domain.Dungarees;
+using UszyjMaseczke.Domain.Groceries;
+using UszyjMaseczke.Domain.OtherCleaningMaterials;
+using UszyjMaseczke.Domain.PsychologicalSupport;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.DTOs;
 
@@ -38,8 +43,33 @@ namespace UszyjMaseczke.WebApi.Controllers
                     BuildingNumber = createRequestDto.MedicalCentre.BuildingNumber,
                     LegalName = createRequestDto.MedicalCentre.LegalName,
                     PhoneNumber = createRequestDto.MedicalCentre.PhoneNumber
-                }
+                },
+                GroceryRequestPositions = createRequestDto.Groceries
+                    .Select(x => new GroceryRequest
+                    {
+                        GroceryType = x.GroceryType,
+                        Quantity = x.Quantity
+                    })
+                    .ToList(),
+                OtherCleaningMaterialRequestPositions = createRequestDto.OtherCleaningMaterials
+                    .Select(x=>new OtherCleaningMaterialRequest
+                    {
+                        OtherCleaningMaterialType = x.CreateOtherCleaningMaterialType,
+                        Quantity = x.Quantity
+                    }).ToList(),
+                DungareeRequestPositions = createRequestDto.Dungaries
+                    .Select(x=>new DungareeRequest
+                    {
+                        DungareeType = x.DungareeType,
+                        Quantity = x.Quantity
+                    }).ToList(),
+                PsychologicalSupportRequestPositions = createRequestDto.PsychologicalSupports
+                    .Select(x=>new PsychologicalSupportRequest
+                    {
+                        Description = x.Description
+                    }).ToList()
             };
+
             await _dbContext.AddAsync(request);
             await _dbContext.SaveChangesAsync();
             return Ok();

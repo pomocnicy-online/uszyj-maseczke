@@ -2,6 +2,10 @@
 using Microsoft.Extensions.Logging;
 using UszyjMaseczke.Domain;
 using UszyjMaseczke.Infrastructure.EntityMappings;
+using UszyjMaseczke.Infrastructure.EntityMappings.Dungarees;
+using UszyjMaseczke.Infrastructure.EntityMappings.Groceries;
+using UszyjMaseczke.Infrastructure.EntityMappings.OtherCleaningMaterials;
+using UszyjMaseczke.Infrastructure.EntityMappings.PsychologicalSupport;
 
 namespace UszyjMaseczke.Infrastructure
 {
@@ -27,6 +31,11 @@ namespace UszyjMaseczke.Infrastructure
             modelBuilder.ApplyConfiguration(new MedicalCentreMappings());
             modelBuilder.ApplyConfiguration(new HelperRequestMappings());
             modelBuilder.ApplyConfiguration(new HelperMappings());
+            
+            modelBuilder.ApplyConfiguration(new GroceryRequestMappings());
+            modelBuilder.ApplyConfiguration(new DungareesRequestMappings());
+            modelBuilder.ApplyConfiguration(new OtherCleaningMaterialRequestMappings());
+            modelBuilder.ApplyConfiguration(new PsychologicalSupportRequestMappings());
         }
     }
 }
