@@ -1,30 +1,32 @@
 version: '3.3'
 services:
-    db:
-        image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
-        ports:
-            - "1433:1433"
-        environment:
-            SA_PASSWORD: "yourStrong(!)Password"
-            ACCEPT_EULA: "Y"
-        volumes:
-            - mssql_data:/var/lib/mssql
-        restart: always
-        networks:
-            - uszyj-maseczke-network
+  db:
+    container_name: postgres
+    image: postgres:12.2
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "weakpassword"
+      POSTGRES_DB: "uszyjmaseczke-dev"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - uszyj-maseczke-network
 
-    web:
-        build: ../
-        ports:
-            - "5011:5011"
-        depends_on:
-            - db
-        networks:
-            - uszyj-maseczke-network    
+  web:
+    build: ../
+    ports:
+      - "5011:5011"
+    depends_on:
+      - db
+    networks:
+      - uszyj-maseczke-network
 
 volumes:
-    mssql_data:
+  postgres-data:
 
 networks:
-    uszyj-maseczke-network:
-        driver: bridge
+  uszyj-maseczke-network:
+    driver: bridge

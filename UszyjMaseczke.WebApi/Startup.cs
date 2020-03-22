@@ -38,7 +38,8 @@ namespace UszyjMaseczke.WebApi
             });
 
             services.AddDbContext<UszyjMaseczkeDbContext>(opt =>
-                opt.UseSqlServer(Configuration.GetConnectionString("UszyjMaseczkeContext")));
+                opt.UseNpgsql(Configuration.GetConnectionString("UszyjMaseczkeContext"),
+                    builder => builder.MigrationsAssembly("UszyjMaseczke.Migrations")));
 
             services.AddSimpleInjector(_container, options =>
             {
