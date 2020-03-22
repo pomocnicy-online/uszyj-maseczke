@@ -9,7 +9,8 @@ namespace UszyjMaseczke.Infrastructure
     {
         private readonly ILoggerFactory _loggerFactory;
 
-        public UszyjMaseczkeDbContext(DbContextOptions<UszyjMaseczkeDbContext> options, ILoggerFactory loggerFactory) : base(options)
+        public UszyjMaseczkeDbContext(DbContextOptions<UszyjMaseczkeDbContext> options,
+            ILoggerFactory loggerFactory) : base(options)
         {
             _loggerFactory = loggerFactory;
         }
@@ -24,6 +25,8 @@ namespace UszyjMaseczke.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new RequestMappings());
             modelBuilder.ApplyConfiguration(new MedicalCentreMappings());
+            modelBuilder.ApplyConfiguration(new HelperRequestMappings());
+            modelBuilder.ApplyConfiguration(new HelperMappings());
         }
     }
 }
