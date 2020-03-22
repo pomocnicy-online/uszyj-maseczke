@@ -27,6 +27,8 @@ namespace UszyjMaseczke.Infrastructure
             modelBuilder.ApplyConfiguration(new MedicalCentreMappings());
             modelBuilder.ApplyConfiguration(new HelperRequestMappings());
             modelBuilder.ApplyConfiguration(new HelperMappings());
+            modelBuilder.ApplyConfiguration(new MaskRequestMappings());
+
         }
     }
 }

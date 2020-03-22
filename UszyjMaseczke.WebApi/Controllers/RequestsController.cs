@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UszyjMaseczke.Domain;
+using UszyjMaseczke.Domain.Masks;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.DTOs;
 
@@ -38,8 +40,17 @@ namespace UszyjMaseczke.WebApi.Controllers
                     BuildingNumber = createRequestDto.MedicalCentre.BuildingNumber,
                     LegalName = createRequestDto.MedicalCentre.LegalName,
                     PhoneNumber = createRequestDto.MedicalCentre.PhoneNumber
-                }
+                },
+                MaskRequests = new List<MaskRequest>()
             };
+            foreach (var maskRequest in createRequestDto.MaskRequests)
+            {
+                request.MaskRequests.Add(new MaskRequest()
+                {
+                    Quantity = maskRequest.Quantity,
+                    MaskType = maskRequest.MaskType
+                });
+            }
             await _dbContext.AddAsync(request);
             await _dbContext.SaveChangesAsync();
             return Ok();

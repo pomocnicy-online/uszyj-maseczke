@@ -13,6 +13,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasOne(x => x.MedicalCentre);
+            builder.HasMany(x => x.MaskRequests);
         }
     }
 }
