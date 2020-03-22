@@ -1,0 +1,20 @@
+# Variables
+@baseUrl = http://localhost:5011/api
+@requestsEndpoint = {{baseUrl}}/requests
+
+
+### Register invalid payer
+
+POST {{requestsEndpoint}}
+content-type: application/json
+
+{
+    "MedicalCentre": {
+        "City": "Warszawa",
+        "Email": "email@email.com",
+        "Street": "Wołoska",
+        "BuildingNumber": "10",
+        "LegalName": "Szpital MSWiA",
+        "PhoneNumber": "123456789"
+    }
+}
