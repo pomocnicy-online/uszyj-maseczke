@@ -1,6 +1,6 @@
 using UszyjMaseczke.Domain.OtherCleaningMaterials;
 
-namespace UszyjMaseczke.WebApi.DTOs.OtherCleaningMaterials
+namespace UszyjMaseczke.Application.DTOs.OtherCleaningMaterials
 {
     public class CreateOtherCleaningMaterialDto
     {

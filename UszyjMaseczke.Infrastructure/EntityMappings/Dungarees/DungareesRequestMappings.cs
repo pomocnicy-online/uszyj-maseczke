@@ -12,9 +12,9 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Dungarees
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasOne(x => x.Request)
-                .WithMany(x=>x.DungareeRequestPositions)
-                .HasConstraintName("FK_DungareeRequests_RequestId");
+            builder.Property(x => x.Quantity);
+            builder.Property(x => x.DungareeType);
+            builder.Property(x => x.Description);
         }
     }
 }

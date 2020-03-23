@@ -7,6 +7,7 @@ namespace UszyjMaseczke.Domain.Groceries
         public int Id { get; set; }
         public GroceryType GroceryType { get; set; }
         public int Quantity { get; set; }
-        public Request Request { get; set; }
+
+        public string Description { get; set; }
     }
 }

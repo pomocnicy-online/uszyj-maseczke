@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\UszyjMaseczke.Application\UszyjMaseczke.Application.csproj" />
       <ProjectReference Include="..\UszyjMaseczke.Domain\UszyjMaseczke.Domain.csproj" />
       <ProjectReference Include="..\UszyjMaseczke.Infrastructure\UszyjMaseczke.Infrastructure.csproj" />
       <ProjectReference Include="..\UszyjMaseczke.Migrations\UszyjMaseczke.Migrations.csproj" />

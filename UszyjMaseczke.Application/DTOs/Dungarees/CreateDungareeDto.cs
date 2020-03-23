@@ -1,6 +1,6 @@
 using UszyjMaseczke.Domain.Dungarees;
 
-namespace UszyjMaseczke.WebApi.DTOs.Dungarees
+namespace UszyjMaseczke.Application.DTOs.Dungarees
 {
     public class CreateDungareeDto
     {

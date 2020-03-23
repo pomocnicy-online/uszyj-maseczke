@@ -16,6 +16,12 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Requests
             builder.HasMany(x => x.GroceryRequestPositions);
             builder.HasMany(x => x.MaskRequests);
             builder.HasMany(x => x.GlovesRequests);
+            builder.HasMany(x => x.OtherCleaningMaterialRequestPositions);
+            builder.HasMany(x => x.PsychologicalSupportRequestPositions);
+            builder.HasMany(x => x.DungareeRequestPositions);
+            builder.HasMany(x => x.DisinfectionMeasureRequestPositions);
+
+
         }
     }
 }

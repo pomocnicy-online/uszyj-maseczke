@@ -92,6 +92,7 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     DisinfectionMeasureType = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     RequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -113,13 +114,14 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     DungareeType = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     RequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DungareeRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DungareeRequests_RequestId",
+                        name: "FK_DungareeRequests_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
                         principalColumn: "Id",
@@ -135,6 +137,7 @@ namespace UszyjMaseczke.Migrations.Migrations
                     GloveType = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    GloveSize = table.Column<int>(nullable: false),
                     RequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -156,13 +159,14 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     GroceryType = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     RequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GroceryRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GroceryRequests_RequestId",
+                        name: "FK_GroceryRequests_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
                         principalColumn: "Id",
@@ -178,6 +182,7 @@ namespace UszyjMaseczke.Migrations.Migrations
                     MaskType = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    MaskSize = table.Column<int>(nullable: false),
                     RequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -199,13 +204,14 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OtherCleaningMaterialType = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    RequestId = table.Column<int>(nullable: true)
+                    RequestId = table.Column<int>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OtherCleaningMaterialRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OtherCleaningMaterialRequests_RequestId",
+                        name: "FK_OtherCleaningMaterialRequests_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
                         principalColumn: "Id",
@@ -225,7 +231,7 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_PsychologicalSupportRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PsychologicalSupportRequests_RequestId",
+                        name: "FK_PsychologicalSupportRequests_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
                         principalColumn: "Id",

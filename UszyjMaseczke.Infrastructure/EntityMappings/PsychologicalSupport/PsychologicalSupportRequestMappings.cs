@@ -12,9 +12,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.PsychologicalSupport
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasOne(x => x.Request)
-                .WithMany(x=>x.PsychologicalSupportRequestPositions)
-                .HasConstraintName("FK_PsychologicalSupportRequests_RequestId");
+            builder.Property(x => x.Description);
         }
     }
 }

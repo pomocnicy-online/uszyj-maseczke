@@ -12,9 +12,9 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.OtherCleaningMaterials
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasOne(x => x.Request)
-                .WithMany(x=>x.OtherCleaningMaterialRequestPositions)
-                .HasConstraintName("FK_OtherCleaningMaterialRequests_RequestId");
+            builder.Property(x => x.Quantity);
+            builder.Property(x => x.OtherCleaningMaterialType);
+            builder.Property(x => x.Description);
         }
     }
 }

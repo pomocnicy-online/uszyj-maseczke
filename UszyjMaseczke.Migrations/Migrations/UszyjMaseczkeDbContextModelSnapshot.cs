@@ -26,6 +26,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<int>("DisinfectionMeasureType")
                         .HasColumnType("integer");
 
@@ -48,6 +51,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
 
                     b.Property<int>("DungareeType")
                         .HasColumnType("integer");
@@ -75,6 +81,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<int>("GloveSize")
+                        .HasColumnType("integer");
+
                     b.Property<int>("GloveType")
                         .HasColumnType("integer");
 
@@ -97,6 +106,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
 
                     b.Property<int>("GroceryType")
                         .HasColumnType("integer");
@@ -177,6 +189,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<int>("MaskSize")
+                        .HasColumnType("integer");
+
                     b.Property<int>("MaskType")
                         .HasColumnType("integer");
 
@@ -233,6 +248,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<int>("OtherCleaningMaterialType")
                         .HasColumnType("integer");
 
@@ -288,17 +306,16 @@ namespace UszyjMaseczke.Migrations.Migrations
 
             modelBuilder.Entity("UszyjMaseczke.Domain.DisinfectionMeasures.DisinfectionMeasureRequest", b =>
                 {
-                    b.HasOne("UszyjMaseczke.Domain.Requests.Request", "Request")
+                    b.HasOne("UszyjMaseczke.Domain.Requests.Request", null)
                         .WithMany("DisinfectionMeasureRequestPositions")
                         .HasForeignKey("RequestId");
                 });
 
             modelBuilder.Entity("UszyjMaseczke.Domain.Dungarees.DungareeRequest", b =>
                 {
-                    b.HasOne("UszyjMaseczke.Domain.Requests.Request", "Request")
+                    b.HasOne("UszyjMaseczke.Domain.Requests.Request", null)
                         .WithMany("DungareeRequestPositions")
-                        .HasForeignKey("RequestId")
-                        .HasConstraintName("FK_DungareeRequests_RequestId");
+                        .HasForeignKey("RequestId");
                 });
 
             modelBuilder.Entity("UszyjMaseczke.Domain.Gloves.GloveRequest", b =>
@@ -310,10 +327,9 @@ namespace UszyjMaseczke.Migrations.Migrations
 
             modelBuilder.Entity("UszyjMaseczke.Domain.Groceries.GroceryRequest", b =>
                 {
-                    b.HasOne("UszyjMaseczke.Domain.Requests.Request", "Request")
+                    b.HasOne("UszyjMaseczke.Domain.Requests.Request", null)
                         .WithMany("GroceryRequestPositions")
-                        .HasForeignKey("RequestId")
-                        .HasConstraintName("FK_GroceryRequests_RequestId");
+                        .HasForeignKey("RequestId");
                 });
 
             modelBuilder.Entity("UszyjMaseczke.Domain.Helpers.HelperRequest", b =>
@@ -334,16 +350,14 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     b.HasOne("UszyjMaseczke.Domain.Requests.Request", "Request")
                         .WithMany("OtherCleaningMaterialRequestPositions")
-                        .HasForeignKey("RequestId")
-                        .HasConstraintName("FK_OtherCleaningMaterialRequests_RequestId");
+                        .HasForeignKey("RequestId");
                 });
 
             modelBuilder.Entity("UszyjMaseczke.Domain.PsychologicalSupport.PsychologicalSupportRequest", b =>
                 {
                     b.HasOne("UszyjMaseczke.Domain.Requests.Request", "Request")
                         .WithMany("PsychologicalSupportRequestPositions")
-                        .HasForeignKey("RequestId")
-                        .HasConstraintName("FK_PsychologicalSupportRequests_RequestId");
+                        .HasForeignKey("RequestId");
                 });
 
             modelBuilder.Entity("UszyjMaseczke.Domain.Requests.Request", b =>

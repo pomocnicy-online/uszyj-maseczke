@@ -8,5 +8,6 @@ namespace UszyjMaseczke.Domain.OtherCleaningMaterials
         public OtherCleaningMaterialType OtherCleaningMaterialType { get; set; }
         public int Quantity { get; set; }
         public Request Request { get; set; }
+        public string Description { get; set; }
     }
 }

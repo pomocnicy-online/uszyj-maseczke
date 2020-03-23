@@ -1,4 +1,4 @@
-namespace UszyjMaseczke.WebApi.DTOs
+namespace UszyjMaseczke.Application.DTOs
 {
     public class CreateHelperRequestHelperDto
     {

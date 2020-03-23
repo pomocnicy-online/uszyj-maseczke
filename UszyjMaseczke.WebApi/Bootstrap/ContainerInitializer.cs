@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
+using UszyjMaseczke.Application.Requests;
+using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure;
+using UszyjMaseczke.Infrastructure.Repsitories;
 
 namespace UszyjMaseczke.WebApi.Bootstrap
 {
@@ -11,10 +14,17 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             InitializeDbContext(container, app);
             InitializeRepositories(container);
+            InitializeServices(container);
         }
 
         private static void InitializeRepositories(Container container)
         {
+            container.Register<IRequestRepository, RequestRepository>();
+        }
+
+        private static void InitializeServices(Container container)
+        {
+            container.Register<IRequestService, RequestService>();
         }
 
 

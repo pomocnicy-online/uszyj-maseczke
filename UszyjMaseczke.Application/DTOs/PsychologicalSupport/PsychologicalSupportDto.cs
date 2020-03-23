@@ -1,4 +1,4 @@
-namespace UszyjMaseczke.WebApi.DTOs.PsychologicalSupport
+namespace UszyjMaseczke.Application.DTOs.PsychologicalSupport
 {
     public class PsychologicalSupportDto
     {

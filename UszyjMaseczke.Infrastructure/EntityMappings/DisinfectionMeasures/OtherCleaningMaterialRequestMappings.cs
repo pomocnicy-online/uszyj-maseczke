@@ -12,9 +12,9 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.DisinfectionMeasures
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasOne(x => x.Request)
-                .WithMany(x=>x.DisinfectionMeasureRequestPositions)
-                .HasConstraintName("FK_DisinfectionMeasureRequests_RequestId");
+            builder.Property(x => x.Quantity);
+            builder.Property(x => x.DisinfectionMeasureType);
+            builder.Property(x => x.Description);
         }
     }
 }

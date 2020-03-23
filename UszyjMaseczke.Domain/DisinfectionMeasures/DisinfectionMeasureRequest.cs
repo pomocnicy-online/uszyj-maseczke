@@ -7,6 +7,6 @@ namespace UszyjMaseczke.Domain.DisinfectionMeasures
         public int Id { get; set; }
         public DisinfectionMeasureType DisinfectionMeasureType { get; set; }
         public int Quantity { get; set; }
-        public Request Request { get; set; }
+        public string Description { get; set; }
     }
 }
