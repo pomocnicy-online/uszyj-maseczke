@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UszyjMaseczke.Domain.Print;
@@ -13,7 +14,9 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Prints
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Quantity);
-            builder.Property(x => x.PrintType);
+            builder.Property(x => x.PrintType).HasConversion(
+                v => v.ToString(),
+                v => (PrintType)Enum.Parse(typeof(PrintType), v));
         }
     }
 }

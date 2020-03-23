@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,11 @@ namespace UszyjMaseczke.WebApi
         {
             var cors = Configuration.GetSection("CorsConfigurationSection").Get<CorsConfigurationSection>();
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                options.JsonSerializerOptions.IgnoreNullValues = false;
+            });
 
             services.AddSwaggerGen(c =>
             {

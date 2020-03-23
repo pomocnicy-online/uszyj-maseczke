@@ -180,9 +180,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Material = table.Column<int>(nullable: false),
+                    Material = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    Size = table.Column<int>(nullable: false),
+                    Size = table.Column<string>(nullable: false),
                     GloveRequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -223,9 +223,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UsageType = table.Column<int>(nullable: false),
+                    UsageType = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    Style = table.Column<int>(nullable: false),
+                    Style = table.Column<string>(nullable: false),
                     MaskRequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -266,7 +266,7 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PrintType = table.Column<int>(nullable: false),
+                    PrintType = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     PrintRequestId = table.Column<int>(nullable: true)
                 },
@@ -376,7 +376,7 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Size = table.Column<int>(nullable: false),
+                    Size = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     SuitRequestId = table.Column<int>(nullable: true)
                 },

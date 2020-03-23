@@ -1,5 +1,7 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using UszyjMaseczke.Domain;
 using UszyjMaseczke.Domain.Suits;
 
 namespace UszyjMaseczke.Infrastructure.EntityMappings.Suits
@@ -13,7 +15,9 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Suits
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Quantity);
-            builder.Property(x => x.Size);
+            builder.Property(x => x.Size).HasConversion(
+                v => v.ToString(),
+                v => (Size)Enum.Parse(typeof(Size), v));
         }
     }
 }

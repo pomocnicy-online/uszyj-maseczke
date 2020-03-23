@@ -10,7 +10,7 @@ using UszyjMaseczke.Infrastructure;
 namespace UszyjMaseczke.Migrations.Migrations
 {
     [DbContext(typeof(UszyjMaseczkeDbContext))]
-    [Migration("20200323225916_Init")]
+    [Migration("20200323233527_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,14 +81,16 @@ namespace UszyjMaseczke.Migrations.Migrations
                     b.Property<int?>("GloveRequestId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Material")
-                        .HasColumnType("integer");
+                    b.Property<string>("Material")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -160,11 +162,13 @@ namespace UszyjMaseczke.Migrations.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Style")
-                        .HasColumnType("integer");
+                    b.Property<string>("Style")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("UsageType")
-                        .HasColumnType("integer");
+                    b.Property<string>("UsageType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -281,8 +285,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                     b.Property<int?>("PrintRequestId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PrintType")
-                        .HasColumnType("integer");
+                    b.Property<string>("PrintType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
@@ -416,8 +421,9 @@ namespace UszyjMaseczke.Migrations.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int?>("SuitRequestId")
                         .HasColumnType("integer");
