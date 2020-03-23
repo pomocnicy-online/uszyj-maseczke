@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UszyjMaseczke.Domain.Gloves;
-using UszyjMaseczke.Domain.Masks;
 
-namespace UszyjMaseczke.Infrastructure.EntityMappings
+namespace UszyjMaseczke.Infrastructure.EntityMappings.Gloves
 {
     public class GloveRequestMappings : IEntityTypeConfiguration<GloveRequest>
     {

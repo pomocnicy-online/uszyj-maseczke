@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UszyjMaseczke.Domain;
+using UszyjMaseczke.Domain.Helpers;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.DTOs;
 

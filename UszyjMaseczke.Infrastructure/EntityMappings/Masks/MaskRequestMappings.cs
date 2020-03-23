@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UszyjMaseczke.Domain.Masks;
 
-namespace UszyjMaseczke.Infrastructure.EntityMappings
+namespace UszyjMaseczke.Infrastructure.EntityMappings.Masks
 {
     public class MaskRequestMappings : IEntityTypeConfiguration<MaskRequest>
     {

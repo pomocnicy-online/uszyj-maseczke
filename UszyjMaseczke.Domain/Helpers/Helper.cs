@@ -1,4 +1,4 @@
-namespace UszyjMaseczke.Domain
+namespace UszyjMaseczke.Domain.Helpers
 {
     public class Helper
     {

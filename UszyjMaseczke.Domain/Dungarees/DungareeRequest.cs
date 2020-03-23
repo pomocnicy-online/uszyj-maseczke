@@ -1,3 +1,5 @@
+using UszyjMaseczke.Domain.Requests;
+
 namespace UszyjMaseczke.Domain.Dungarees
 {
     public class DungareeRequest

@@ -11,6 +11,7 @@ using UszyjMaseczke.Domain.PsychologicalSupport;
 using UszyjMaseczke.Domain.Gloves;
 using UszyjMaseczke.Domain.Masks;
 using UszyjMaseczke.Domain.MedicalCentre;
+using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.DTOs;
 

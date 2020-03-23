@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using SimpleInjector;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.Bootstrap;
+using UszyjMaseczke.WebApi.Configuration;
 
 namespace UszyjMaseczke.WebApi
 {
@@ -26,6 +27,8 @@ namespace UszyjMaseczke.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var cors = Configuration.GetSection("CorsConfigurationSection").Get<CorsConfigurationSection>();
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -35,6 +38,15 @@ namespace UszyjMaseczke.WebApi
                     Title = "HelpMed",
                     Version = "v1"
                 });
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.WithOrigins(cors.Origins)
+                        .WithMethods(cors.Methods)
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
 
             services.AddDbContext<UszyjMaseczkeDbContext>(opt =>
@@ -53,7 +65,7 @@ namespace UszyjMaseczke.WebApi
         {
             ContainerInitializer.Initialize(_container, Configuration, app);
             app.UseSimpleInjector(_container);
-            
+
             InitializeDatabase(app);
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
@@ -68,7 +80,7 @@ namespace UszyjMaseczke.WebApi
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
-        
+
         private void InitializeDatabase(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())

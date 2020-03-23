@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UszyjMaseczke.Domain;
+using UszyjMaseczke.Domain.Requests;
 
-namespace UszyjMaseczke.Infrastructure.EntityMappings
+namespace UszyjMaseczke.Infrastructure.EntityMappings.Requests
 {
     internal class RequestMappings : IEntityTypeConfiguration<Request>
     {

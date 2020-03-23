@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UszyjMaseczke.Domain;
 using UszyjMaseczke.Domain.MedicalCentre;
 
-namespace UszyjMaseczke.Infrastructure.EntityMappings
+namespace UszyjMaseczke.Infrastructure.EntityMappings.MedicalCentres
 {
     internal class MedicalCentreMappings : IEntityTypeConfiguration<MedicalCentre>
     {
