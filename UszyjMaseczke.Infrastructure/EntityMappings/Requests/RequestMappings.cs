@@ -13,14 +13,16 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Requests
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasOne(x => x.MedicalCentre);
-            builder.HasMany(x => x.GroceryRequestPositions);
-            builder.HasMany(x => x.MaskRequests);
-            builder.HasMany(x => x.GlovesRequests);
-            builder.HasMany(x => x.OtherCleaningMaterialRequestPositions);
-            builder.HasMany(x => x.PsychologicalSupportRequestPositions);
-            builder.HasMany(x => x.DungareeRequestPositions);
-            builder.HasMany(x => x.DisinfectionMeasureRequestPositions);
-
+            builder.HasOne(x => x.MaskRequest);
+            builder.HasOne(x => x.GlovesRequest);
+            builder.HasOne(x => x.DisinfectionMeasureRequest);
+            builder.HasOne(x => x.SuitRequest);
+            builder.HasOne(x => x.GroceryRequest);
+            builder.HasOne(x => x.OtherCleaningMaterialRequest);
+            builder.HasOne(x => x.PsychologicalSupportRequest);
+            builder.HasOne(x => x.SewingSuppliesRequest);
+            builder.HasOne(x => x.OtherRequest);
+            builder.HasOne(x => x.PrintRequest);
 
         }
     }

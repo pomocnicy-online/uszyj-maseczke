@@ -1,17 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UszyjMaseczke.Domain;
+using UszyjMaseczke.Domain.Masks;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure.EntityMappings;
-using UszyjMaseczke.Infrastructure.EntityMappings.Dungarees;
+using UszyjMaseczke.Infrastructure.EntityMappings.DisinfectionMeasures;
 using UszyjMaseczke.Infrastructure.EntityMappings.Gloves;
 using UszyjMaseczke.Infrastructure.EntityMappings.Groceries;
 using UszyjMaseczke.Infrastructure.EntityMappings.Helpers;
 using UszyjMaseczke.Infrastructure.EntityMappings.Masks;
 using UszyjMaseczke.Infrastructure.EntityMappings.MedicalCentres;
 using UszyjMaseczke.Infrastructure.EntityMappings.OtherCleaningMaterials;
+using UszyjMaseczke.Infrastructure.EntityMappings.Others;
+using UszyjMaseczke.Infrastructure.EntityMappings.Prints;
 using UszyjMaseczke.Infrastructure.EntityMappings.PsychologicalSupport;
 using UszyjMaseczke.Infrastructure.EntityMappings.Requests;
+using UszyjMaseczke.Infrastructure.EntityMappings.SewingSupplies;
+using UszyjMaseczke.Infrastructure.EntityMappings.Suits;
 
 namespace UszyjMaseczke.Infrastructure
 {
@@ -39,14 +44,23 @@ namespace UszyjMaseczke.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new RequestMappings());
             modelBuilder.ApplyConfiguration(new MedicalCentreMappings());
-            modelBuilder.ApplyConfiguration(new HelperRequestMappings());
-            modelBuilder.ApplyConfiguration(new HelperMappings());
-            modelBuilder.ApplyConfiguration(new MaskRequestMappings());
+            modelBuilder.ApplyConfiguration(new DisinfectionMeasureRequestMappings());
+            modelBuilder.ApplyConfiguration(new DisinfectionMeasureRequestPositionMappings());
+            modelBuilder.ApplyConfiguration(new SuitRequestMappings());
+            modelBuilder.ApplyConfiguration(new SuitRequestPositionMappings());
             modelBuilder.ApplyConfiguration(new GloveRequestMappings());
+            modelBuilder.ApplyConfiguration(new GloveRequestPositionMappings());
             modelBuilder.ApplyConfiguration(new GroceryRequestMappings());
-            modelBuilder.ApplyConfiguration(new DungareesRequestMappings());
+            modelBuilder.ApplyConfiguration(new GroceryRequestPositionMappings());
+            modelBuilder.ApplyConfiguration(new MaskRequestMappings());
+            modelBuilder.ApplyConfiguration(new MaskRequestPositionMappings());
             modelBuilder.ApplyConfiguration(new OtherCleaningMaterialRequestMappings());
+            modelBuilder.ApplyConfiguration(new OtherCleaningMaterialRequestPositionMappings());
             modelBuilder.ApplyConfiguration(new PsychologicalSupportRequestMappings());
+            modelBuilder.ApplyConfiguration(new SewingSuppliesRequestMappings());
+            modelBuilder.ApplyConfiguration(new OtherRequestMapping());
+            modelBuilder.ApplyConfiguration(new PrintRequestMappings());
+            modelBuilder.ApplyConfiguration(new PrintRequestPositionMappings());
         }
     }
 }

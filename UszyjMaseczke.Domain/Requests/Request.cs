@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
-using UszyjMaseczke.Domain.DisinfectionMeasures;
-using UszyjMaseczke.Domain.Dungarees;
+﻿using UszyjMaseczke.Domain.DisinfectionMeasures;
 using UszyjMaseczke.Domain.Gloves;
 using UszyjMaseczke.Domain.Groceries;
 using UszyjMaseczke.Domain.Masks;
+using UszyjMaseczke.Domain.Other;
 using UszyjMaseczke.Domain.OtherCleaningMaterials;
+using UszyjMaseczke.Domain.Print;
 using UszyjMaseczke.Domain.PsychologicalSupport;
+using UszyjMaseczke.Domain.SewingSupplies;
+using UszyjMaseczke.Domain.Suits;
 
 namespace UszyjMaseczke.Domain.Requests
 {
@@ -13,13 +15,15 @@ namespace UszyjMaseczke.Domain.Requests
     {
         public int Id { get; set; }
         public virtual MedicalCentre.MedicalCentre MedicalCentre { get; set; }
-        public virtual ICollection<MaskRequest> MaskRequests { get; set; }
-        public virtual ICollection<GloveRequest> GlovesRequests { get; set; }
-        public virtual ICollection<GroceryRequest> GroceryRequestPositions { get; set; }
-        public virtual ICollection<OtherCleaningMaterialRequest> OtherCleaningMaterialRequestPositions { get; set; }
-        public virtual ICollection<PsychologicalSupportRequest> PsychologicalSupportRequestPositions { get; set; }
-        public virtual ICollection<DungareeRequest> DungareeRequestPositions { get; set; }
-        public virtual ICollection<DisinfectionMeasureRequest> DisinfectionMeasureRequestPositions { get; set; }
-
+        public virtual MaskRequest MaskRequest { get; set; }
+        public virtual GloveRequest GlovesRequest { get; set; }
+        public virtual DisinfectionMeasureRequest DisinfectionMeasureRequest { get; set; }
+        public virtual SuitRequest SuitRequest { get; set; }
+        public virtual GroceryRequest GroceryRequest { get; set; }
+        public virtual OtherCleaningMaterialRequest OtherCleaningMaterialRequest { get; set; }
+        public virtual PsychologicalSupportRequest PsychologicalSupportRequest { get; set; }
+        public virtual SewingSuppliesRequest SewingSuppliesRequest { get; set; }
+        public virtual OtherRequest OtherRequest { get; set; }
+        public virtual PrintRequest PrintRequest { get; set; }
     }
 }

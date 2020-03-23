@@ -12,8 +12,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Masks
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Quantity);
-            builder.Property(x => x.MaskType);
+            builder.HasMany(x => x.Positions);
             builder.Property(x => x.Description);
 
         }

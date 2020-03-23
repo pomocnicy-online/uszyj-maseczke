@@ -1,13 +1,11 @@
-using UszyjMaseczke.Domain.Requests;
+using System.Collections.Generic;
+using UszyjMaseczke.Domain.OtherCleaningMaterials;
 
 namespace UszyjMaseczke.Domain.Groceries
 {
     public class GroceryRequest
     {
         public int Id { get; set; }
-        public GroceryType GroceryType { get; set; }
-        public int Quantity { get; set; }
-
-        public string Description { get; set; }
+        public virtual ICollection<GroceryRequestPosition> Positions { get; set; }
     }
 }

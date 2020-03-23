@@ -1,17 +1,29 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UszyjMaseczke.Application.DTOs;
+using UszyjMaseczke.Application.DTOs.DesinfectionMesures;
+using UszyjMaseczke.Application.DTOs.Gloves;
 using UszyjMaseczke.Application.DTOs.Groceries;
-using UszyjMaseczke.Domain.Dungarees;
+using UszyjMaseczke.Application.DTOs.Masks;
+using UszyjMaseczke.Application.DTOs.OtherCleaningMaterials;
+using UszyjMaseczke.Application.DTOs.Others;
+using UszyjMaseczke.Application.DTOs.Prints;
+using UszyjMaseczke.Application.DTOs.PsychologicalSupport;
+using UszyjMaseczke.Application.DTOs.SewingSuppliesRequest;
+using UszyjMaseczke.Application.DTOs.Suits;
+using UszyjMaseczke.Domain.DisinfectionMeasures;
 using UszyjMaseczke.Domain.Gloves;
 using UszyjMaseczke.Domain.Groceries;
 using UszyjMaseczke.Domain.Masks;
 using UszyjMaseczke.Domain.MedicalCentre;
+using UszyjMaseczke.Domain.Other;
 using UszyjMaseczke.Domain.OtherCleaningMaterials;
+using UszyjMaseczke.Domain.Print;
 using UszyjMaseczke.Domain.PsychologicalSupport;
 using UszyjMaseczke.Domain.Requests;
+using UszyjMaseczke.Domain.SewingSupplies;
+using UszyjMaseczke.Domain.Suits;
 
 namespace UszyjMaseczke.Application.Requests
 {
@@ -27,43 +39,31 @@ namespace UszyjMaseczke.Application.Requests
         public async Task<int> CreateRequestAsync(CreateRequestDto createRequestDto)
         {
             var medicalCentre = MapToMedicalCentre(createRequestDto.MedicalCentre);
-            var maskRequests = createRequestDto.MaskRequests != null ? MapToMaskRequests(createRequestDto.MaskRequests) : new List<MaskRequest>();
-            var gloveRequests = createRequestDto.GloveRequests != null ? MapToGloveRequests(createRequestDto.GloveRequests) : new List<GloveRequest>();
-            var groceryRequests = createRequestDto.Groceries != null ? MapToGroceryRequests(createRequestDto.Groceries) : new List<GroceryRequest>();
+            var maskRequests = createRequestDto.MaskRequest != null ? MapToMaskRequests(createRequestDto.MaskRequest) : default;
+            var gloveRequests = createRequestDto.GloveRequest != null ? MapToGloveRequests(createRequestDto.GloveRequest) : default;
+            var groceryRequests = createRequestDto.GroceryRequest != null ? MapToGroceryRequests(createRequestDto.GroceryRequest) : default;
+            var disinfection = createRequestDto.DisinfectionMeasureRequest != null ? MapToDisinfectionMeasureRequest(createRequestDto.DisinfectionMeasureRequest) : default;
+            var suits = createRequestDto.SuitRequest != null ? MapToSuitRequests(createRequestDto.SuitRequest) : default;
+            var otherCleaningMaterialRequest = createRequestDto.OtherCleaningMaterialRequest != null ? MapToOtherCleaningMaterialRequest(createRequestDto.OtherCleaningMaterialRequest) : default;
+            var psychologicalSupportRequest = createRequestDto.PsychologicalSupportRequest != null ? MapToPsychologicalSupportRequest(createRequestDto.PsychologicalSupportRequest) : default;
+            var sewingSuppliesRequest = createRequestDto.SewingSuppliesRequest != null ? MapToSewingSuppliesRequest(createRequestDto.SewingSuppliesRequest) : default;
+            var otherRequest = createRequestDto.OtherRequest != null ? MapToOtherRequest(createRequestDto.OtherRequest) : default;
+            var printRequests = createRequestDto.PrintRequest != null ? MapToPrintRequests(createRequestDto.PrintRequest) : default;
+
             var request = new Request
             {
                 MedicalCentre = medicalCentre,
-                MaskRequests = maskRequests,
-                GlovesRequests = gloveRequests,
-                GroceryRequestPositions = groceryRequests,
-                OtherCleaningMaterialRequestPositions = createRequestDto?.OtherCleaningMaterials
-                    .Select(x => new OtherCleaningMaterialRequest
-                    {
-                        OtherCleaningMaterialType = x.CreateOtherCleaningMaterialType,
-                        Quantity = x.Quantity
-                    }).ToList(),
-                DungareeRequestPositions = createRequestDto?.Dungaries
-                    .Select(x => new DungareeRequest
-                    {
-                        DungareeType = x.DungareeType,
-                        Quantity = x.Quantity
-                    }).ToList(),
-                PsychologicalSupportRequestPositions = createRequestDto?.PsychologicalSupports
-                    .Select(x => new PsychologicalSupportRequest
-                    {
-                        Description = x.Description
-                    }).ToList()
+                MaskRequest = maskRequests,
+                GlovesRequest = gloveRequests,
+                GroceryRequest = groceryRequests,
+                DisinfectionMeasureRequest = disinfection,
+                SuitRequest = suits,
+                OtherCleaningMaterialRequest = otherCleaningMaterialRequest,
+                PsychologicalSupportRequest = psychologicalSupportRequest,
+                SewingSuppliesRequest = sewingSuppliesRequest,
+                OtherRequest = otherRequest,
+                PrintRequest = printRequests
             };
-
-            foreach (var maskRequest in createRequestDto.GloveRequests)
-            {
-                request.GlovesRequests.Add(new GloveRequest()
-                {
-                    Quantity = maskRequest.Quantity,
-                    GloveType = maskRequest.GloveType,
-                    Description = maskRequest.Description
-                });
-            }
 
             await _requestRepository.SaveAsync(request);
             return request.Id;
@@ -75,13 +75,13 @@ namespace UszyjMaseczke.Application.Requests
                 throw new ArgumentException("City cannot be null");
             if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.Email))
                 throw new ArgumentException("Email cannot be null");
-            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.City))
+            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.Street))
                 throw new ArgumentException("Street cannot be null");
-            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.City))
+            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.BuildingNumber))
                 throw new ArgumentException("BuildingNumber cannot be null");
-            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.City))
+            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.LegalName))
                 throw new ArgumentException("LegalName cannot be null");
-            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.City))
+            if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.PhoneNumber))
                 throw new ArgumentException("PhoneNumber cannot be null");
 
             return new MedicalCentre
@@ -96,59 +96,140 @@ namespace UszyjMaseczke.Application.Requests
             };
         }
 
-        private ICollection<MaskRequest> MapToMaskRequests(IEnumerable<CreateRequestMaskRequestDto> maskRequests)
-        {
-            var result = new List<MaskRequest>();
-            foreach (var maskRequest in maskRequests)
-            {
-                if (maskRequest.MaskType == MaskType.Other && string.IsNullOrWhiteSpace(maskRequest.Description))
-                    throw new InvalidOperationException("When MaskType is equal Other description cannot be empty");
 
-                result.Add(new MaskRequest()
+        private static MaskRequest MapToMaskRequests(MaskRequestDto maskRequest)
+        {
+            var result = new MaskRequest();
+            result.Description = maskRequest.Description;
+            result.Positions = new List<MaskRequestPosition>();
+            foreach (var request in maskRequest.Positions)
+            {
+                result.Positions.Add(new MaskRequestPosition()
                 {
-                    Quantity = maskRequest.Quantity,
-                    MaskType = maskRequest.MaskType,
-                    Description = maskRequest.Description,
-                    MaskSize = maskRequest.MaskSize
+                    Quantity = request.Quantity,
+                    Style = request.Style,
+                    UsageType = request.UsageType
                 });
             }
 
             return result;
         }
 
-        private ICollection<GloveRequest> MapToGloveRequests(IEnumerable<CreateRequestGloveRequestDto> gloveRequests)
+        private GloveRequest MapToGloveRequests(GloveRequestDto gloveRequests)
         {
-            var result = new List<GloveRequest>();
-            foreach (var gloveRequest in gloveRequests)
+            var result = new GloveRequest();
+            result.Description = gloveRequests.Description;
+            result.Positions = new List<GloveRequestPosition>();
+            foreach (var request in gloveRequests.Positions)
             {
-                if (gloveRequest.GloveType == GloveType.Other && string.IsNullOrWhiteSpace(gloveRequest.Description))
-                    throw new InvalidOperationException("When GloveType is equal Other description cannot be empty");
-
-                result.Add(new GloveRequest()
+                result.Positions.Add(new GloveRequestPosition()
                 {
-                    Quantity = gloveRequest.Quantity,
-                    GloveType = gloveRequest.GloveType,
-                    Description = gloveRequest.Description,
-                    GloveSize = gloveRequest.GloveSize
+                    Quantity = request.Quantity,
+                    Material = request.Material,
+                    Size = request.Size
                 });
             }
 
             return result;
         }
 
-        private ICollection<GroceryRequest> MapToGroceryRequests(IEnumerable<CreateGroceryDto> groceryDtos)
+        private static GroceryRequest MapToGroceryRequests(GroceryRequestDto groceryRequest)
         {
-            var result = new List<GroceryRequest>();
-            foreach (var groceryRequest in groceryDtos)
+            var result = new GroceryRequest();
+            result.Positions = new List<GroceryRequestPosition>();
+            foreach (var request in groceryRequest.Positions)
             {
-                if (groceryRequest.GroceryType == GroceryType.FirstType && string.IsNullOrWhiteSpace(groceryRequest.Description))
-                    throw new InvalidOperationException("When GroceryType is equal FirstType description cannot be empty");
-
-                result.Add(new GroceryRequest()
+                result.Positions.Add(new GroceryRequestPosition()
                 {
-                    Quantity = groceryRequest.Quantity,
-                    Description = groceryRequest.Description,
-                    GroceryType = groceryRequest.GroceryType
+                    Quantity = request.Quantity,
+                    Description = request.Description,
+                });
+            }
+
+            return result;
+        }
+
+        private static DisinfectionMeasureRequest MapToDisinfectionMeasureRequest(DisinfectionMeasureRequestDto groceryRequest)
+        {
+            var result = new DisinfectionMeasureRequest();
+            result.Positions = new List<DisinfectionMeasureRequestPosition>();
+            foreach (var request in groceryRequest.Positions)
+            {
+                result.Positions.Add(new DisinfectionMeasureRequestPosition()
+                {
+                    Quantity = request.Quantity,
+                    Description = request.Description,
+                });
+            }
+
+            return result;
+        }
+
+        private SuitRequest MapToSuitRequests(SuitRequestDto suitRequests)
+        {
+            var result = new SuitRequest();
+            result.Description = suitRequests.Description;
+            result.Positions = new List<SuitRequestPosition>();
+            foreach (var request in suitRequests.Positions)
+            {
+                result.Positions.Add(new SuitRequestPosition()
+                {
+                    Quantity = request.Quantity,
+                    Size = request.Size
+                });
+            }
+
+            return result;
+        }
+
+        private static OtherCleaningMaterialRequest MapToOtherCleaningMaterialRequest(OtherCleaningMaterialRequestDto otherCleaningMaterialRequestDto)
+        {
+            var result = new OtherCleaningMaterialRequest();
+            result.Positions = new List<OtherCleaningMaterialRequestPosition>();
+            foreach (var request in otherCleaningMaterialRequestDto.Positions)
+            {
+                result.Positions.Add(new OtherCleaningMaterialRequestPosition()
+                {
+                    Quantity = request.Quantity,
+                    Description = request.Description,
+                });
+            }
+
+            return result;
+        }
+
+        private static PsychologicalSupportRequest MapToPsychologicalSupportRequest(PsychologicalSupportDto psychologicalSupportDto)
+        {
+            var result = new PsychologicalSupportRequest();
+            result.Description = psychologicalSupportDto.Description;
+            return result;
+        }
+
+        private static SewingSuppliesRequest MapToSewingSuppliesRequest(SewingSuppliesRequestDto sewingSuppliesRequestDto)
+        {
+            var result = new SewingSuppliesRequest();
+            result.Description = sewingSuppliesRequestDto.Description;
+            return result;
+        }
+
+        private static OtherRequest MapToOtherRequest(OtherRequestDto otherRequestDto)
+        {
+            var result = new OtherRequest();
+            result.Description = otherRequestDto.Description;
+            return result;
+        }
+
+        private PrintRequest MapToPrintRequests(PrintRequestDto printRequest)
+        {
+            var result = new PrintRequest();
+            result.Description = printRequest.Description;
+            result.Positions = new List<PrintRequestPosition>();
+            foreach (var request in printRequest.Positions)
+            {
+                result.Positions.Add(new PrintRequestPosition()
+                {
+                    Quantity = request.Quantity,
+                    PrintType = request.PrintType
                 });
             }
 

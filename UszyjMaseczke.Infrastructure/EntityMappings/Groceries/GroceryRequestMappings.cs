@@ -12,9 +12,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Groceries
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Quantity);
-            builder.Property(x => x.GroceryType);
-            builder.Property(x => x.Description);
+            builder.HasMany(x => x.Positions);
         }
     }
 }

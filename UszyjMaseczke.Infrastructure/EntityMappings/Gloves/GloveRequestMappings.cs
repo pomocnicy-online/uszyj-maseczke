@@ -12,8 +12,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Gloves
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Quantity);
-            builder.Property(x => x.GloveType);
+            builder.HasMany(x => x.Positions);
             builder.Property(x => x.Description);
         }
     }
