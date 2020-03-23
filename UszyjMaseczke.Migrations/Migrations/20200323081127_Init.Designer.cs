@@ -10,8 +10,8 @@ using UszyjMaseczke.Infrastructure;
 namespace UszyjMaseczke.Migrations.Migrations
 {
     [DbContext(typeof(UszyjMaseczkeDbContext))]
-    [Migration("20200323080113_2")]
-    partial class _2
+    [Migration("20200323081127_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

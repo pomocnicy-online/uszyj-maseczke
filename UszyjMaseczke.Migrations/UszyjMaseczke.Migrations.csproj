@@ -13,5 +13,9 @@
       <ProjectReference Include="..\UszyjMaseczke.Infrastructure\UszyjMaseczke.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Migrations" />
+    </ItemGroup>
+
 
 </Project>

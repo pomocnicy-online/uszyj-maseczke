@@ -51,26 +51,26 @@ namespace UszyjMaseczke.WebApi.Controllers
                 },
                 MaskRequests = new List<MaskRequest>(),
                 GlovesRequests = new List<GloveRequest>(),
-                GroceryRequestPositions = createRequestDto.Groceries
+                GroceryRequestPositions = createRequestDto?.Groceries
                     .Select(x => new GroceryRequest
                     {
                         GroceryType = x.GroceryType,
                         Quantity = x.Quantity
                     })
                     .ToList(),
-                OtherCleaningMaterialRequestPositions = createRequestDto.OtherCleaningMaterials
+                OtherCleaningMaterialRequestPositions = createRequestDto?.OtherCleaningMaterials
                     .Select(x=>new OtherCleaningMaterialRequest
                     {
                         OtherCleaningMaterialType = x.CreateOtherCleaningMaterialType,
                         Quantity = x.Quantity
                     }).ToList(),
-                DungareeRequestPositions = createRequestDto.Dungaries
+                DungareeRequestPositions = createRequestDto?.Dungaries
                     .Select(x=>new DungareeRequest
                     {
                         DungareeType = x.DungareeType,
                         Quantity = x.Quantity
                     }).ToList(),
-                PsychologicalSupportRequestPositions = createRequestDto.PsychologicalSupports
+                PsychologicalSupportRequestPositions = createRequestDto?.PsychologicalSupports
                     .Select(x=>new PsychologicalSupportRequest
                     {
                         Description = x.Description
