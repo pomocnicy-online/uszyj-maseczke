@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UszyjMaseczke.Infrastructure;
@@ -9,9 +10,10 @@ using UszyjMaseczke.Infrastructure;
 namespace UszyjMaseczke.Migrations.Migrations
 {
     [DbContext(typeof(UszyjMaseczkeDbContext))]
-    partial class UszyjMaseczkeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200324113639_AddedView")]
+    partial class AddedView
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,9 +200,6 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("BuildingNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PostalCode")
                         .HasColumnType("text");
 
                     b.Property<string>("City")

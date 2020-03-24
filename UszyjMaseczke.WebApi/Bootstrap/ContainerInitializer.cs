@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
+using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Application.Requests;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure;
@@ -20,6 +21,8 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         private static void InitializeRepositories(Container container)
         {
             container.Register<IRequestRepository, RequestRepository>();
+            container.Register<IViewRepository, ViewRepository>();
+
         }
 
         private static void InitializeServices(Container container)

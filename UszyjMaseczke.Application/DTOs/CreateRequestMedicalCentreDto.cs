@@ -7,6 +7,7 @@ namespace UszyjMaseczke.Application.DTOs
         public string Street { get; set; }
         public string BuildingNumber { get; set; }
         public string ApartmentNumber { get; set; }
+        public string PostalCode { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
     }

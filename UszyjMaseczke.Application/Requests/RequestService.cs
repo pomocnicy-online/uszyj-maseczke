@@ -92,7 +92,8 @@ namespace UszyjMaseczke.Application.Requests
                 ApartmentNumber = createRequestMedicalCentreDto.ApartmentNumber,
                 BuildingNumber = createRequestMedicalCentreDto.BuildingNumber,
                 LegalName = createRequestMedicalCentreDto.LegalName,
-                PhoneNumber = createRequestMedicalCentreDto.PhoneNumber
+                PhoneNumber = createRequestMedicalCentreDto.PhoneNumber,
+                PostalCode =  createRequestMedicalCentreDto.PostalCode
             };
         }
 
@@ -101,6 +102,7 @@ namespace UszyjMaseczke.Application.Requests
         {
             var result = new MaskRequest();
             result.Description = maskRequest.Description;
+            result.TotalCount = 0;
             result.Positions = new List<MaskRequestPosition>();
             foreach (var request in maskRequest.Positions)
             {
@@ -110,6 +112,7 @@ namespace UszyjMaseczke.Application.Requests
                     Style = request.Style,
                     UsageType = request.UsageType
                 });
+                result.TotalCount += request.Quantity;
             }
 
             return result;
@@ -119,6 +122,7 @@ namespace UszyjMaseczke.Application.Requests
         {
             var result = new GloveRequest();
             result.Description = gloveRequests.Description;
+            result.TotalCount = 0;
             result.Positions = new List<GloveRequestPosition>();
             foreach (var request in gloveRequests.Positions)
             {
@@ -128,6 +132,7 @@ namespace UszyjMaseczke.Application.Requests
                     Material = request.Material,
                     Size = request.Size
                 });
+                result.TotalCount += request.Quantity;
             }
 
             return result;
@@ -137,6 +142,7 @@ namespace UszyjMaseczke.Application.Requests
         {
             var result = new GroceryRequest();
             result.Positions = new List<GroceryRequestPosition>();
+            result.TotalCount = 0;
             foreach (var request in groceryRequest.Positions)
             {
                 result.Positions.Add(new GroceryRequestPosition()
@@ -144,6 +150,7 @@ namespace UszyjMaseczke.Application.Requests
                     Quantity = request.Quantity,
                     Description = request.Description,
                 });
+                result.TotalCount += request.Quantity;
             }
 
             return result;
@@ -153,6 +160,7 @@ namespace UszyjMaseczke.Application.Requests
         {
             var result = new DisinfectionMeasureRequest();
             result.Positions = new List<DisinfectionMeasureRequestPosition>();
+            result.TotalCount = 0;
             foreach (var request in groceryRequest.Positions)
             {
                 result.Positions.Add(new DisinfectionMeasureRequestPosition()
@@ -160,6 +168,7 @@ namespace UszyjMaseczke.Application.Requests
                     Quantity = request.Quantity,
                     Description = request.Description,
                 });
+                result.TotalCount += request.Quantity;
             }
 
             return result;
@@ -169,6 +178,7 @@ namespace UszyjMaseczke.Application.Requests
         {
             var result = new SuitRequest();
             result.Description = suitRequests.Description;
+            result.TotalCount = 0;
             result.Positions = new List<SuitRequestPosition>();
             foreach (var request in suitRequests.Positions)
             {
@@ -177,6 +187,7 @@ namespace UszyjMaseczke.Application.Requests
                     Quantity = request.Quantity,
                     Size = request.Size
                 });
+                result.TotalCount += request.Quantity;
             }
 
             return result;
@@ -186,6 +197,7 @@ namespace UszyjMaseczke.Application.Requests
         {
             var result = new OtherCleaningMaterialRequest();
             result.Positions = new List<OtherCleaningMaterialRequestPosition>();
+            result.TotalCount = 0;
             foreach (var request in otherCleaningMaterialRequestDto.Positions)
             {
                 result.Positions.Add(new OtherCleaningMaterialRequestPosition()
@@ -193,6 +205,7 @@ namespace UszyjMaseczke.Application.Requests
                     Quantity = request.Quantity,
                     Description = request.Description,
                 });
+                result.TotalCount += request.Quantity;
             }
 
             return result;
@@ -223,6 +236,7 @@ namespace UszyjMaseczke.Application.Requests
         {
             var result = new PrintRequest();
             result.Description = printRequest.Description;
+            result.TotalCount = 0;
             result.Positions = new List<PrintRequestPosition>();
             foreach (var request in printRequest.Positions)
             {
@@ -231,6 +245,7 @@ namespace UszyjMaseczke.Application.Requests
                     Quantity = request.Quantity,
                     PrintType = request.PrintType
                 });
+                result.TotalCount += request.Quantity;
             }
 
             return result;

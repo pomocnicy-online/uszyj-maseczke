@@ -13,6 +13,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.DisinfectionMeasures
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasMany(x => x.Positions);
+            builder.Property(x => x.TotalCount);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.MedicalCentres
             builder.Property(x => x.Street);
             builder.Property(x => x.BuildingNumber);
             builder.Property(x => x.ApartmentNumber);
+            builder.Property(x => x.PostalCode);
             builder.Property(x => x.Email);
             builder.Property(x => x.PhoneNumber);
         }

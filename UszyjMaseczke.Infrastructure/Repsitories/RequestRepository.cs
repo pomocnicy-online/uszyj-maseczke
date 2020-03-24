@@ -16,7 +16,26 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
 
         public Task<Request> GetAsync(int id)
         {
-            return _dbContext.Requests.SingleOrDefaultAsync(x => x.Id == id);
+            return _dbContext.Requests
+                .Include(x=> x.MedicalCentre)
+                .Include(x=> x.MaskRequest)
+                .Include(x=> x.MaskRequest.Positions)
+                .Include(x=> x.GlovesRequest)
+                .Include(x=> x.GlovesRequest.Positions)
+                .Include(x=> x.DisinfectionMeasureRequest)
+                .Include(x=> x.DisinfectionMeasureRequest.Positions)
+                .Include(x=> x.SuitRequest)
+                .Include(x=> x.SuitRequest.Positions)
+                .Include(x=> x.GroceryRequest)
+                .Include(x=> x.GroceryRequest.Positions)
+                .Include(x=> x.OtherCleaningMaterialRequest)
+                .Include(x=> x.OtherCleaningMaterialRequest.Positions)
+                .Include(x=> x.PsychologicalSupportRequest)
+                .Include(x=> x.SewingSuppliesRequest)
+                .Include(x=> x.OtherRequest)
+                .Include(x=> x.PrintRequest)
+                .Include(x=> x.PrintRequest.Positions)
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Request>> GetAsync()

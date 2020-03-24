@@ -14,6 +14,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Suits
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasMany(x => x.Positions);
             builder.Property(x => x.Description);
+            builder.Property(x => x.TotalCount);
         }
     }
 }
