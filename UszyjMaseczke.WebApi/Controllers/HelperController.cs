@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UszyjMaseczke.Application.DTOs;
-using UszyjMaseczke.Domain;
+using log4net;
 using UszyjMaseczke.Domain.Helpers;
 using UszyjMaseczke.Infrastructure;
+using System;
 
 namespace UszyjMaseczke.WebApi.Controllers
 {
@@ -12,6 +13,7 @@ namespace UszyjMaseczke.WebApi.Controllers
     public class HelperController : ControllerBase
     {
         private readonly UszyjMaseczkeDbContext _dbContext;
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(HelperController));
 
         public HelperController(UszyjMaseczkeDbContext dbContext)
         {
@@ -35,8 +37,17 @@ namespace UszyjMaseczke.WebApi.Controllers
                     PhoneNumber = createRequestDto.Helper.PhoneNumber
                 }
             };
-            await _dbContext.AddAsync(request);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.AddAsync(request);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Error while creating helper request");
+                Logger.Error(e.StackTrace);
+            }
+
             return Ok();
         }
     }
