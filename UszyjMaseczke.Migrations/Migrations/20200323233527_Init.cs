@@ -8,60 +8,48 @@ namespace UszyjMaseczke.Migrations.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "DisinfectionMeasureRequests",
-                columns: table => new
+                "DisinfectionMeasureRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DisinfectionMeasureRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_DisinfectionMeasureRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "GloveRequests",
-                columns: table => new
+                "GloveRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GloveRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_GloveRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "GroceryRequests",
-                columns: table => new
+                "GroceryRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GroceryRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_GroceryRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "MaskRequests",
-                columns: table => new
+                "MaskRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MaskRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_MaskRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "MedicalCentres",
-                columns: table => new
+                "MedicalCentres",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     LegalName = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
@@ -71,95 +59,74 @@ namespace UszyjMaseczke.Migrations.Migrations
                     Email = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MedicalCentres", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_MedicalCentres", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "OtherCleaningMaterialRequests",
-                columns: table => new
+                "OtherCleaningMaterialRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OtherCleaningMaterialRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_OtherCleaningMaterialRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "OtherRequests",
-                columns: table => new
+                "OtherRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OtherRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_OtherRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "PrintRequests",
-                columns: table => new
+                "PrintRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PrintRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_PrintRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "PsychologicalSupportRequests",
-                columns: table => new
+                "PsychologicalSupportRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PsychologicalSupportRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_PsychologicalSupportRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "SewingSuppliesRequests",
-                columns: table => new
+                "SewingSuppliesRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SewingSuppliesRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_SewingSuppliesRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "SuitRequests",
-                columns: table => new
+                "SuitRequests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SuitRequests", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_SuitRequests", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "DisinfectionMeasureRequestPositions",
-                columns: table => new
+                "DisinfectionMeasureRequestPositions",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Quantity = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(),
                     Description = table.Column<string>(nullable: true),
                     DisinfectionMeasureRequestId = table.Column<int>(nullable: true)
                 },
@@ -167,42 +134,42 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_DisinfectionMeasureRequestPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DisinfectionMeasureRequestPositions_DisinfectionMeasureRequ~",
-                        column: x => x.DisinfectionMeasureRequestId,
-                        principalTable: "DisinfectionMeasureRequests",
-                        principalColumn: "Id",
+                        "FK_DisinfectionMeasureRequestPositions_DisinfectionMeasureRequ~",
+                        x => x.DisinfectionMeasureRequestId,
+                        "DisinfectionMeasureRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "GloveRequestPositions",
-                columns: table => new
+                "GloveRequestPositions",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Material = table.Column<string>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    Size = table.Column<string>(nullable: false),
+                    Material = table.Column<string>(),
+                    Quantity = table.Column<int>(),
+                    Size = table.Column<string>(),
                     GloveRequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GloveRequestPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GloveRequestPositions_GloveRequests_GloveRequestId",
-                        column: x => x.GloveRequestId,
-                        principalTable: "GloveRequests",
-                        principalColumn: "Id",
+                        "FK_GloveRequestPositions_GloveRequests_GloveRequestId",
+                        x => x.GloveRequestId,
+                        "GloveRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "GroceryRequestPositions",
-                columns: table => new
+                "GroceryRequestPositions",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Quantity = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(),
                     Description = table.Column<string>(nullable: true),
                     GroceryRequestId = table.Column<int>(nullable: true)
                 },
@@ -210,42 +177,42 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_GroceryRequestPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GroceryRequestPositions_GroceryRequests_GroceryRequestId",
-                        column: x => x.GroceryRequestId,
-                        principalTable: "GroceryRequests",
-                        principalColumn: "Id",
+                        "FK_GroceryRequestPositions_GroceryRequests_GroceryRequestId",
+                        x => x.GroceryRequestId,
+                        "GroceryRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MaskRequestPositions",
-                columns: table => new
+                "MaskRequestPositions",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UsageType = table.Column<string>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    Style = table.Column<string>(nullable: false),
+                    UsageType = table.Column<string>(),
+                    Quantity = table.Column<int>(),
+                    Style = table.Column<string>(),
                     MaskRequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MaskRequestPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MaskRequestPositions_MaskRequests_MaskRequestId",
-                        column: x => x.MaskRequestId,
-                        principalTable: "MaskRequests",
-                        principalColumn: "Id",
+                        "FK_MaskRequestPositions_MaskRequests_MaskRequestId",
+                        x => x.MaskRequestId,
+                        "MaskRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "OtherCleaningMaterialRequestPositions",
-                columns: table => new
+                "OtherCleaningMaterialRequestPositions",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Quantity = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(),
                     Description = table.Column<string>(nullable: true),
                     OtherCleaningMaterialRequestId = table.Column<int>(nullable: true)
                 },
@@ -253,39 +220,39 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_OtherCleaningMaterialRequestPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OtherCleaningMaterialRequestPositions_OtherCleaningMaterial~",
-                        column: x => x.OtherCleaningMaterialRequestId,
-                        principalTable: "OtherCleaningMaterialRequests",
-                        principalColumn: "Id",
+                        "FK_OtherCleaningMaterialRequestPositions_OtherCleaningMaterial~",
+                        x => x.OtherCleaningMaterialRequestId,
+                        "OtherCleaningMaterialRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PrintRequestPositions",
-                columns: table => new
+                "PrintRequestPositions",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PrintType = table.Column<string>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
+                    PrintType = table.Column<string>(),
+                    Quantity = table.Column<int>(),
                     PrintRequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PrintRequestPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PrintRequestPositions_PrintRequests_PrintRequestId",
-                        column: x => x.PrintRequestId,
-                        principalTable: "PrintRequests",
-                        principalColumn: "Id",
+                        "FK_PrintRequestPositions_PrintRequests_PrintRequestId",
+                        x => x.PrintRequestId,
+                        "PrintRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Requests",
-                columns: table => new
+                "Requests",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     MedicalCentreId = table.Column<int>(nullable: true),
                     MaskRequestId = table.Column<int>(nullable: true),
@@ -303,243 +270,243 @@ namespace UszyjMaseczke.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_Requests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Requests_DisinfectionMeasureRequests_DisinfectionMeasureReq~",
-                        column: x => x.DisinfectionMeasureRequestId,
-                        principalTable: "DisinfectionMeasureRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_DisinfectionMeasureRequests_DisinfectionMeasureReq~",
+                        x => x.DisinfectionMeasureRequestId,
+                        "DisinfectionMeasureRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_GloveRequests_GlovesRequestId",
-                        column: x => x.GlovesRequestId,
-                        principalTable: "GloveRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_GloveRequests_GlovesRequestId",
+                        x => x.GlovesRequestId,
+                        "GloveRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_GroceryRequests_GroceryRequestId",
-                        column: x => x.GroceryRequestId,
-                        principalTable: "GroceryRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_GroceryRequests_GroceryRequestId",
+                        x => x.GroceryRequestId,
+                        "GroceryRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_MaskRequests_MaskRequestId",
-                        column: x => x.MaskRequestId,
-                        principalTable: "MaskRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_MaskRequests_MaskRequestId",
+                        x => x.MaskRequestId,
+                        "MaskRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_MedicalCentres_MedicalCentreId",
-                        column: x => x.MedicalCentreId,
-                        principalTable: "MedicalCentres",
-                        principalColumn: "Id",
+                        "FK_Requests_MedicalCentres_MedicalCentreId",
+                        x => x.MedicalCentreId,
+                        "MedicalCentres",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_OtherCleaningMaterialRequests_OtherCleaningMateria~",
-                        column: x => x.OtherCleaningMaterialRequestId,
-                        principalTable: "OtherCleaningMaterialRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_OtherCleaningMaterialRequests_OtherCleaningMateria~",
+                        x => x.OtherCleaningMaterialRequestId,
+                        "OtherCleaningMaterialRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_OtherRequests_OtherRequestId",
-                        column: x => x.OtherRequestId,
-                        principalTable: "OtherRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_OtherRequests_OtherRequestId",
+                        x => x.OtherRequestId,
+                        "OtherRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_PrintRequests_PrintRequestId",
-                        column: x => x.PrintRequestId,
-                        principalTable: "PrintRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_PrintRequests_PrintRequestId",
+                        x => x.PrintRequestId,
+                        "PrintRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_PsychologicalSupportRequests_PsychologicalSupportR~",
-                        column: x => x.PsychologicalSupportRequestId,
-                        principalTable: "PsychologicalSupportRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_PsychologicalSupportRequests_PsychologicalSupportR~",
+                        x => x.PsychologicalSupportRequestId,
+                        "PsychologicalSupportRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_SewingSuppliesRequests_SewingSuppliesRequestId",
-                        column: x => x.SewingSuppliesRequestId,
-                        principalTable: "SewingSuppliesRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_SewingSuppliesRequests_SewingSuppliesRequestId",
+                        x => x.SewingSuppliesRequestId,
+                        "SewingSuppliesRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Requests_SuitRequests_SuitRequestId",
-                        column: x => x.SuitRequestId,
-                        principalTable: "SuitRequests",
-                        principalColumn: "Id",
+                        "FK_Requests_SuitRequests_SuitRequestId",
+                        x => x.SuitRequestId,
+                        "SuitRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SuitRequestPositions",
-                columns: table => new
+                "SuitRequestPositions",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Size = table.Column<string>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
+                    Size = table.Column<string>(),
+                    Quantity = table.Column<int>(),
                     SuitRequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SuitRequestPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SuitRequestPositions_SuitRequests_SuitRequestId",
-                        column: x => x.SuitRequestId,
-                        principalTable: "SuitRequests",
-                        principalColumn: "Id",
+                        "FK_SuitRequestPositions_SuitRequests_SuitRequestId",
+                        x => x.SuitRequestId,
+                        "SuitRequests",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DisinfectionMeasureRequestPositions_DisinfectionMeasureRequ~",
-                table: "DisinfectionMeasureRequestPositions",
-                column: "DisinfectionMeasureRequestId");
+                "IX_DisinfectionMeasureRequestPositions_DisinfectionMeasureRequ~",
+                "DisinfectionMeasureRequestPositions",
+                "DisinfectionMeasureRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GloveRequestPositions_GloveRequestId",
-                table: "GloveRequestPositions",
-                column: "GloveRequestId");
+                "IX_GloveRequestPositions_GloveRequestId",
+                "GloveRequestPositions",
+                "GloveRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GroceryRequestPositions_GroceryRequestId",
-                table: "GroceryRequestPositions",
-                column: "GroceryRequestId");
+                "IX_GroceryRequestPositions_GroceryRequestId",
+                "GroceryRequestPositions",
+                "GroceryRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaskRequestPositions_MaskRequestId",
-                table: "MaskRequestPositions",
-                column: "MaskRequestId");
+                "IX_MaskRequestPositions_MaskRequestId",
+                "MaskRequestPositions",
+                "MaskRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OtherCleaningMaterialRequestPositions_OtherCleaningMaterial~",
-                table: "OtherCleaningMaterialRequestPositions",
-                column: "OtherCleaningMaterialRequestId");
+                "IX_OtherCleaningMaterialRequestPositions_OtherCleaningMaterial~",
+                "OtherCleaningMaterialRequestPositions",
+                "OtherCleaningMaterialRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PrintRequestPositions_PrintRequestId",
-                table: "PrintRequestPositions",
-                column: "PrintRequestId");
+                "IX_PrintRequestPositions_PrintRequestId",
+                "PrintRequestPositions",
+                "PrintRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_DisinfectionMeasureRequestId",
-                table: "Requests",
-                column: "DisinfectionMeasureRequestId");
+                "IX_Requests_DisinfectionMeasureRequestId",
+                "Requests",
+                "DisinfectionMeasureRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_GlovesRequestId",
-                table: "Requests",
-                column: "GlovesRequestId");
+                "IX_Requests_GlovesRequestId",
+                "Requests",
+                "GlovesRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_GroceryRequestId",
-                table: "Requests",
-                column: "GroceryRequestId");
+                "IX_Requests_GroceryRequestId",
+                "Requests",
+                "GroceryRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_MaskRequestId",
-                table: "Requests",
-                column: "MaskRequestId");
+                "IX_Requests_MaskRequestId",
+                "Requests",
+                "MaskRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_MedicalCentreId",
-                table: "Requests",
-                column: "MedicalCentreId");
+                "IX_Requests_MedicalCentreId",
+                "Requests",
+                "MedicalCentreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_OtherCleaningMaterialRequestId",
-                table: "Requests",
-                column: "OtherCleaningMaterialRequestId");
+                "IX_Requests_OtherCleaningMaterialRequestId",
+                "Requests",
+                "OtherCleaningMaterialRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_OtherRequestId",
-                table: "Requests",
-                column: "OtherRequestId");
+                "IX_Requests_OtherRequestId",
+                "Requests",
+                "OtherRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_PrintRequestId",
-                table: "Requests",
-                column: "PrintRequestId");
+                "IX_Requests_PrintRequestId",
+                "Requests",
+                "PrintRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_PsychologicalSupportRequestId",
-                table: "Requests",
-                column: "PsychologicalSupportRequestId");
+                "IX_Requests_PsychologicalSupportRequestId",
+                "Requests",
+                "PsychologicalSupportRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_SewingSuppliesRequestId",
-                table: "Requests",
-                column: "SewingSuppliesRequestId");
+                "IX_Requests_SewingSuppliesRequestId",
+                "Requests",
+                "SewingSuppliesRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_SuitRequestId",
-                table: "Requests",
-                column: "SuitRequestId");
+                "IX_Requests_SuitRequestId",
+                "Requests",
+                "SuitRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SuitRequestPositions_SuitRequestId",
-                table: "SuitRequestPositions",
-                column: "SuitRequestId");
+                "IX_SuitRequestPositions_SuitRequestId",
+                "SuitRequestPositions",
+                "SuitRequestId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DisinfectionMeasureRequestPositions");
+                "DisinfectionMeasureRequestPositions");
 
             migrationBuilder.DropTable(
-                name: "GloveRequestPositions");
+                "GloveRequestPositions");
 
             migrationBuilder.DropTable(
-                name: "GroceryRequestPositions");
+                "GroceryRequestPositions");
 
             migrationBuilder.DropTable(
-                name: "MaskRequestPositions");
+                "MaskRequestPositions");
 
             migrationBuilder.DropTable(
-                name: "OtherCleaningMaterialRequestPositions");
+                "OtherCleaningMaterialRequestPositions");
 
             migrationBuilder.DropTable(
-                name: "PrintRequestPositions");
+                "PrintRequestPositions");
 
             migrationBuilder.DropTable(
-                name: "Requests");
+                "Requests");
 
             migrationBuilder.DropTable(
-                name: "SuitRequestPositions");
+                "SuitRequestPositions");
 
             migrationBuilder.DropTable(
-                name: "DisinfectionMeasureRequests");
+                "DisinfectionMeasureRequests");
 
             migrationBuilder.DropTable(
-                name: "GloveRequests");
+                "GloveRequests");
 
             migrationBuilder.DropTable(
-                name: "GroceryRequests");
+                "GroceryRequests");
 
             migrationBuilder.DropTable(
-                name: "MaskRequests");
+                "MaskRequests");
 
             migrationBuilder.DropTable(
-                name: "MedicalCentres");
+                "MedicalCentres");
 
             migrationBuilder.DropTable(
-                name: "OtherCleaningMaterialRequests");
+                "OtherCleaningMaterialRequests");
 
             migrationBuilder.DropTable(
-                name: "OtherRequests");
+                "OtherRequests");
 
             migrationBuilder.DropTable(
-                name: "PrintRequests");
+                "PrintRequests");
 
             migrationBuilder.DropTable(
-                name: "PsychologicalSupportRequests");
+                "PsychologicalSupportRequests");
 
             migrationBuilder.DropTable(
-                name: "SewingSuppliesRequests");
+                "SewingSuppliesRequests");
 
             migrationBuilder.DropTable(
-                name: "SuitRequests");
+                "SuitRequests");
         }
     }
 }

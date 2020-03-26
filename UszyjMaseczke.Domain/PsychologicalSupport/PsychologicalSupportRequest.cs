@@ -1,5 +1,3 @@
-using UszyjMaseczke.Domain.Requests;
-
 namespace UszyjMaseczke.Domain.PsychologicalSupport
 {
     public class PsychologicalSupportRequest

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using UszyjMaseczke.Application.DTOs.Gloves;
-using UszyjMaseczke.Domain.Groceries;
 
 namespace UszyjMaseczke.Application.DTOs.Groceries
 {

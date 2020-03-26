@@ -22,7 +22,6 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             container.Register<IRequestRepository, RequestRepository>();
             container.Register<IViewRepository, ViewRepository>();
-
         }
 
         private static void InitializeServices(Container container)

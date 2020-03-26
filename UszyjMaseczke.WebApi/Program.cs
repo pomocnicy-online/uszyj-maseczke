@@ -28,8 +28,7 @@ namespace UszyjMaseczke.WebApi
                         webBuilder.UseUrls("http://*:5011");
                         webBuilder.ConfigureAppConfiguration((builderContext, config) =>
                         {
-                            config.AddJsonFile("appsettings.Development.json", false, true)
-                                .AddJsonFile("appsettings.json", false, true)
+                            config.AddJsonFile("appsettings.json", false, true)
                                 .AddEnvironmentVariables();
                         });
                         webBuilder.ConfigureKestrel(options =>
@@ -37,8 +36,7 @@ namespace UszyjMaseczke.WebApi
                             options.Limits.MaxConcurrentConnections = 100;
                             options.Limits.MaxConcurrentUpgradedConnections = 100;
                             options.Limits.MaxRequestBodySize = 10 * 1000 * 1024;
-                        // 52428800
-                        options.Limits.MinRequestBodyDataRate =
+                            options.Limits.MinRequestBodyDataRate =
                                 new MinDataRate(100, TimeSpan.FromSeconds(10));
                             options.Limits.MinResponseDataRate =
                                 new MinDataRate(100, TimeSpan.FromSeconds(10));

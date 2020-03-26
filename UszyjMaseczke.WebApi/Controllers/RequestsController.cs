@@ -14,10 +14,10 @@ namespace UszyjMaseczke.WebApi.Controllers
     [Produces("application/json")]
     public class RequestsController : ControllerBase
     {
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(RequestsController));
+        private readonly IRequestRepository _requestRepository;
         private readonly IRequestService _requestService;
         private readonly IViewRepository _viewRepository;
-        private readonly IRequestRepository _requestRepository;
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(RequestsController));
 
         public RequestsController(IRequestService requestService, IViewRepository viewRepository, IRequestRepository requestRepository)
         {
@@ -34,7 +34,7 @@ namespace UszyjMaseczke.WebApi.Controllers
             {
                 var result = await _requestRepository.GetAsync(id);
                 return Ok(result);
-            } 
+            }
             catch (Exception e)
             {
                 Logger.Error($"Error while getting request by id {id}");
@@ -54,7 +54,7 @@ namespace UszyjMaseczke.WebApi.Controllers
             }
             catch (Exception e)
             {
-                Logger.Error($"Error while getting request");
+                Logger.Error("Error while getting request");
                 Logger.Error(e.StackTrace);
                 throw e;
             }
@@ -87,11 +87,10 @@ namespace UszyjMaseczke.WebApi.Controllers
             }
             catch (Exception e)
             {
-                Logger.Error($"Error while creating DTO request");
+                Logger.Error("Error while creating DTO request");
                 Logger.Error(e.StackTrace);
                 throw e;
             }
-
         }
     }
 }

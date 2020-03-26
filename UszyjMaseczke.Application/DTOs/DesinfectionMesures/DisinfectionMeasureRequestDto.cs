@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UszyjMaseczke.Application.DTOs.Groceries;
 
 namespace UszyjMaseczke.Application.DTOs.DesinfectionMesures
 {

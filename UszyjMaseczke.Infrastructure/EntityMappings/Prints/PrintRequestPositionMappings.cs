@@ -16,7 +16,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Prints
             builder.Property(x => x.Quantity);
             builder.Property(x => x.PrintType).HasConversion(
                 v => v.ToString(),
-                v => (PrintType)Enum.Parse(typeof(PrintType), v));
+                v => (PrintType) Enum.Parse(typeof(PrintType), v));
         }
     }
 }

@@ -1,10 +1,10 @@
+using System;
 using System.Threading.Tasks;
+using log4net;
 using Microsoft.AspNetCore.Mvc;
 using UszyjMaseczke.Application.DTOs;
-using log4net;
 using UszyjMaseczke.Domain.Helpers;
 using UszyjMaseczke.Infrastructure;
-using System;
 
 namespace UszyjMaseczke.WebApi.Controllers
 {
@@ -12,8 +12,8 @@ namespace UszyjMaseczke.WebApi.Controllers
     [Produces("application/json")]
     public class HelperController : ControllerBase
     {
-        private readonly UszyjMaseczkeDbContext _dbContext;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(HelperController));
+        private readonly UszyjMaseczkeDbContext _dbContext;
 
         public HelperController(UszyjMaseczkeDbContext dbContext)
         {

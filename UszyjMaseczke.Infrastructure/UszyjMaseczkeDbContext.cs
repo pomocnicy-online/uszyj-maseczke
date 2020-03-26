@@ -1,14 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UszyjMaseczke.Application.Presentations;
-using UszyjMaseczke.Domain;
-using UszyjMaseczke.Domain.Masks;
 using UszyjMaseczke.Domain.Requests;
-using UszyjMaseczke.Infrastructure.EntityMappings;
 using UszyjMaseczke.Infrastructure.EntityMappings.DisinfectionMeasures;
 using UszyjMaseczke.Infrastructure.EntityMappings.Gloves;
 using UszyjMaseczke.Infrastructure.EntityMappings.Groceries;
-using UszyjMaseczke.Infrastructure.EntityMappings.Helpers;
 using UszyjMaseczke.Infrastructure.EntityMappings.Masks;
 using UszyjMaseczke.Infrastructure.EntityMappings.MedicalCentres;
 using UszyjMaseczke.Infrastructure.EntityMappings.OtherCleaningMaterials;
@@ -28,7 +24,6 @@ namespace UszyjMaseczke.Infrastructure
 
         public UszyjMaseczkeDbContext()
         {
-
         }
 
         public UszyjMaseczkeDbContext(DbContextOptions<UszyjMaseczkeDbContext> options, ILoggerFactory loggerFactory) : base(options)
