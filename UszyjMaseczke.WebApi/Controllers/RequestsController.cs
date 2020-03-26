@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 using UszyjMaseczke.Application.DTOs;
+using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Application.Requests;
 using UszyjMaseczke.Domain.Requests;
@@ -19,7 +20,8 @@ namespace UszyjMaseczke.WebApi.Controllers
         private readonly IRequestService _requestService;
         private readonly IViewRepository _viewRepository;
 
-        public RequestsController(IRequestService requestService, IViewRepository viewRepository, IRequestRepository requestRepository)
+        public RequestsController(IRequestService requestService, IViewRepository viewRepository,
+            IRequestRepository requestRepository)
         {
             _requestService = requestService;
             _viewRepository = viewRepository;
