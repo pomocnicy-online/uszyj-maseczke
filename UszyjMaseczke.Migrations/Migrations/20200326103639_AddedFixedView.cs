@@ -2,44 +2,60 @@
 
 namespace UszyjMaseczke.Migrations.Migrations
 {
-    public partial class AddedView : Migration
+    public partial class AddedFixedView : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            var x = @"CREATE VIEW AggregatedRequestsView as
-select R.""Id""                                                           as ""RequestId"",
-       MC.""City""                                                        as ""City"",
-       MC.""BuildingNumber""                                              as ""BuildingNumber"",
-       MC.""ApartmentNumber""                                             as ""ApartmentNumber"",
-       MC.""PostalCode""                                                  as ""PostalCode"",
-       MC.""Email""                                                       as ""Email"",
-       MC.""PhoneNumber""                                                 as ""PhoneNumber"",
-       MC.""LegalName""                                                   as ""LegalName"",
-       MC.""Street""                                                      as ""Street"",
-       DMR.""TotalCount""                                                 as ""DisinfectionMeasureRequestsTotalCount"",
-       GR.""TotalCount""                                                  as ""GloveRequestsTotalCount"",
-       G.""TotalCount""                                                   as ""GroceryRequestsTotalCount"",
-       MR.""TotalCount""                                                  as ""MaskRequestsTotalCount"",
-       OCMR.""TotalCount""                                                as ""OtherCleaningMaterialRequestsTotalCount"",
-       PR.""TotalCount""                                                  as ""PrintRequestsTotalCount"",
-       SR.""TotalCount""                                                  as ""SuitRequestsTotalCount"",
-       CASE WHEN PSR.""Description"" IS NOT NULL THEN TRUE ELSE FALSE END as ""PsychologicalSupportNeeded"",
-       CASE WHEN SSR.""Description"" IS NOT NULL THEN TRUE ELSE FALSE END as ""SewingSuppliesNeeded"",
-       CASE WHEN O.""Description"" IS NOT NULL THEN TRUE ELSE FALSE END   as ""OtherNeeded""
+            var x = @"drop view aggregatedrequestsview;
 
-
-from ""Requests"" as R
-         left join ""DisinfectionMeasureRequests"" DMR on R.""DisinfectionMeasureRequestId"" = DMR.""Id""
-         left join ""GloveRequests"" GR on R.""GlovesRequestId"" = GR.""Id""
-         left join ""GroceryRequests"" G on R.""GroceryRequestId"" = G.""Id""
-         left join ""MaskRequests"" MR on R.""MaskRequestId"" = MR.""Id""
-         join ""MedicalCentres"" MC on R.""MedicalCentreId"" = MC.""Id""
-         left join ""OtherCleaningMaterialRequests"" OCMR on R.""OtherCleaningMaterialRequestId"" = OCMR.""Id""
-         left join ""PrintRequests"" PR on R.""PrintRequestId"" = PR.""Id""
-         left join ""SuitRequests"" SR on R.""SuitRequestId"" = SR.""Id""
-         left join ""PsychologicalSupportRequests"" PSR on R.""PsychologicalSupportRequestId"" = PSR.""Id""
-         left join ""SewingSuppliesRequests"" SSR on R.""SewingSuppliesRequestId"" = SSR.""Id""
-         left join ""OtherRequests"" O on R.""OtherRequestId"" = O.""Id""";
+create view aggregatedrequestsview
+            (""RequestId"", ""City"", ""BuildingNumber"", ""ApartmentNumber"", ""PostalCode"", ""Email"", ""PhoneNumber"",
+             ""LegalName"", ""Street"", ""DisinfectionMeasureRequestsTotalCount"", ""GloveRequestsTotalCount"",
+             ""GroceryRequestsTotalCount"", ""MaskRequestsTotalCount"", ""OtherCleaningMaterialRequestsTotalCount"",
+             ""PrintRequestsTotalCount"", ""SuitRequestsTotalCount"", ""PsychologicalSupportNeeded"", ""SewingSuppliesNeeded"",
+             ""OtherNeeded"")
+as
+SELECT r.""Id""                         AS ""RequestId"",
+       mc.""City"",
+       mc.""BuildingNumber"",
+       mc.""ApartmentNumber"",
+       mc.""PostalCode"",
+       mc.""Email"",
+       mc.""PhoneNumber"",
+       mc.""LegalName"",
+       mc.""Street"",
+       coalesce(dmr.""TotalCount"", 0)  AS ""DisinfectionMeasureRequestsTotalCount"",
+       coalesce(gr.""TotalCount"", 0)   AS ""GloveRequestsTotalCount"",
+       coalesce(g.""TotalCount"", 0)   AS ""GroceryRequestsTotalCount"",
+       coalesce(mr.""TotalCount"", 0)   AS ""MaskRequestsTotalCount"",
+       coalesce(ocmr.""TotalCount"", 0) AS ""OtherCleaningMaterialRequestsTotalCount"",
+       coalesce(pr.""TotalCount"", 0)   AS ""PrintRequestsTotalCount"",
+       coalesce(sr.""TotalCount"", 0)   AS ""SuitRequestsTotalCount"",
+       CASE
+           WHEN psr.""Description"" IS NOT NULL THEN true
+           ELSE false
+           END                        AS ""PsychologicalSupportNeeded"",
+       CASE
+           WHEN ssr.""Description"" IS NOT NULL THEN true
+           ELSE false
+           END                        AS ""SewingSuppliesNeeded"",
+       CASE
+           WHEN o.""Description"" IS NOT NULL THEN true
+           ELSE false
+           END                        AS ""OtherNeeded""
+FROM ""Requests"" r
+         LEFT JOIN ""DisinfectionMeasureRequests"" dmr ON r.""DisinfectionMeasureRequestId"" = dmr.""Id""
+         LEFT JOIN ""GloveRequests"" gr ON r.""GlovesRequestId"" = gr.""Id""
+         LEFT JOIN ""GroceryRequests"" g ON r.""GroceryRequestId"" = g.""Id""
+         LEFT JOIN ""MaskRequests"" mr ON r.""MaskRequestId"" = mr.""Id""
+         JOIN ""MedicalCentres"" mc ON r.""MedicalCentreId"" = mc.""Id""
+         LEFT JOIN ""OtherCleaningMaterialRequests"" ocmr ON r.""OtherCleaningMaterialRequestId"" = ocmr.""Id""
+         LEFT JOIN ""PrintRequests"" pr ON r.""PrintRequestId"" = pr.""Id""
+         LEFT JOIN ""SuitRequests"" sr ON r.""SuitRequestId"" = sr.""Id""
+         LEFT JOIN ""PsychologicalSupportRequests"" psr ON r.""PsychologicalSupportRequestId"" = psr.""Id""
+         LEFT JOIN ""SewingSuppliesRequests"" ssr ON r.""SewingSuppliesRequestId"" = ssr.""Id""
+         LEFT JOIN ""OtherRequests"" o ON r.""OtherRequestId"" = o.""Id"";
+";
 
             migrationBuilder.Sql(x);
         }

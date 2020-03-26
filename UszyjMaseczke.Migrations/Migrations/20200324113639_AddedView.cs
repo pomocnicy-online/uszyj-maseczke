@@ -29,17 +29,17 @@ select R.""Id""                                                           as ""R
 
 
 from ""Requests"" as R
-         join ""DisinfectionMeasureRequests"" DMR on R.""DisinfectionMeasureRequestId"" = DMR.""Id""
-         join ""GloveRequests"" GR on R.""GlovesRequestId"" = GR.""Id""
-         join ""GroceryRequests"" G on R.""GroceryRequestId"" = G.""Id""
-         join ""MaskRequests"" MR on R.""MaskRequestId"" = MR.""Id""
+         left join ""DisinfectionMeasureRequests"" DMR on R.""DisinfectionMeasureRequestId"" = DMR.""Id""
+         left join ""GloveRequests"" GR on R.""GlovesRequestId"" = GR.""Id""
+         left join ""GroceryRequests"" G on R.""GroceryRequestId"" = G.""Id""
+         left join ""MaskRequests"" MR on R.""MaskRequestId"" = MR.""Id""
          join ""MedicalCentres"" MC on R.""MedicalCentreId"" = MC.""Id""
-         join ""OtherCleaningMaterialRequests"" OCMR on R.""OtherCleaningMaterialRequestId"" = OCMR.""Id""
-         join ""PrintRequests"" PR on R.""PrintRequestId"" = PR.""Id""
-         join ""SuitRequests"" SR on R.""SuitRequestId"" = SR.""Id""
-         join ""PsychologicalSupportRequests"" PSR on R.""PsychologicalSupportRequestId"" = PSR.""Id""
-         join ""SewingSuppliesRequests"" SSR on R.""SewingSuppliesRequestId"" = SSR.""Id""
-         join ""OtherRequests"" O on R.""OtherRequestId"" = O.""Id""";
+         left join ""OtherCleaningMaterialRequests"" OCMR on R.""OtherCleaningMaterialRequestId"" = OCMR.""Id""
+         left join ""PrintRequests"" PR on R.""PrintRequestId"" = PR.""Id""
+         left join ""SuitRequests"" SR on R.""SuitRequestId"" = SR.""Id""
+         left join ""PsychologicalSupportRequests"" PSR on R.""PsychologicalSupportRequestId"" = PSR.""Id""
+         left join ""SewingSuppliesRequests"" SSR on R.""SewingSuppliesRequestId"" = SSR.""Id""
+         left join ""OtherRequests"" O on R.""OtherRequestId"" = O.""Id""";
 
             migrationBuilder.Sql(x);
         }

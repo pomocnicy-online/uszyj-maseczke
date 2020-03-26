@@ -10,8 +10,8 @@ using UszyjMaseczke.Infrastructure;
 namespace UszyjMaseczke.Migrations.Migrations
 {
     [DbContext(typeof(UszyjMaseczkeDbContext))]
-    [Migration("20200324113639_AddedView")]
-    partial class AddedView
+    [Migration("20200326103639_AddedFixedView")]
+    partial class AddedFixedView
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
