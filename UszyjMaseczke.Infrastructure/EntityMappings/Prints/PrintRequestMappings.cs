@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UszyjMaseczke.Domain.Print;
-using UszyjMaseczke.Domain.Suits;
 
 namespace UszyjMaseczke.Infrastructure.EntityMappings.Prints
 {

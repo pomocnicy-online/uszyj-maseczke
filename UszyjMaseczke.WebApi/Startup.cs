@@ -28,7 +28,11 @@ namespace UszyjMaseczke.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var cors = Configuration.GetSection("CorsConfigurationSection").Get<CorsConfigurationSection>();
+            var cors = Configuration.GetSection("Cors").Get<CorsConfigurationSection>();
+            var swaggerDocGenConfig = Configuration.GetSection("SwaggerDocGen").Get<SwaggerDocGenConfigurationSection>();
+            var dbConnectionString = Configuration.GetConnectionString("UszyjMaseczkeContext");
+            var migrationsConfig = Configuration.GetSection("Migrations").Get<MigrationsConfigurationSection>();
+
 
             services.AddControllers().AddJsonOptions(options =>
             {
@@ -38,10 +42,10 @@ namespace UszyjMaseczke.WebApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc(swaggerDocGenConfig.Version, new OpenApiInfo
                 {
-                    Title = "HelpMed",
-                    Version = "v1"
+                    Title = swaggerDocGenConfig.Title,
+                    Version = swaggerDocGenConfig.Version
                 });
             });
 
@@ -55,8 +59,7 @@ namespace UszyjMaseczke.WebApi
             });
 
             services.AddDbContext<UszyjMaseczkeDbContext>(opt =>
-                opt.UseNpgsql(Configuration.GetConnectionString("UszyjMaseczkeContext"),
-                    builder => builder.MigrationsAssembly("UszyjMaseczke.Migrations")));
+                opt.UseNpgsql(dbConnectionString, builder => builder.MigrationsAssembly(migrationsConfig.Assembly)));
 
             services.AddSimpleInjector(_container, options =>
             {
@@ -68,6 +71,8 @@ namespace UszyjMaseczke.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var swaggerConfig = Configuration.GetSection("SwaggerUi").Get<SwaggerUiConfigurationSection>();
+
             ContainerInitializer.Initialize(_container, Configuration, app);
             app.UseSimpleInjector(_container);
 
@@ -75,23 +80,24 @@ namespace UszyjMaseczke.WebApi
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
-            app.UseSwagger();
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = swaggerConfig.RouteTemplate;
+            });
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "HelpMed Api");
+                c.SwaggerEndpoint(swaggerConfig.Url, swaggerConfig.Name);
+                c.RoutePrefix = swaggerConfig.RoutePrefix;
             });
 
             app.UseRouting();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
-        private void InitializeDatabase(IApplicationBuilder app)
+        private static void InitializeDatabase(IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                serviceScope.ServiceProvider.GetRequiredService<UszyjMaseczkeDbContext>().Database.Migrate();
-            }
+            using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            serviceScope.ServiceProvider.GetRequiredService<UszyjMaseczkeDbContext>().Database.Migrate();
         }
     }
 }

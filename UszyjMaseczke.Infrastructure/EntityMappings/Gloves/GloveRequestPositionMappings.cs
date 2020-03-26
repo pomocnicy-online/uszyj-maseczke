@@ -16,11 +16,11 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Gloves
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Material).HasConversion(
                 v => v.ToString(),
-                v => (Material)Enum.Parse(typeof(Material), v));
+                v => (Material) Enum.Parse(typeof(Material), v));
             builder.Property(x => x.Quantity);
             builder.Property(x => x.Size).HasConversion(
                 v => v.ToString(),
-                v => (Size)Enum.Parse(typeof(Size), v));
+                v => (Size) Enum.Parse(typeof(Size), v));
         }
     }
 }

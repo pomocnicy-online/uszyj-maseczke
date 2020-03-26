@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UszyjMaseczke.Domain;
 using UszyjMaseczke.Domain.Helpers;
 
 namespace UszyjMaseczke.Infrastructure.EntityMappings.Helpers

@@ -14,7 +14,6 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.OtherCleaningMaterials
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Quantity);
             builder.Property(x => x.Description);
-
         }
     }
 }

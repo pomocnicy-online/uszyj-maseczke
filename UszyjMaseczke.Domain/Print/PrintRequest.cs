@@ -8,6 +8,5 @@ namespace UszyjMaseczke.Domain.Print
         public string Description { get; set; }
         public virtual ICollection<PrintRequestPosition> Positions { get; set; }
         public int TotalCount { get; set; }
-
     }
 }

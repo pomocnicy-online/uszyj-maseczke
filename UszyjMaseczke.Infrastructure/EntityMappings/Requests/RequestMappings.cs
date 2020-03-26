@@ -23,7 +23,6 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Requests
             builder.HasOne(x => x.SewingSuppliesRequest);
             builder.HasOne(x => x.OtherRequest);
             builder.HasOne(x => x.PrintRequest);
-
         }
     }
 }

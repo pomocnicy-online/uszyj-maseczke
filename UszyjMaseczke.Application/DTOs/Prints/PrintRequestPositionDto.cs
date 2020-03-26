@@ -1,4 +1,3 @@
-using UszyjMaseczke.Domain;
 using UszyjMaseczke.Domain.Print;
 
 namespace UszyjMaseczke.Application.DTOs.Prints

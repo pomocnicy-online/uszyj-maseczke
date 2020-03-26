@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UszyjMaseczke.Domain.OtherCleaningMaterials;
 
 namespace UszyjMaseczke.Domain.Groceries
 {
@@ -8,6 +7,5 @@ namespace UszyjMaseczke.Domain.Groceries
         public int Id { get; set; }
         public virtual ICollection<GroceryRequestPosition> Positions { get; set; }
         public int TotalCount { get; set; }
-
     }
 }

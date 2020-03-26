@@ -7,87 +7,86 @@ namespace UszyjMaseczke.Migrations.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "TotalCount",
-                table: "SuitRequests",
+                "TotalCount",
+                "SuitRequests",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "TotalCount",
-                table: "PrintRequests",
+                "TotalCount",
+                "PrintRequests",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "TotalCount",
-                table: "OtherCleaningMaterialRequests",
+                "TotalCount",
+                "OtherCleaningMaterialRequests",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "TotalCount",
-                table: "MaskRequests",
+                "TotalCount",
+                "MaskRequests",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "TotalCount",
-                table: "GroceryRequests",
+                "TotalCount",
+                "GroceryRequests",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "TotalCount",
-                table: "GloveRequests",
+                "TotalCount",
+                "GloveRequests",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "TotalCount",
-                table: "DisinfectionMeasureRequests",
+                "TotalCount",
+                "DisinfectionMeasureRequests",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
-                name: "PostalCode",
-                table: "MedicalCentres",
-                nullable: true,
-                defaultValue: null);
+                "PostalCode",
+                "MedicalCentres",
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "TotalCount",
-                table: "SuitRequests");
+                "TotalCount",
+                "SuitRequests");
 
             migrationBuilder.DropColumn(
-                name: "TotalCount",
-                table: "PrintRequests");
+                "TotalCount",
+                "PrintRequests");
 
             migrationBuilder.DropColumn(
-                name: "TotalCount",
-                table: "OtherCleaningMaterialRequests");
+                "TotalCount",
+                "OtherCleaningMaterialRequests");
 
             migrationBuilder.DropColumn(
-                name: "TotalCount",
-                table: "MaskRequests");
+                "TotalCount",
+                "MaskRequests");
 
             migrationBuilder.DropColumn(
-                name: "TotalCount",
-                table: "GroceryRequests");
+                "TotalCount",
+                "GroceryRequests");
 
             migrationBuilder.DropColumn(
-                name: "TotalCount",
-                table: "GloveRequests");
+                "TotalCount",
+                "GloveRequests");
 
             migrationBuilder.DropColumn(
-                name: "TotalCount",
-                table: "DisinfectionMeasureRequests");
+                "TotalCount",
+                "DisinfectionMeasureRequests");
 
             migrationBuilder.DropColumn(
-                name: "PostalCode",
-                table: "MedicalCentres");
+                "PostalCode",
+                "MedicalCentres");
         }
     }
 }

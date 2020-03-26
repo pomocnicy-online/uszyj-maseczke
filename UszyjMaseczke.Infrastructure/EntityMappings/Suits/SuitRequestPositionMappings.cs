@@ -17,7 +17,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Suits
             builder.Property(x => x.Quantity);
             builder.Property(x => x.Size).HasConversion(
                 v => v.ToString(),
-                v => (Size)Enum.Parse(typeof(Size), v));
+                v => (Size) Enum.Parse(typeof(Size), v));
         }
     }
 }

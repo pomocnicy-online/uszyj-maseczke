@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UszyjMaseczke.Domain.Requests;
 
 namespace UszyjMaseczke.Domain.DisinfectionMeasures
 {
@@ -8,6 +7,5 @@ namespace UszyjMaseczke.Domain.DisinfectionMeasures
         public int Id { get; set; }
         public virtual ICollection<DisinfectionMeasureRequestPosition> Positions { get; set; }
         public int TotalCount { get; set; }
-
     }
 }

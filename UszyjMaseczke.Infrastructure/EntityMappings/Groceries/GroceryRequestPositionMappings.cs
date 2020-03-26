@@ -4,7 +4,7 @@ using UszyjMaseczke.Domain.Groceries;
 
 namespace UszyjMaseczke.Infrastructure.EntityMappings.Groceries
 {
-    public class GroceryRequestPositionMappings  : IEntityTypeConfiguration<GroceryRequestPosition>
+    public class GroceryRequestPositionMappings : IEntityTypeConfiguration<GroceryRequestPosition>
     {
         public void Configure(EntityTypeBuilder<GroceryRequestPosition> builder)
         {
