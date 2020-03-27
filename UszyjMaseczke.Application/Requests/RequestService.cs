@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UszyjMaseczke.Application.DTOs;
 using UszyjMaseczke.Application.DTOs.DesinfectionMesures;
@@ -12,6 +13,7 @@ using UszyjMaseczke.Application.DTOs.Prints;
 using UszyjMaseczke.Application.DTOs.PsychologicalSupport;
 using UszyjMaseczke.Application.DTOs.SewingSuppliesRequest;
 using UszyjMaseczke.Application.DTOs.Suits;
+using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Domain.DisinfectionMeasures;
 using UszyjMaseczke.Domain.Gloves;
 using UszyjMaseczke.Domain.Groceries;
@@ -30,13 +32,17 @@ namespace UszyjMaseczke.Application.Requests
     public class RequestService : IRequestService
     {
         private readonly IRequestRepository _requestRepository;
+        private readonly IEmailSender _emailSender;
+        private readonly IEmailFactory _emailFactory;
 
-        public RequestService(IRequestRepository requestRepository)
+        public RequestService(IRequestRepository requestRepository, IEmailSender emailSender, IEmailFactory emailFactory)
         {
             _requestRepository = requestRepository;
+            _emailSender = emailSender;
+            _emailFactory = emailFactory;
         }
 
-        public async Task<int> CreateRequestAsync(CreateRequestDto createRequestDto)
+        public async Task<int> CreateRequestAsync(CreateRequestDto createRequestDto, CancellationToken cancellationToken)
         {
             var medicalCentre = MapToMedicalCentre(createRequestDto.MedicalCentre);
             var maskRequests = createRequestDto.MaskRequest != null ? MapToMaskRequests(createRequestDto.MaskRequest) : default;
@@ -69,7 +75,12 @@ namespace UszyjMaseczke.Application.Requests
                 PrintRequest = printRequests
             };
 
-            await _requestRepository.SaveAsync(request);
+            await _requestRepository.SaveAsync(request, cancellationToken);
+            await _emailSender.SendAsync(new EmailMessage(
+                new[] {request.MedicalCentre.Email},
+                _emailFactory.MakeRequestRegisteredEmail(),
+                "Zgłoszenie zostało przyjęte"), cancellationToken);
+
             return request.Id;
         }
 

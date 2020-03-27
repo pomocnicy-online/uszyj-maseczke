@@ -25,21 +25,21 @@ namespace UszyjMaseczke.Infrastructure.Emails
             {
                 var client = new SendGridClient(_emailConfiguration.ApiKey);
                 var msg = CreateEmailMessage(message);
-                await client.SendEmailAsync(msg);
+                await client.SendEmailAsync(msg, cancellationToken);
             }
             catch (Exception e)
             {
-                Logger.Error("Error while sending email");
+                Logger.Error($"Sending email failed. Provided message {e.Message}");
                 Logger.Error(e.StackTrace);
             }
-        }                                
+        }
 
         private SendGridMessage CreateEmailMessage(EmailMessage message)
         {
             var sender = new EmailAddress(_emailConfiguration.FromEmail, _emailConfiguration.FromSender);
-            var recipents = message.To.Select(x => new EmailAddress(x));
+            var recipients = message.To.Select(x => new EmailAddress(x));
 
-            return MailHelper.CreateSingleEmailToMultipleRecipients(sender, recipents.ToList(), message.Subject,
+            return MailHelper.CreateSingleEmailToMultipleRecipients(sender, recipients.ToList(), message.Subject,
                 message.PlainTextContent, message.HtmlContent);
         }
     }

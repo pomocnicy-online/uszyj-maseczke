@@ -13,7 +13,7 @@ namespace UszyjMaseczke.Application.Emails
         public string HtmlContent { get; }
         public string Subject { get; }
 
-        public EmailMessage(IEnumerable<string> to, string plainTextContent, string htmlContent, string subject, IEnumerable<string> cc = null, IEnumerable<string> bcc = null)
+        public EmailMessage(IEnumerable<string> to, string htmlContent, string subject, IEnumerable<string> cc = null, IEnumerable<string> bcc = null)
         {
             if (to == null)
                 throw new ArgumentNullException(nameof(to));
@@ -23,7 +23,6 @@ namespace UszyjMaseczke.Application.Emails
             To = recipients;
             Cc = cc ?? new string[] { };
             Bcc = bcc ?? new string[] { };
-            PlainTextContent = plainTextContent;
             HtmlContent = htmlContent;
             Subject = subject;
         }

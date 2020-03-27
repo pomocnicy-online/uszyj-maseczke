@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UszyjMaseczke.Application.Presentations;
@@ -15,14 +16,14 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsView()
+        public async Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsView(CancellationToken cancellationToken)
         {
-            return await _dbContext.AggregatedRequestsViews.ToListAsync();
+            return await _dbContext.AggregatedRequestsViews.ToListAsync(cancellationToken: cancellationToken);
         }
 
-        public async Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsViewByCity(string city)
+        public async Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsViewByCity(string city, CancellationToken cancellationToken)
         {
-            return await _dbContext.AggregatedRequestsViews.Where(x => x.City == city).ToListAsync();
+            return await _dbContext.AggregatedRequestsViews.Where(x => x.City == city).ToListAsync(cancellationToken: cancellationToken);
         }
     }
 }

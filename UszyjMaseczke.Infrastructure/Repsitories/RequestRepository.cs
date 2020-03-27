@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UszyjMaseczke.Domain.Requests;
@@ -14,7 +15,7 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
             _dbContext = dbContext;
         }
 
-        public Task<Request> GetAsync(int id)
+        public Task<Request> GetAsync(int id, CancellationToken cancellationToken)
         {
             return _dbContext.Requests
                 .Include(x => x.MedicalCentre)
@@ -35,10 +36,10 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
-                .SingleOrDefaultAsync(x => x.Id == id);
+                .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task<IEnumerable<Request>> GetAsync()
+        public async Task<IEnumerable<Request>> GetAsync(CancellationToken cancellationToken)
         {
             return await _dbContext
                 .Requests
@@ -60,13 +61,13 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
 
-        public async Task SaveAsync(Request request)
+        public async Task SaveAsync(Request request, CancellationToken cancellationToken)
         {
-            await _dbContext.AddAsync(request);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.AddAsync(request, cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

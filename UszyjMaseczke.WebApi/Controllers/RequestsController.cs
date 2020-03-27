@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
@@ -30,11 +31,11 @@ namespace UszyjMaseczke.WebApi.Controllers
 
         [ProducesResponseType(typeof(Request), 200)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _requestRepository.GetAsync(id);
+                var result = await _requestRepository.GetAsync(id, cancellationToken);
                 return Ok(result);
             }
             catch (Exception e)
@@ -47,11 +48,11 @@ namespace UszyjMaseczke.WebApi.Controllers
 
         [ProducesResponseType(typeof(ICollection<AggregatedRequestsView>), 200)]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _viewRepository.ListAggregatedRequestsView();
+                var result = await _viewRepository.ListAggregatedRequestsView(cancellationToken);
                 return Ok(result);
             }
             catch (Exception e)
@@ -64,11 +65,11 @@ namespace UszyjMaseczke.WebApi.Controllers
 
         [ProducesResponseType(typeof(ICollection<AggregatedRequestsView>), 200)]
         [HttpGet("city/{city}")]
-        public async Task<IActionResult> GetByCity(string city)
+        public async Task<IActionResult> GetByCity(string city, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _viewRepository.ListAggregatedRequestsViewByCity(city);
+                var result = await _viewRepository.ListAggregatedRequestsViewByCity(city, cancellationToken);
                 return Ok(result);
             }
             catch (Exception e)
@@ -80,11 +81,11 @@ namespace UszyjMaseczke.WebApi.Controllers
         }
 
         [HttpPost(Name = "CreateRequest")]
-        public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto createRequestDto)
+        public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto createRequestDto, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _requestService.CreateRequestAsync(createRequestDto);
+                var result = await _requestService.CreateRequestAsync(createRequestDto, cancellationToken);
                 return Ok(result);
             }
             catch (Exception e)

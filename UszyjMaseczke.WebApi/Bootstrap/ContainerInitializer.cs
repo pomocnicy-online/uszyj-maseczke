@@ -32,6 +32,8 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             container.Register<IRequestService, RequestService>();
             container.Register<IEmailSender, EmailService>();
+            container.Register<IEmailFactory, EmailFactory>();
+
         }
 
         private static void InitializeDbContext(Container container, IApplicationBuilder app)
