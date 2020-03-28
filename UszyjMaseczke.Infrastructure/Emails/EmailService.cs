@@ -23,7 +23,7 @@ namespace UszyjMaseczke.Infrastructure.Emails
         {
             try
             {
-                var client = new SendGridClient(_emailConfiguration.ApiKey);
+                var client = new SendGridClient(Environment.GetEnvironmentVariable("SENDGRID_APIKEY"));
                 var msg = CreateEmailMessage(message);
                 await client.SendEmailAsync(msg, cancellationToken);
             }

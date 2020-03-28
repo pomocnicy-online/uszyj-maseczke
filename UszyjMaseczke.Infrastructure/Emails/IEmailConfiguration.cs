@@ -4,6 +4,5 @@ namespace UszyjMaseczke.Infrastructure.Emails
     {
         string FromEmail { get; }
         string FromSender { get; }
-        string ApiKey { get; }
     }
 }
