@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UszyjMaseczke.Domain.MedicalCentre;
+using UszyjMaseczke.Domain.MedicalCentres;
 
 namespace UszyjMaseczke.Infrastructure.EntityMappings.MedicalCentres
 {

@@ -1,20 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UszyjMaseczke.Application.Exceptions;
 using UszyjMaseczke.Domain.Exceptions;
 
 namespace UszyjMaseczke.Application.Emails
 {
     public class EmailMessage
     {
-        public IEnumerable<string> To { get; }
-        public IEnumerable<string> Cc { get; }
-        public IEnumerable<string> Bcc { get; }
-        public string PlainTextContent { get; }
-        public string HtmlContent { get; }
-        public string Subject { get; }
-
         public EmailMessage(IEnumerable<string> to, string htmlContent, string subject, IEnumerable<string> cc = null, IEnumerable<string> bcc = null)
         {
             if (to == null)
@@ -28,5 +19,12 @@ namespace UszyjMaseczke.Application.Emails
             HtmlContent = htmlContent;
             Subject = subject;
         }
+
+        public IEnumerable<string> To { get; }
+        public IEnumerable<string> Cc { get; }
+        public IEnumerable<string> Bcc { get; }
+        public string PlainTextContent { get; }
+        public string HtmlContent { get; }
+        public string Subject { get; }
     }
 }

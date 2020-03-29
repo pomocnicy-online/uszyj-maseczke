@@ -16,6 +16,17 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
             _dbContext = dbContext;
         }
 
+        public async Task<Request> GetLazyAsync(int id, CancellationToken cancellationToken)
+        {
+            var result = await _dbContext.Requests
+                .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+
+            if (result == null)
+                throw new NotFoundException($"Could not find Request of following id: {id}");
+
+            return result;
+        }
+
         public async Task<Request> GetAsync(int id, CancellationToken cancellationToken)
         {
             var result = await _dbContext.Requests
@@ -39,7 +50,7 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.PrintRequest.Positions)
                 .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
 
-            if(result== null)
+            if (result == null)
                 throw new NotFoundException($"Could not find Request of following id: {id}");
 
             return result;

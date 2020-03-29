@@ -2,6 +2,7 @@ using UszyjMaseczke.Application.DTOs.DesinfectionMesures;
 using UszyjMaseczke.Application.DTOs.Gloves;
 using UszyjMaseczke.Application.DTOs.Groceries;
 using UszyjMaseczke.Application.DTOs.Masks;
+using UszyjMaseczke.Application.DTOs.MedicalCentres;
 using UszyjMaseczke.Application.DTOs.OtherCleaningMaterials;
 using UszyjMaseczke.Application.DTOs.Others;
 using UszyjMaseczke.Application.DTOs.Prints;

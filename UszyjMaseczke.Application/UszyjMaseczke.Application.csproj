@@ -8,4 +8,8 @@
       <ProjectReference Include="..\UszyjMaseczke.Domain\UszyjMaseczke.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DTOs\Requests" />
+    </ItemGroup>
+
 </Project>

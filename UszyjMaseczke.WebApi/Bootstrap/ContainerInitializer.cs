@@ -2,8 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
 using UszyjMaseczke.Application.Emails;
+using UszyjMaseczke.Application.HelpOffers;
 using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Application.Requests;
+using UszyjMaseczke.Domain.HelpOffers;
+using UszyjMaseczke.Domain.MedicalCentres;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.Infrastructure.Emails;
@@ -26,6 +29,8 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             container.Register<IRequestRepository, RequestRepository>();
             container.Register<IViewRepository, ViewRepository>();
+            container.Register<IMedicalCentreRepository, MedicalCentreRepository>();
+            container.Register<IHelpOfferRepository, HelpOfferRepository>();
         }
 
         private static void InitializeServices(Container container)
@@ -33,7 +38,7 @@ namespace UszyjMaseczke.WebApi.Bootstrap
             container.Register<IRequestService, RequestService>();
             container.Register<IEmailSender, EmailService>();
             container.Register<IEmailFactory, EmailFactory>();
-
+            container.Register<IHelpOfferService, HelpOfferService>();
         }
 
         private static void InitializeDbContext(Container container, IApplicationBuilder app)
@@ -45,7 +50,6 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             var emailConfigurationSection = configuration.GetSection("Email").Get<EmailConfigurationSection>();
             container.RegisterInstance<IEmailConfiguration>(emailConfigurationSection);
-
         }
     }
 }

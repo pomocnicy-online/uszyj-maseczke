@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UszyjMaseczke.Application.Presentations;
+using UszyjMaseczke.Domain.HelpOffers;
+using UszyjMaseczke.Domain.MedicalCentres;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure.EntityMappings.DisinfectionMeasures;
 using UszyjMaseczke.Infrastructure.EntityMappings.Gloves;
 using UszyjMaseczke.Infrastructure.EntityMappings.Groceries;
+using UszyjMaseczke.Infrastructure.EntityMappings.Helpers;
+using UszyjMaseczke.Infrastructure.EntityMappings.HelpOffers;
 using UszyjMaseczke.Infrastructure.EntityMappings.Masks;
 using UszyjMaseczke.Infrastructure.EntityMappings.MedicalCentres;
 using UszyjMaseczke.Infrastructure.EntityMappings.OtherCleaningMaterials;
@@ -32,6 +36,9 @@ namespace UszyjMaseczke.Infrastructure
         }
 
         public DbSet<Request> Requests { get; set; }
+        public DbSet<HelpOffer> HelpOffers { get; set; }
+        public DbSet<MedicalCentre> MedicalCentres { get; set; }
+
         public DbSet<AggregatedRequestsView> AggregatedRequestsViews { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -60,6 +67,8 @@ namespace UszyjMaseczke.Infrastructure
             modelBuilder.ApplyConfiguration(new PrintRequestMappings());
             modelBuilder.ApplyConfiguration(new PrintRequestPositionMappings());
             modelBuilder.ApplyConfiguration(new AggregatedRequestsViewMappings());
+            modelBuilder.ApplyConfiguration(new HelperMappings());
+            modelBuilder.ApplyConfiguration(new HelpOffersMappings());
         }
     }
 }

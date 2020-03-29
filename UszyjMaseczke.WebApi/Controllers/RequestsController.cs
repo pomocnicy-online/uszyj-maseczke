@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
@@ -52,11 +52,12 @@ namespace UszyjMaseczke.WebApi.Controllers
             return Ok(result);
         }
 
+        [ProducesResponseType(typeof(int), (int) HttpStatusCode.Created)]
         [HttpPost(Name = "CreateRequest")]
         public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto createRequestDto, CancellationToken cancellationToken)
         {
             var result = await _requestService.CreateRequestAsync(createRequestDto, cancellationToken);
-            return Ok(result);
+            return CreatedAtAction(nameof(GetByCity), result, result);
         }
     }
 }

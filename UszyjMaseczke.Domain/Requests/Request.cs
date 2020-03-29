@@ -2,6 +2,7 @@
 using UszyjMaseczke.Domain.Gloves;
 using UszyjMaseczke.Domain.Groceries;
 using UszyjMaseczke.Domain.Masks;
+using UszyjMaseczke.Domain.MedicalCentres;
 using UszyjMaseczke.Domain.Other;
 using UszyjMaseczke.Domain.OtherCleaningMaterials;
 using UszyjMaseczke.Domain.Print;
@@ -14,7 +15,7 @@ namespace UszyjMaseczke.Domain.Requests
     public class Request
     {
         public int Id { get; set; }
-        public virtual MedicalCentre.MedicalCentre MedicalCentre { get; set; }
+        public virtual MedicalCentre MedicalCentre { get; set; }
         public virtual MaskRequest MaskRequest { get; set; }
         public virtual GloveRequest GlovesRequest { get; set; }
         public virtual DisinfectionMeasureRequest DisinfectionMeasureRequest { get; set; }
