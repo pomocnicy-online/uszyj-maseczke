@@ -69,6 +69,7 @@ FROM ""Requests"" r
          WHERE r.""Active"" = TRUE;
 ";
 
+            migrationBuilder.Sql(x);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -83,6 +84,7 @@ FROM ""Requests"" r
 
             var dropView = " DROP VIEW AggregatedRequestsView";
 
+            migrationBuilder.Sql(dropView);
         }
     }
 }
