@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UszyjMaseczke.Infrastructure;
@@ -9,9 +10,10 @@ using UszyjMaseczke.Infrastructure;
 namespace UszyjMaseczke.Migrations.Migrations
 {
     [DbContext(typeof(UszyjMaseczkeDbContext))]
-    partial class UszyjMaseczkeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200329155351_AddedHelpOffer")]
+    partial class AddedHelpOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -438,9 +440,6 @@ namespace UszyjMaseczke.Migrations.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("boolean");
-
                     b.Property<int?>("DisinfectionMeasureRequestId")
                         .HasColumnType("integer");
 
@@ -467,9 +466,6 @@ namespace UszyjMaseczke.Migrations.Migrations
 
                     b.Property<int?>("PsychologicalSupportRequestId")
                         .HasColumnType("integer");
-
-                    b.Property<string>("RemovalToken")
-                        .HasColumnType("text");
 
                     b.Property<int?>("SewingSuppliesRequestId")
                         .HasColumnType("integer");

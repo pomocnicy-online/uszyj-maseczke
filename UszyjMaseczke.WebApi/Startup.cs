@@ -10,6 +10,7 @@ using SimpleInjector;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.Bootstrap;
 using UszyjMaseczke.WebApi.Configuration;
+using UszyjMaseczke.WebApi.Middlewars;
 
 namespace UszyjMaseczke.WebApi
 {
@@ -91,6 +92,7 @@ namespace UszyjMaseczke.WebApi
             });
 
             app.UseRouting();
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 

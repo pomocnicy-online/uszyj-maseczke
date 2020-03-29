@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
 using UszyjMaseczke.Application.Presentations;
@@ -27,12 +27,16 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             container.Register<IRequestRepository, RequestRepository>();
             container.Register<IViewRepository, ViewRepository>();
+            container.Register<IMedicalCentreRepository, MedicalCentreRepository>();
+            container.Register<IHelpOfferRepository, HelpOfferRepository>();
         }
 
         private static void InitializeServices(Container container)
         {
             container.Register<IRequestService, RequestService>();
             container.Register<IMessageService, MailMessageService>();
+            container.Register<IHelpOfferService, HelpOfferService>();
+            
         }
 
         private static void InitializeDbContext(Container container, IApplicationBuilder app)

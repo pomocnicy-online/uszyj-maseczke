@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using UszyjMaseczke.Application.Exceptions;
 using UszyjMaseczke.Domain.Requests;
 
 namespace UszyjMaseczke.Infrastructure.Repsitories
@@ -15,9 +17,20 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
             _dbContext = dbContext;
         }
 
-        public Task<Request> GetAsync(int id, CancellationToken cancellationToken)
+        public async Task<Request> GetLazyAsync(int id, CancellationToken cancellationToken)
         {
-            return _dbContext.Requests
+            var result = await _dbContext.Requests
+                .SingleOrDefaultAsync(x => x.Id == id && x.Active, cancellationToken);
+
+            if (result == null)
+                throw new NotFoundException($"Could not find active Request of following id: {id}");
+
+            return result;
+        }
+
+        public async Task<Request> GetAsync(int id, CancellationToken cancellationToken)
+        {
+            var result = await _dbContext.Requests
                 .Include(x => x.MedicalCentre)
                 .Include(x => x.MaskRequest)
                 .Include(x => x.MaskRequest.Positions)
@@ -36,7 +49,12 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
-                .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+                .SingleOrDefaultAsync(x => x.Id == id && x.Active, cancellationToken);
+
+            if (result == null)
+                throw new NotFoundException($"Could not find active Request of following id: {id}");
+
+            return result;
         }
 
         public async Task<IEnumerable<Request>> GetAsync(CancellationToken cancellationToken)
@@ -61,12 +79,20 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
+                .Where(x=> x.Active)
                 .ToListAsync(cancellationToken);
         }
 
         public async Task SaveAsync(Request request, CancellationToken cancellationToken)
         {
             await _dbContext.AddAsync(request, cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task RemoveByToken(string token, CancellationToken cancellationToken)
+        {
+            var request = await _dbContext.Requests.SingleOrDefaultAsync(x => x.RemovalToken == token, cancellationToken);
+            request.Active = false;
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

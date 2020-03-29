@@ -12,11 +12,6 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Helpers
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.FirstName);
-            builder.Property(x => x.LastName);
-            builder.Property(x => x.City);
-            builder.Property(x => x.Street);
-            builder.Property(x => x.BuildingNumber);
-            builder.Property(x => x.ApartmentNumber);
             builder.Property(x => x.Email);
             builder.Property(x => x.PhoneNumber);
         }
