@@ -21,6 +21,8 @@ services:
       - "5011:5011"
     depends_on:
       - db
+    environment:
+      SENDGRID_APIKEY: "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"
     networks:
       - uszyj-maseczke-network
 
