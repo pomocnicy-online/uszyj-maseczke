@@ -26,5 +26,8 @@ namespace UszyjMaseczke.Domain.Requests
         public virtual SewingSuppliesRequest SewingSuppliesRequest { get; set; }
         public virtual OtherRequest OtherRequest { get; set; }
         public virtual PrintRequest PrintRequest { get; set; }
+        public string RemovalToken { get; set; }
+        public bool Active { get; set; }
+
     }
 }

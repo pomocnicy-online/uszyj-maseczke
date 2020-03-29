@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +20,10 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
         public async Task<Request> GetLazyAsync(int id, CancellationToken cancellationToken)
         {
             var result = await _dbContext.Requests
-                .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+                .SingleOrDefaultAsync(x => x.Id == id && x.Active, cancellationToken);
 
             if (result == null)
-                throw new NotFoundException($"Could not find Request of following id: {id}");
+                throw new NotFoundException($"Could not find active Request of following id: {id}");
 
             return result;
         }
@@ -48,10 +49,10 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
-                .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+                .SingleOrDefaultAsync(x => x.Id == id && x.Active, cancellationToken);
 
             if (result == null)
-                throw new NotFoundException($"Could not find Request of following id: {id}");
+                throw new NotFoundException($"Could not find active Request of following id: {id}");
 
             return result;
         }
@@ -78,12 +79,20 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
+                .Where(x=> x.Active)
                 .ToListAsync(cancellationToken);
         }
 
         public async Task SaveAsync(Request request, CancellationToken cancellationToken)
         {
             await _dbContext.AddAsync(request, cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task RemoveByToken(string token, CancellationToken cancellationToken)
+        {
+            var request = await _dbContext.Requests.SingleOrDefaultAsync(x => x.RemovalToken == token, cancellationToken);
+            request.Active = false;
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

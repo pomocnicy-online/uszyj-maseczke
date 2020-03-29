@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using UszyjMaseczke.Application.DTOs;
@@ -23,22 +24,22 @@ namespace UszyjMaseczke.Application.Requests
         public async Task<int> CreateRequestAsync(CreateRequestDto createRequestDto, CancellationToken cancellationToken)
         {
             var medicalCentre = MapHelper.MapToMedicalCentre(createRequestDto.MedicalCentre);
-            var maskRequests = createRequestDto.MaskRequest != null ? MapHelper.MapToMaskRequests(createRequestDto.MaskRequest) : default;
-            var gloveRequests = createRequestDto.GloveRequest != null ? MapHelper.MapToGloveRequests(createRequestDto.GloveRequest) : default;
-            var groceryRequests = createRequestDto.GroceryRequest != null ? MapHelper.MapToGroceryRequests(createRequestDto.GroceryRequest) : default;
-            var disinfection = createRequestDto.DisinfectionMeasureRequest != null
-                ? MapHelper.MapToDisinfectionMeasureRequest(createRequestDto.DisinfectionMeasureRequest)
+            var maskRequests = createRequestDto.Masks != null ? MapHelper.MapToMaskRequests(createRequestDto.Masks) : default;
+            var gloveRequests = createRequestDto.Gloves != null ? MapHelper.MapToGloveRequests(createRequestDto.Gloves) : default;
+            var groceryRequests = createRequestDto.Groceries != null ? MapHelper.MapToGroceryRequests(createRequestDto.Groceries) : default;
+            var disinfection = createRequestDto.DisinfectionMeasures != null
+                ? MapHelper.MapToDisinfectionMeasureRequest(createRequestDto.DisinfectionMeasures)
                 : default;
-            var suits = createRequestDto.SuitRequest != null ? MapHelper.MapToSuitRequests(createRequestDto.SuitRequest) : default;
-            var otherCleaningMaterialRequest = createRequestDto.OtherCleaningMaterialRequest != null
-                ? MapHelper.MapToOtherCleaningMaterialRequest(createRequestDto.OtherCleaningMaterialRequest)
+            var suits = createRequestDto.Suits != null ? MapHelper.MapToSuitRequests(createRequestDto.Suits) : default;
+            var otherCleaningMaterialRequest = createRequestDto.OtherCleaningMaterials != null
+                ? MapHelper.MapToOtherCleaningMaterialRequest(createRequestDto.OtherCleaningMaterials)
                 : default;
-            var psychologicalSupportRequest = createRequestDto.PsychologicalSupportRequest != null
-                ? MapHelper.MapToPsychologicalSupportRequest(createRequestDto.PsychologicalSupportRequest)
+            var psychologicalSupportRequest = createRequestDto.PsychologicalSupport != null
+                ? MapHelper.MapToPsychologicalSupportRequest(createRequestDto.PsychologicalSupport)
                 : default;
-            var sewingSuppliesRequest = createRequestDto.SewingSuppliesRequest != null ? MapHelper.MapToSewingSuppliesRequest(createRequestDto.SewingSuppliesRequest) : default;
-            var otherRequest = createRequestDto.OtherRequest != null ? MapHelper.MapToOtherRequest(createRequestDto.OtherRequest) : default;
-            var printRequests = createRequestDto.PrintRequest != null ? MapHelper.MapToPrintRequests(createRequestDto.PrintRequest) : default;
+            var sewingSuppliesRequest = createRequestDto.SewingSupplies != null ? MapHelper.MapToSewingSuppliesRequest(createRequestDto.SewingSupplies) : default;
+            var otherRequest = createRequestDto.Others != null ? MapHelper.MapToOtherRequest(createRequestDto.Others) : default;
+            var printRequests = createRequestDto.Prints != null ? MapHelper.MapToPrintRequests(createRequestDto.Prints) : default;
 
             var request = new Request
             {
@@ -52,7 +53,9 @@ namespace UszyjMaseczke.Application.Requests
                 PsychologicalSupportRequest = psychologicalSupportRequest,
                 SewingSuppliesRequest = sewingSuppliesRequest,
                 OtherRequest = otherRequest,
-                PrintRequest = printRequests
+                PrintRequest = printRequests,
+                RemovalToken = Guid.NewGuid().ToString("N"),
+                Active = true
             };
 
             await _requestRepository.SaveAsync(request, cancellationToken);

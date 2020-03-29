@@ -6,6 +6,6 @@ namespace UszyjMaseczke.Application.HelpOffers
 {
     public interface IHelpOfferService
     {
-        Task<int> OfferHelpAsync(OfferHelpDto createRequestDto, CancellationToken cancellationToken);
+        Task OfferHelpAsync(OfferHelpDto createRequestDto, CancellationToken cancellationToken);
     }
 }

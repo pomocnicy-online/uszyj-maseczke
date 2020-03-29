@@ -57,7 +57,15 @@ namespace UszyjMaseczke.WebApi.Controllers
         public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto createRequestDto, CancellationToken cancellationToken)
         {
             var result = await _requestService.CreateRequestAsync(createRequestDto, cancellationToken);
-            return CreatedAtAction(nameof(GetByCity), result, result);
+            return CreatedAtAction(nameof(GetById), new {id= result}, result);
+        }
+
+        [ProducesResponseType(typeof(int), (int) HttpStatusCode.Created)]
+        [HttpDelete("{token}", Name = "RemoveRequest")]
+        public async Task<IActionResult> RemoveRequest(string token, CancellationToken cancellationToken)
+        {
+            await _requestRepository.RemoveByToken(token, cancellationToken);
+            return NoContent();
         }
     }
 }

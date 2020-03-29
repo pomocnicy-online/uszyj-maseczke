@@ -29,12 +29,12 @@ namespace UszyjMaseczke.WebApi.Controllers
             return Ok(result);
         }
 
-        [ProducesResponseType(typeof(int), (int) HttpStatusCode.Created)]
+        [ProducesResponseType((int) HttpStatusCode.OK)]
         [HttpPost(Name = "OfferHelp")]
         public async Task<IActionResult> CreateRequest([FromBody] OfferHelpDto offerHelpDto, CancellationToken cancellationToken)
         {
-            var result = await _helpOfferService.OfferHelpAsync(offerHelpDto, cancellationToken);
-            return CreatedAtAction(nameof(GetById), new {id = result}, result);
+            await _helpOfferService.OfferHelpAsync(offerHelpDto, cancellationToken);
+            return Ok();
         }
     }
 }

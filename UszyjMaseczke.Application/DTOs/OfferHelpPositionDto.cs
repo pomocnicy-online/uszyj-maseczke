@@ -2,7 +2,6 @@ using UszyjMaseczke.Application.DTOs.DesinfectionMesures;
 using UszyjMaseczke.Application.DTOs.Gloves;
 using UszyjMaseczke.Application.DTOs.Groceries;
 using UszyjMaseczke.Application.DTOs.Masks;
-using UszyjMaseczke.Application.DTOs.MedicalCentres;
 using UszyjMaseczke.Application.DTOs.OtherCleaningMaterials;
 using UszyjMaseczke.Application.DTOs.Others;
 using UszyjMaseczke.Application.DTOs.Prints;
@@ -12,9 +11,9 @@ using UszyjMaseczke.Application.DTOs.Suits;
 
 namespace UszyjMaseczke.Application.DTOs
 {
-    public class CreateRequestDto
+    public class OfferHelpPositionDto
     {
-        public CreateRequestMedicalCentreDto MedicalCentre { get; set; }
+        public int RequestId { get; set; }
         public MaskRequestDto Masks { get; set; }
         public GloveRequestDto Gloves { get; set; }
         public GroceryRequestDto Groceries { get; set; }
