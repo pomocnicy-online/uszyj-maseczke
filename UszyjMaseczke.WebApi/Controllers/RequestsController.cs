@@ -32,67 +32,31 @@ namespace UszyjMaseczke.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
         {
-            try
-            {
-                var result = await _requestRepository.GetAsync(id, cancellationToken);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                Logger.Error($"Error while getting request by id {id}");
-                Logger.Error(e.StackTrace);
-                throw e;
-            }
+            var result = await _requestRepository.GetAsync(id, cancellationToken);
+            return Ok(result);
         }
 
         [ProducesResponseType(typeof(ICollection<AggregatedRequestsView>), 200)]
         [HttpGet]
         public async Task<IActionResult> Get(CancellationToken cancellationToken)
         {
-            try
-            {
-                var result = await _viewRepository.ListAggregatedRequestsView(cancellationToken);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Error while getting request");
-                Logger.Error(e.StackTrace);
-                throw e;
-            }
+            var result = await _viewRepository.ListAggregatedRequestsView(cancellationToken);
+            return Ok(result);
         }
 
         [ProducesResponseType(typeof(ICollection<AggregatedRequestsView>), 200)]
         [HttpGet("city/{city}")]
         public async Task<IActionResult> GetByCity(string city, CancellationToken cancellationToken)
         {
-            try
-            {
-                var result = await _viewRepository.ListAggregatedRequestsViewByCity(city, cancellationToken);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                Logger.Error($"Error while getting requests by city {city}");
-                Logger.Error(e.StackTrace);
-                throw e;
-            }
+            var result = await _viewRepository.ListAggregatedRequestsViewByCity(city, cancellationToken);
+            return Ok(result);
         }
 
         [HttpPost(Name = "CreateRequest")]
         public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto createRequestDto, CancellationToken cancellationToken)
         {
-            try
-            {
-                var result = await _requestService.CreateRequestAsync(createRequestDto, cancellationToken);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Error while creating DTO request");
-                Logger.Error(e.StackTrace);
-                throw e;
-            }
+            var result = await _requestService.CreateRequestAsync(createRequestDto, cancellationToken);
+            return Ok(result);
         }
     }
 }

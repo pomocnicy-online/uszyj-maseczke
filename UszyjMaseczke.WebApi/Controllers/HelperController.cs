@@ -37,17 +37,8 @@ namespace UszyjMaseczke.WebApi.Controllers
                     PhoneNumber = createRequestDto.Helper.PhoneNumber
                 }
             };
-            try
-            {
-                await _dbContext.AddAsync(request);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Error while creating helper request");
-                Logger.Error(e.StackTrace);
-            }
-
+            await _dbContext.AddAsync(request);
+            await _dbContext.SaveChangesAsync();
             return Ok();
         }
     }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UszyjMaseczke.Application.Exceptions;
+using UszyjMaseczke.Domain.Exceptions;
 
 namespace UszyjMaseczke.Application.Emails
 {
@@ -16,10 +18,10 @@ namespace UszyjMaseczke.Application.Emails
         public EmailMessage(IEnumerable<string> to, string htmlContent, string subject, IEnumerable<string> cc = null, IEnumerable<string> bcc = null)
         {
             if (to == null)
-                throw new ArgumentNullException(nameof(to));
+                throw new ValidationException($"{nameof(to)} cannot be null");
             var recipients = to as string[] ?? to.ToArray();
             if (to == null || !recipients.Any())
-                throw new ArgumentException("Recipients list cannot be empty");
+                throw new ValidationException("Recipients list cannot be empty");
             To = recipients;
             Cc = cc ?? new string[] { };
             Bcc = bcc ?? new string[] { };

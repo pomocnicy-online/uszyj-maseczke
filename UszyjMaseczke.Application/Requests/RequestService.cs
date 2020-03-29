@@ -15,6 +15,7 @@ using UszyjMaseczke.Application.DTOs.SewingSuppliesRequest;
 using UszyjMaseczke.Application.DTOs.Suits;
 using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Domain.DisinfectionMeasures;
+using UszyjMaseczke.Domain.Exceptions;
 using UszyjMaseczke.Domain.Gloves;
 using UszyjMaseczke.Domain.Groceries;
 using UszyjMaseczke.Domain.Masks;
@@ -87,17 +88,17 @@ namespace UszyjMaseczke.Application.Requests
         private MedicalCentre MapToMedicalCentre(CreateRequestMedicalCentreDto createRequestMedicalCentreDto)
         {
             if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.City))
-                throw new ArgumentException("City cannot be null");
+                throw new ValidationException("City cannot be null");
             if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.Email))
-                throw new ArgumentException("Email cannot be null");
+                throw new ValidationException("Email cannot be null");
             if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.Street))
-                throw new ArgumentException("Street cannot be null");
+                throw new ValidationException("Street cannot be null");
             if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.BuildingNumber))
-                throw new ArgumentException("BuildingNumber cannot be null");
+                throw new ValidationException("BuildingNumber cannot be null");
             if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.LegalName))
-                throw new ArgumentException("LegalName cannot be null");
+                throw new ValidationException("LegalName cannot be null");
             if (string.IsNullOrWhiteSpace(createRequestMedicalCentreDto.PhoneNumber))
-                throw new ArgumentException("PhoneNumber cannot be null");
+                throw new ValidationException("PhoneNumber cannot be null");
 
             return new MedicalCentre
             {

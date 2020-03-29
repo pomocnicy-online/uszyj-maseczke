@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using UszyjMaseczke.Application.Exceptions;
 using UszyjMaseczke.Domain.Requests;
 
 namespace UszyjMaseczke.Infrastructure.Repsitories
@@ -15,9 +16,9 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
             _dbContext = dbContext;
         }
 
-        public Task<Request> GetAsync(int id, CancellationToken cancellationToken)
+        public async Task<Request> GetAsync(int id, CancellationToken cancellationToken)
         {
-            return _dbContext.Requests
+            var result = await _dbContext.Requests
                 .Include(x => x.MedicalCentre)
                 .Include(x => x.MaskRequest)
                 .Include(x => x.MaskRequest.Positions)
@@ -37,6 +38,11 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
                 .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+
+            if(result== null)
+                throw new NotFoundException($"Could not find Request of following id: {id}");
+
+            return result;
         }
 
         public async Task<IEnumerable<Request>> GetAsync(CancellationToken cancellationToken)
