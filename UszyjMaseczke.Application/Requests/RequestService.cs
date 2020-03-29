@@ -13,12 +13,12 @@ using UszyjMaseczke.Application.DTOs.Prints;
 using UszyjMaseczke.Application.DTOs.PsychologicalSupport;
 using UszyjMaseczke.Application.DTOs.SewingSuppliesRequest;
 using UszyjMaseczke.Application.DTOs.Suits;
-using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Domain.DisinfectionMeasures;
 using UszyjMaseczke.Domain.Gloves;
 using UszyjMaseczke.Domain.Groceries;
 using UszyjMaseczke.Domain.Masks;
 using UszyjMaseczke.Domain.MedicalCentre;
+using UszyjMaseczke.Domain.Message;
 using UszyjMaseczke.Domain.Other;
 using UszyjMaseczke.Domain.OtherCleaningMaterials;
 using UszyjMaseczke.Domain.Print;
@@ -32,14 +32,10 @@ namespace UszyjMaseczke.Application.Requests
     public class RequestService : IRequestService
     {
         private readonly IRequestRepository _requestRepository;
-        private readonly IEmailSender _emailSender;
-        private readonly IEmailFactory _emailFactory;
 
-        public RequestService(IRequestRepository requestRepository, IEmailSender emailSender, IEmailFactory emailFactory)
+        public RequestService(IRequestRepository requestRepository)
         {
             _requestRepository = requestRepository;
-            _emailSender = emailSender;
-            _emailFactory = emailFactory;
         }
 
         public async Task<int> CreateRequestAsync(CreateRequestDto createRequestDto, CancellationToken cancellationToken)
@@ -76,10 +72,13 @@ namespace UszyjMaseczke.Application.Requests
             };
 
             await _requestRepository.SaveAsync(request, cancellationToken);
-            await _emailSender.SendAsync(new EmailMessage(
-                new[] {request.MedicalCentre.Email},
-                _emailFactory.MakeRequestRegisteredEmail(),
-                "Zgłoszenie zostało przyjęte"), cancellationToken);
+
+            MessageFactory.mailFromRequest(request);
+            
+            // await _emailSender.SendAsync(new EmailMessage(
+                // new[] {request.MedicalCentre.Email},
+                // _emailFactory.MakeRequestRegisteredEmail(),
+                // "Zgłoszenie zostało przyjęte"), cancellationToken);
 
             return request.Id;
         }
