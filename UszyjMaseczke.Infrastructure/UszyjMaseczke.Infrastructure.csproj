@@ -5,7 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\UszyjMaseczke.Application\UszyjMaseczke.Application.csproj" />
       <ProjectReference Include="..\UszyjMaseczke.Domain\UszyjMaseczke.Domain.csproj" />
     </ItemGroup>
 

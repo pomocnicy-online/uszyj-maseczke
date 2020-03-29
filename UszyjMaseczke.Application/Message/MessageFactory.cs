@@ -9,14 +9,15 @@ namespace UszyjMaseczke.Domain.Message
     public class MessageFactory
     {
         private static readonly string PATH_RESOURCES_MAIL =
-            Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Mail");
+            Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail");
 
         public static Message mailFromRequest(Request request)
         {
             var content = RunCompile(
                 PATH_RESOURCES_MAIL,
-                "offer.cshtml",
-                "offer", new
+                "offer.html",
+                null,
+                new
                 {
                     Name = ""
                 }

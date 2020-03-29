@@ -1,24 +1,24 @@
 using log4net;
 using MailKit.Security;
 using MimeKit;
-using UszyjMaseczke.Domain.Message;
+using UszyjMaseczke.Infrastructure.Message;
 using UszyjMaseczke.WebApi.Configuration.Mail;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
-namespace UszyjMaseczke.Infrastructure.Mail
+namespace UszyjMaseczke.Message.Mail
 {
-    public class MailService
+    public class MailMessageService : IMessageService
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(MailService));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(MailMessageService));
 
         private readonly MailConfiguration _mailConfiguration;
-
-        public MailService(MailConfiguration mailConfiguration)
+        
+        public MailMessageService(MailConfiguration mailConfiguration)
         {
             _mailConfiguration = mailConfiguration;
         }
 
-        public void send(Message message)
+        public void send(Domain.Message.Message message)
         {
             var mimeMessage = new MimeMessage();
             

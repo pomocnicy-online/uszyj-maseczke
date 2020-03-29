@@ -1,12 +1,13 @@
-﻿using MailKit;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
 using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Application.Requests;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure;
+using UszyjMaseczke.Infrastructure.Message;
 using UszyjMaseczke.Infrastructure.Repsitories;
+using UszyjMaseczke.Message.Mail;
 using UszyjMaseczke.WebApi.Configuration;
 
 namespace UszyjMaseczke.WebApi.Bootstrap
@@ -30,7 +31,7 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         private static void InitializeServices(Container container)
         {
             container.Register<IRequestService, RequestService>();
-            container.Register<IMailService, MailService>();
+            container.Register<IMessageService, MailMessageService>();
 
         }
 

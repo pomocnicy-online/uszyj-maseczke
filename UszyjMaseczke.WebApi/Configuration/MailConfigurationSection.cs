@@ -6,7 +6,6 @@ namespace UszyjMaseczke.WebApi.Configuration
     {
         public string getHost { get; }
         public int getPort { get; }
-        public string isSSLEnabled { get; }
         public MailFromConfiguration getFrom { get; }
     }
 }

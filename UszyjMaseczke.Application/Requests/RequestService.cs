@@ -26,12 +26,14 @@ using UszyjMaseczke.Domain.PsychologicalSupport;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Domain.SewingSupplies;
 using UszyjMaseczke.Domain.Suits;
+using UszyjMaseczke.Infrastructure.Message;
 
 namespace UszyjMaseczke.Application.Requests
 {
     public class RequestService : IRequestService
     {
         private readonly IRequestRepository _requestRepository;
+        private readonly IMessageService _messageService;
 
         public RequestService(IRequestRepository requestRepository)
         {
@@ -73,13 +75,10 @@ namespace UszyjMaseczke.Application.Requests
 
             await _requestRepository.SaveAsync(request, cancellationToken);
 
-            MessageFactory.mailFromRequest(request);
+            var message = MessageFactory.mailFromRequest(request);
             
-            // await _emailSender.SendAsync(new EmailMessage(
-                // new[] {request.MedicalCentre.Email},
-                // _emailFactory.MakeRequestRegisteredEmail(),
-                // "Zgłoszenie zostało przyjęte"), cancellationToken);
-
+            _messageService.send(message);
+            
             return request.Id;
         }
 
