@@ -14,7 +14,7 @@ namespace UszyjMaseczke.Domain.Message
         {
             var content = await RunCompile(
                 Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail"),
-                "offer.cshtml",
+                "help.cshtml",
                 null,
                 new
                 {
@@ -28,7 +28,7 @@ namespace UszyjMaseczke.Domain.Message
         {
             var content = await RunCompile(
                 Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail"),
-                "offer.cshtml",
+                "new_help.cshtml",
                 null,
                 new
                 {
@@ -42,7 +42,7 @@ namespace UszyjMaseczke.Domain.Message
         {
             var content = await RunCompile(
                 Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail"),
-                "offer.cshtml",
+                "request.cshtml",
                 null,
                 new
                 {

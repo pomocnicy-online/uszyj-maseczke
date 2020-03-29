@@ -59,9 +59,10 @@ namespace UszyjMaseczke.Application.Requests
 
             await _requestRepository.SaveAsync(request, cancellationToken);
 
-            var message = await MessageFactory.request(request);
-            
-            _messageService.send(message);
+            using (var message = MessageFactory.request(request))
+            {
+                _messageService.send(await message);
+            }
             
             return request.Id;
         }

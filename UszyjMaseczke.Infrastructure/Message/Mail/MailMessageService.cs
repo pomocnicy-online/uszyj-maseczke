@@ -37,13 +37,13 @@ namespace UszyjMaseczke.Infrastructure.Message.Mail
         {
             using (var client = new SmtpClient ())
             {
-                client.ConnectAsync(_mailConfiguration.Host, _mailConfiguration.Port, SecureSocketOptions.SslOnConnect);
+                client.Connect(_mailConfiguration.Host, _mailConfiguration.Port, SecureSocketOptions.SslOnConnect);
 
-                client.AuthenticateAsync(_mailConfiguration.Email, _mailConfiguration.Password);
+                client.Authenticate(_mailConfiguration.Email, _mailConfiguration.Password);
 
-                client.SendAsync(message);
+                client.Send(message);
 
-                client.DisconnectAsync(true);
+                client.Disconnect(true);
             }
         }
     }
