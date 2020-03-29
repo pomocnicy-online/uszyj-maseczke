@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 using UszyjMaseczke.Application.DTOs;
-using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Application.Requests;
 using UszyjMaseczke.Domain.Requests;

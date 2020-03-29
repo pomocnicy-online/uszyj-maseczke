@@ -72,7 +72,7 @@ namespace UszyjMaseczke.WebApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             var swaggerConfig = Configuration.GetSection("SwaggerUi").Get<SwaggerUiConfigurationSection>();
-
+            
             ContainerInitializer.Initialize(_container, Configuration, app);
             app.UseSimpleInjector(_container);
 

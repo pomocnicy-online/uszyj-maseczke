@@ -19,5 +19,9 @@
       <ProjectReference Include="..\UszyjMaseczke.Migrations\UszyjMaseczke.Migrations.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="bin\Debug\netcoreapp3.1" />
+    </ItemGroup>
+
 
 </Project>

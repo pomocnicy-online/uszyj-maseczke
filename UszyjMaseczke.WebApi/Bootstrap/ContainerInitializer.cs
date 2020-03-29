@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MailKit;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
-using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Application.Requests;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure;
-using UszyjMaseczke.Infrastructure.Emails;
 using UszyjMaseczke.Infrastructure.Repsitories;
 using UszyjMaseczke.WebApi.Configuration;
 
@@ -31,8 +30,7 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         private static void InitializeServices(Container container)
         {
             container.Register<IRequestService, RequestService>();
-            container.Register<IEmailSender, EmailService>();
-            container.Register<IEmailFactory, EmailFactory>();
+            container.Register<IMailService, MailService>();
 
         }
 
@@ -43,9 +41,8 @@ namespace UszyjMaseczke.WebApi.Bootstrap
 
         private static void RegisterConfigurations(Container container, IConfiguration configuration)
         {
-            var emailConfigurationSection = configuration.GetSection("Email").Get<EmailConfigurationSection>();
-            container.RegisterInstance<IEmailConfiguration>(emailConfigurationSection);
-
+            var mailConfigurationSection = configuration.GetSection("Mail").Get<MailConfigurationSection>();
+            container.RegisterInstance<MailConfigurationSection>(mailConfigurationSection);
         }
     }
 }
