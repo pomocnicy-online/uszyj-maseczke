@@ -7,8 +7,9 @@ using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.Infrastructure.Message;
 using UszyjMaseczke.Infrastructure.Repsitories;
-using UszyjMaseczke.Message.Mail;
+using UszyjMaseczke.Infrastructure.Message.Mail;
 using UszyjMaseczke.WebApi.Configuration;
+using UszyjMaseczke.WebApi.Configuration.Mail;
 
 namespace UszyjMaseczke.WebApi.Bootstrap
 {
@@ -32,7 +33,6 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             container.Register<IRequestService, RequestService>();
             container.Register<IMessageService, MailMessageService>();
-
         }
 
         private static void InitializeDbContext(Container container, IApplicationBuilder app)
@@ -43,7 +43,7 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         private static void RegisterConfigurations(Container container, IConfiguration configuration)
         {
             var mailConfigurationSection = configuration.GetSection("Mail").Get<MailConfigurationSection>();
-            container.RegisterInstance<MailConfigurationSection>(mailConfigurationSection);
+            container.RegisterInstance<MailConfiguration>(mailConfigurationSection);
         }
     }
 }

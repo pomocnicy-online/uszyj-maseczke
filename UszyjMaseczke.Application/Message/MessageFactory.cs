@@ -1,35 +1,80 @@
 using System;
 using System.IO;
-using RazorEngine;
-using RazorEngine.Templating;
+using System.Threading.Tasks;
+using Org.BouncyCastle.Ocsp;
+using RazorLight;
+using UszyjMaseczke.Domain.Helpers;
 using UszyjMaseczke.Domain.Requests;
 
 namespace UszyjMaseczke.Domain.Message
 {
     public class MessageFactory
     {
-        private static readonly string PATH_RESOURCES_MAIL =
-            Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail");
-
-        public static Message mailFromRequest(Request request)
+        public static async Task<Message> helper(Helper helper)
         {
-            var content = RunCompile(
-                PATH_RESOURCES_MAIL,
-                "offer.html",
+            var content = await RunCompile(
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail"),
+                "offer.cshtml",
                 null,
                 new
                 {
-                    Name = ""
                 }
             );
 
-            return new Message(request.MedicalCentre.Email, "Offer", content, Message.MessageType.MAIL);
+            return new Message(helper.Email, "Potwierdzenie rejetracji jako pomoc", content, Message.MessageType.MAIL);
+        }
+
+        public static async Task<Message> newHelper(Helper helper, Request request)
+        {
+            var content = await RunCompile(
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail"),
+                "offer.cshtml",
+                null,
+                new
+                {
+                }
+            );
+
+            return new Message(request.MedicalCentre.Email, "Nowy pomagający", content, Message.MessageType.MAIL);
+        }
+
+        public static async Task<Message> request(Request request)
+        {
+            var content = await RunCompile(
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "Resources", "Mail"),
+                "offer.cshtml",
+                null,
+                new
+                {
+                    Contact = new
+                    {
+                        Name = request.MedicalCentre.LegalName,
+                        Phone = request.MedicalCentre.PhoneNumber,
+                        Email = request.MedicalCentre.Email,
+                    },
+                    MedicalCentre = new
+                    {
+                        Name = request.MedicalCentre.LegalName,
+                        Address = String.Format(
+                            "{0} {1} {2}, {3} {4}",
+                            request.MedicalCentre.Street,
+                            request.MedicalCentre.BuildingNumber,
+                            request.MedicalCentre.ApartmentNumber,
+                            request.MedicalCentre.City,
+                            request.MedicalCentre.PostalCode
+                        ),
+                    }
+                }
+            );
+
+            return new Message(request.MedicalCentre.Email, "Dodano prośbę o pomoc", content, Message.MessageType.MAIL);
         }
 
         /**
          * See https://medium.com/@DomBurf/templated-html-emails-using-razorengine-6f150bb5f3a6
          */
-        private static string RunCompile(string rootpath, string templatename, string templatekey, object model)
+        private static async Task<string> RunCompile(string rootpath, string templatename, string templatekey,
+            object model)
         {
             string result = string.Empty;
 
@@ -46,7 +91,12 @@ namespace UszyjMaseczke.Domain.Message
                     templatekey = Guid.NewGuid().ToString();
                 }
 
-                result = Engine.Razor.RunCompile(template, templatekey, null, model);
+                var engine = new RazorLightEngineBuilder()
+                    .UseEmbeddedResourcesProject(typeof(MessageFactory))
+                    .UseMemoryCachingProvider()
+                    .Build();
+
+                result = await engine.CompileRenderStringAsync(templatekey, template, model);
             }
 
             return result;

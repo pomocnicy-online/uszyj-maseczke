@@ -18,7 +18,7 @@ namespace UszyjMaseczke.Domain.Message
         {
             Receiver = receiver ?? throw new ArgumentNullException(nameof(receiver));
             Content = content ?? throw new ArgumentNullException(nameof(content));
-            Subject = content ?? throw new ArgumentNullException(nameof(subject));
+            Subject = subject ?? throw new ArgumentNullException(nameof(subject));
             Type = type;
         }
     }

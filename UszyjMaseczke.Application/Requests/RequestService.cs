@@ -35,9 +35,10 @@ namespace UszyjMaseczke.Application.Requests
         private readonly IRequestRepository _requestRepository;
         private readonly IMessageService _messageService;
 
-        public RequestService(IRequestRepository requestRepository)
+        public RequestService(IRequestRepository requestRepository, IMessageService messageService)
         {
             _requestRepository = requestRepository;
+            _messageService = messageService;
         }
 
         public async Task<int> CreateRequestAsync(CreateRequestDto createRequestDto, CancellationToken cancellationToken)
@@ -75,7 +76,7 @@ namespace UszyjMaseczke.Application.Requests
 
             await _requestRepository.SaveAsync(request, cancellationToken);
 
-            var message = MessageFactory.mailFromRequest(request);
+            var message = await MessageFactory.request(request);
             
             _messageService.send(message);
             

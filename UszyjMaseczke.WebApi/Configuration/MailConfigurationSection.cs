@@ -4,8 +4,10 @@ namespace UszyjMaseczke.WebApi.Configuration
 {
     public class MailConfigurationSection : MailConfiguration
     {
-        public string getHost { get; }
-        public int getPort { get; }
-        public MailFromConfiguration getFrom { get; }
+        public string Host { get; set; }
+        public int Port { get; set; }
+        public string Email { get; set; }
+        public string DisplayName { get; set; }
+        public string Password { get; set; }
     }
 }

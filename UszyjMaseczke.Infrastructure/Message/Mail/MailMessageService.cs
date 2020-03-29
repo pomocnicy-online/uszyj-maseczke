@@ -1,11 +1,10 @@
 using log4net;
 using MailKit.Security;
 using MimeKit;
-using UszyjMaseczke.Infrastructure.Message;
 using UszyjMaseczke.WebApi.Configuration.Mail;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
-namespace UszyjMaseczke.Message.Mail
+namespace UszyjMaseczke.Infrastructure.Message.Mail
 {
     public class MailMessageService : IMessageService
     {
@@ -22,7 +21,7 @@ namespace UszyjMaseczke.Message.Mail
         {
             var mimeMessage = new MimeMessage();
             
-            mimeMessage.From.Add(new MailboxAddress(_mailConfiguration.getFrom.getDisplayName, _mailConfiguration.getFrom.getEmail));
+            mimeMessage.From.Add(new MailboxAddress(_mailConfiguration.DisplayName, _mailConfiguration.Email));
             mimeMessage.To.Add(new MailboxAddress(message.Receiver));
             mimeMessage.Subject = message.Subject;
 
@@ -38,13 +37,13 @@ namespace UszyjMaseczke.Message.Mail
         {
             using (var client = new SmtpClient ())
             {
-                client.Connect(_mailConfiguration.getHost, _mailConfiguration.getPort, SecureSocketOptions.SslOnConnect);
+                client.ConnectAsync(_mailConfiguration.Host, _mailConfiguration.Port, SecureSocketOptions.SslOnConnect);
 
-                client.Authenticate(_mailConfiguration.getFrom.getEmail, _mailConfiguration.getFrom.getPassword);
+                client.AuthenticateAsync(_mailConfiguration.Email, _mailConfiguration.Password);
 
-                client.Send(message);
+                client.SendAsync(message);
 
-                client.Disconnect(true);
+                client.DisconnectAsync(true);
             }
         }
     }
