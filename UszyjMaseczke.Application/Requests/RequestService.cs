@@ -2,9 +2,10 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using UszyjMaseczke.Application.DTOs;
-using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Application.Mappers;
+using UszyjMaseczke.Domain.Message;
 using UszyjMaseczke.Domain.Requests;
+using UszyjMaseczke.Infrastructure.Message;
 
 namespace UszyjMaseczke.Application.Requests
 {

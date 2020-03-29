@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using UszyjMaseczke.Application.Exceptions;
 using UszyjMaseczke.Domain.MedicalCentres;
+using UszyjMaseczke.Infrastructure.Exception;
 
 namespace UszyjMaseczke.Infrastructure.Repsitories
 {
