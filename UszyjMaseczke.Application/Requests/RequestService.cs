@@ -59,9 +59,10 @@ namespace UszyjMaseczke.Application.Requests
             };
 
             await _requestRepository.SaveAsync(request, cancellationToken);
+            var htmlContent = await _emailFactory.MakeRequestRegisteredEmail(request);
             await _emailSender.SendAsync(new EmailMessage(
                 new[] {request.MedicalCentre.Email},
-                _emailFactory.MakeRequestRegisteredEmail(),
+                htmlContent,
                 "Zgłoszenie zostało przyjęte"), cancellationToken);
 
             return request.Id;

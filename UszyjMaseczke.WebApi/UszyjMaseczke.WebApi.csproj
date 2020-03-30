@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PreserveCompilationReferences>true</PreserveCompilationReferences>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,6 +20,19 @@
       <ProjectReference Include="..\UszyjMaseczke.Infrastructure\UszyjMaseczke.Infrastructure.csproj" />
       <ProjectReference Include="..\UszyjMaseczke.Migrations\UszyjMaseczke.Migrations.csproj" />
     </ItemGroup>
-
+    
+    <ItemGroup>
+      <ProjectReference Include="..\UszyjMaseczke.Application\UszyjMaseczke.Application.csproj" />
+      <ProjectReference Include="..\UszyjMaseczke.Domain\UszyjMaseczke.Domain.csproj" />
+      <ProjectReference Include="..\UszyjMaseczke.Infrastructure\UszyjMaseczke.Infrastructure.csproj" />
+      <ProjectReference Include="..\UszyjMaseczke.Migrations\UszyjMaseczke.Migrations.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <None Include="..\UszyjMaseczke.Resources\MailTemplates\RequestRegistered.html">
+        <Link>MailTemplates/RequestRegistered.html</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
 </Project>
