@@ -5,6 +5,6 @@ namespace UszyjMaseczke.Application.DTOs.OtherCleaningMaterials
 {
     public class OtherCleaningMaterialRequestDto
     {
-        public IEnumerable<GroceryRequestPositionDto> Positions { get; set; }
+        public IEnumerable<OtherCleaningMaterialRequestPositionDto> Positions { get; set; }
     }
 }

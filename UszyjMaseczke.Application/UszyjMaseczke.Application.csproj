@@ -8,4 +8,8 @@
       <ProjectReference Include="..\UszyjMaseczke.Domain\UszyjMaseczke.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="9.0.0" />
+    </ItemGroup>
+
 </Project>
