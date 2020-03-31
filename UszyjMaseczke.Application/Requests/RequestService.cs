@@ -7,6 +7,7 @@ using UszyjMaseczke.Application.DTOs.Requests;
 using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Application.Mappers;
 using UszyjMaseczke.Domain.Requests;
+using UszyjMaseczke.Infrastructure.Emails;
 
 namespace UszyjMaseczke.Application.Requests
 {
@@ -63,11 +64,11 @@ namespace UszyjMaseczke.Application.Requests
             };
 
             await _requestRepository.SaveAsync(request, cancellationToken);
-            var htmlContent = await _emailFactory.MakeRequestRegisteredEmail(request);
-            await _emailSender.SendAsync(new EmailMessage(
+            // TODO: create object for mail purposes
+            await _emailSender.SendAsync(new EmailMessage<object>(
                 new[] {request.MedicalCentre.Email},
-                htmlContent,
-                "Zgłoszenie zostało przyjęte"), cancellationToken);
+                EmailTemplate.RequestRegisteredTemplate,
+                Resources.Emails.RequestRegisteredEmailSubject, new object[] {"a"}), cancellationToken);
 
             return request.Id;
         }

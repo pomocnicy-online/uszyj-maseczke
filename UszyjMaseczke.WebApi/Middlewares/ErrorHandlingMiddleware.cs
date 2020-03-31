@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using UszyjMaseczke.Application.Exceptions;
 using UszyjMaseczke.Domain.Exceptions;
 
-namespace UszyjMaseczke.WebApi.Middlewars
+namespace UszyjMaseczke.WebApi.Middlewares
 {
     public class ErrorHandlingMiddleware
     {

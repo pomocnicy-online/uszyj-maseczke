@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UszyjMaseczke.Domain.Exceptions;
+using UszyjMaseczke.Infrastructure.Emails;
 
 namespace UszyjMaseczke.Application.Emails
 {
-    public class EmailMessage
+    public class EmailMessage<T>
     {
-        public EmailMessage(IEnumerable<string> to, string htmlContent, string subject, IEnumerable<string> cc = null, IEnumerable<string> bcc = null)
+        public EmailMessage(IEnumerable<string> to, EmailTemplate template, string subject, T body, IEnumerable<string> cc = null, IEnumerable<string> bcc = null)
         {
             if (to == null)
                 throw new ValidationException($"{nameof(to)} cannot be null");
@@ -16,15 +17,16 @@ namespace UszyjMaseczke.Application.Emails
             To = recipients;
             Cc = cc ?? new string[] { };
             Bcc = bcc ?? new string[] { };
-            HtmlContent = htmlContent;
+            Template = template;
+            Body = body;
             Subject = subject;
         }
 
         public IEnumerable<string> To { get; }
         public IEnumerable<string> Cc { get; }
         public IEnumerable<string> Bcc { get; }
-        public string PlainTextContent { get; }
-        public string HtmlContent { get; }
+        public EmailTemplate Template { get; }
+        public T Body { get; }
         public string Subject { get; }
     }
 }

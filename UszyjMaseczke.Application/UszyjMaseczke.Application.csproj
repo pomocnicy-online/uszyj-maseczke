@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\UszyjMaseczke.Domain\UszyjMaseczke.Domain.csproj" />
+      <ProjectReference Include="..\UszyjMaseczke.Resources\UszyjMaseczke.Resources.csproj" />
     </ItemGroup>
 
     <ItemGroup>
