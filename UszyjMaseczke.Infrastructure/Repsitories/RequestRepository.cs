@@ -57,6 +57,31 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
             return result;
         }
 
+        public async Task<IEnumerable<Request>> GetByCityAsync(string id, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Requests
+                .Include(x => x.MedicalCentre)
+                .Include(x => x.MaskRequest)
+                .Include(x => x.MaskRequest.Positions)
+                .Include(x => x.GlovesRequest)
+                .Include(x => x.GlovesRequest.Positions)
+                .Include(x => x.DisinfectionMeasureRequest)
+                .Include(x => x.DisinfectionMeasureRequest.Positions)
+                .Include(x => x.SuitRequest)
+                .Include(x => x.SuitRequest.Positions)
+                .Include(x => x.GroceryRequest)
+                .Include(x => x.GroceryRequest.Positions)
+                .Include(x => x.OtherCleaningMaterialRequest)
+                .Include(x => x.OtherCleaningMaterialRequest.Positions)
+                .Include(x => x.PsychologicalSupportRequest)
+                .Include(x => x.SewingSuppliesRequest)
+                .Include(x => x.OtherRequest)
+                .Include(x => x.PrintRequest)
+                .Include(x => x.PrintRequest.Positions)
+                .Where(x => x.MedicalCentre.City.ToUpper() == id.ToUpper() && x.Active)
+                .ToListAsync(cancellationToken);
+        }
+
         public async Task<IEnumerable<Request>> GetAsync(CancellationToken cancellationToken)
         {
             return await _dbContext

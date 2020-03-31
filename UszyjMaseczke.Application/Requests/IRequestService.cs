@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UszyjMaseczke.Application.DTOs;
@@ -9,5 +10,6 @@ namespace UszyjMaseczke.Application.Requests
     {
         Task<int> CreateRequestAsync(CreateRequestDto createRequestDto, CancellationToken cancellationToken);
         Task<AwaitingRequestDto> GetAwaitingRequestsAsync(int requestId, CancellationToken cancellationToken);
+        Task<IEnumerable<AwaitingRequestDto>> GetAwaitingRequestsByCityAsync(string city, CancellationToken cancellationToken);
     }
 }

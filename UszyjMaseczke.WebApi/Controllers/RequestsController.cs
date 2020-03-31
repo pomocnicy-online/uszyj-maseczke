@@ -44,11 +44,11 @@ namespace UszyjMaseczke.WebApi.Controllers
             return Ok(result);
         }
 
-        [ProducesResponseType(typeof(ICollection<AggregatedRequestsView>), 200)]
+        [ProducesResponseType(typeof(ICollection<AwaitingRequestDto>), 200)]
         [HttpGet("city/{city}")]
         public async Task<IActionResult> GetByCity(string city, CancellationToken cancellationToken)
         {
-            var result = await _viewRepository.ListAggregatedRequestsViewByCity(city, cancellationToken);
+            var result = await _requestService.GetAwaitingRequestsByCityAsync(city,cancellationToken);
             return Ok(result);
         }
 

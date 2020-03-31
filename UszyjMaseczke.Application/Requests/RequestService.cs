@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -76,6 +77,12 @@ namespace UszyjMaseczke.Application.Requests
         {
             var request = await _requestRepository.GetAsync(requestId, cancellationToken);
             return _mapper.Map<AwaitingRequestDto>(request);
+        }
+
+        public async Task<IEnumerable<AwaitingRequestDto>> GetAwaitingRequestsByCityAsync(string city, CancellationToken cancellationToken)
+        {
+            var request = await _requestRepository.GetByCityAsync(city, cancellationToken);
+            return _mapper.Map<IEnumerable<Request>, IEnumerable<AwaitingRequestDto>>(request);
         }
     }
 }

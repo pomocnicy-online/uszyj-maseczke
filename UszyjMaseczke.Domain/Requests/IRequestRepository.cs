@@ -11,5 +11,6 @@ namespace UszyjMaseczke.Domain.Requests
         Task<IEnumerable<Request>> GetAsync(CancellationToken cancellationToken);
         Task SaveAsync(Request request, CancellationToken cancellationToken);
         Task RemoveByToken(string token, CancellationToken cancellationToken);
+        Task<IEnumerable<Request>> GetByCityAsync(string id, CancellationToken cancellationToken);
     }
 }
