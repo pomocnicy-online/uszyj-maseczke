@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using SimpleInjector;
 using UszyjMaseczke.Application.Emails;
@@ -12,6 +13,7 @@ using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.Infrastructure.Emails;
 using UszyjMaseczke.Infrastructure.Repsitories;
 using UszyjMaseczke.WebApi.Configuration;
+using UszyjMaseczke.WebApi.Profiles;
 
 namespace UszyjMaseczke.WebApi.Bootstrap
 {
@@ -23,6 +25,7 @@ namespace UszyjMaseczke.WebApi.Bootstrap
             InitializeRepositories(container);
             InitializeServices(container);
             RegisterConfigurations(container, configuration);
+            RegisterAutoMapperProfiles(container);
         }
 
         private static void InitializeRepositories(Container container)
@@ -50,6 +53,28 @@ namespace UszyjMaseczke.WebApi.Bootstrap
         {
             var emailConfigurationSection = configuration.GetSection("Email").Get<EmailConfigurationSection>();
             container.RegisterInstance<IEmailConfiguration>(emailConfigurationSection);
+        }
+
+        private static void RegisterAutoMapperProfiles(Container container)
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.AddProfile<RequestProfile>();
+                cfg.AddProfile<DisinfectionMeasuresProfile>();
+                cfg.AddProfile<PsychologicalSupportProfile>();
+                cfg.AddProfile<OtherCleaningMaterialsProfile>();
+                cfg.AddProfile<SewingSuppliesProfile>();
+                cfg.AddProfile<MaskProfile>();
+                cfg.AddProfile<GloveProfile>();
+                cfg.AddProfile<GroceriesProfile>();
+                cfg.AddProfile<OthersProfile>();
+                cfg.AddProfile<PrintsProfile>();
+                cfg.AddProfile<SuitsProfile>();
+            });
+
+            var mapper = config.CreateMapper();
+
+            container.RegisterInstance<IMapper>(mapper);
+
         }
     }
 }

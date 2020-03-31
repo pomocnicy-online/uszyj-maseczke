@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 using UszyjMaseczke.Application.DTOs;
+using UszyjMaseczke.Application.DTOs.Requests;
 using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Application.Requests;
 using UszyjMaseczke.Domain.Requests;
@@ -15,7 +16,6 @@ namespace UszyjMaseczke.WebApi.Controllers
     [Produces("application/json")]
     public class RequestsController : ControllerBase
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(RequestsController));
         private readonly IRequestRepository _requestRepository;
         private readonly IRequestService _requestService;
         private readonly IViewRepository _viewRepository;
@@ -28,11 +28,11 @@ namespace UszyjMaseczke.WebApi.Controllers
             _requestRepository = requestRepository;
         }
 
-        [ProducesResponseType(typeof(Request), 200)]
+        [ProducesResponseType(typeof(AwaitingRequestDto), 200)]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
         {
-            var result = await _requestRepository.GetAsync(id, cancellationToken);
+            var result = await _requestService.GetAwaitingRequestsAsync(id, cancellationToken);
             return Ok(result);
         }
 

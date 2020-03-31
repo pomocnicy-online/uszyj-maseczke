@@ -1,7 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using UszyjMaseczke.Application.DTOs;
+using UszyjMaseczke.Application.DTOs.Requests;
 using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Application.Mappers;
 using UszyjMaseczke.Domain.Requests;
@@ -13,12 +15,14 @@ namespace UszyjMaseczke.Application.Requests
         private readonly IEmailFactory _emailFactory;
         private readonly IEmailSender _emailSender;
         private readonly IRequestRepository _requestRepository;
+        private readonly IMapper _mapper;
 
-        public RequestService(IRequestRepository requestRepository, IEmailSender emailSender, IEmailFactory emailFactory)
+        public RequestService(IEmailFactory emailFactory, IEmailSender emailSender, IRequestRepository requestRepository, IMapper mapper)
         {
-            _requestRepository = requestRepository;
-            _emailSender = emailSender;
             _emailFactory = emailFactory;
+            _emailSender = emailSender;
+            _requestRepository = requestRepository;
+            _mapper = mapper;
         }
 
         public async Task<int> CreateRequestAsync(CreateRequestDto createRequestDto, CancellationToken cancellationToken)
@@ -66,6 +70,12 @@ namespace UszyjMaseczke.Application.Requests
                 "Zgłoszenie zostało przyjęte"), cancellationToken);
 
             return request.Id;
+        }
+
+        public async Task<AwaitingRequestDto> GetAwaitingRequestsAsync(int requestId, CancellationToken cancellationToken)
+        {
+            var request = await _requestRepository.GetAsync(requestId, cancellationToken);
+            return _mapper.Map<AwaitingRequestDto>(request);
         }
     }
 }
