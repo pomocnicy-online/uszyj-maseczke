@@ -16,4 +16,9 @@
       <PackageReference Include="SendGrid" Version="9.13.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Emails\Templates\RequestRegisteredTemplate.html" />
+      <EmbeddedResource Include="Emails\Templates\RequestRegisteredTemplate.html" />
+    </ItemGroup>
+
 </Project>

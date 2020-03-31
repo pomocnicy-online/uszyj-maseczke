@@ -40,14 +40,14 @@ namespace UszyjMaseczke.Infrastructure.Emails
         private SendGridMessage CreateEmailMessage<T>(EmailMessage<T> message)
         {
             var @assembly = Assembly.GetAssembly(this.GetType());
-            var templateName = $"UszyjMaseczke.Infrastucture.Emails.Templates.{message.Template.ToString()}.html";
+            var templateName = $"UszyjMaseczke.Infrastructure.Emails.Templates.{message.Template.ToString()}.html";
 
             var content = string.Empty;
 
             using (var stream = @assembly.GetManifestResourceStream(templateName))
             {
                 using (var reader = new StreamReader(stream))
-                {
+                {    
                     content = reader.ReadToEnd();
                 }
             }

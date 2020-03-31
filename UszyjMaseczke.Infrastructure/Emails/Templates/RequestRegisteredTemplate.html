@@ -178,19 +178,19 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DT
                                             style="font-size: 14px; line-height: 1.8; color: #555555; font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 25px;">
 
                                             <p>
-                                                Cześć <strong>{{request.MedicalCentre.LegalName}},</strong><br/>
+                                                Cześć <strong>{{MedicalCentreLegalName}},</strong><br/>
                                                 Dziękujemy za zgłoszenie nowej placówki!
                                             </p>
                                             <strong>Dane placówki:</strong>
-                                            {{request.MedicalCentre.LegalName}}<br/>
-											{{request.MedicalCentre.PostalCode}} {{request.MedicalCentre.City}}<br/>
-											{{request.MedicalCentre.Street}} {{request.MedicalCentre.BuildingNumber}}
+                                            {{MedicalCentreLegalName}}<br/>
+											{{MedicalCentrePostalCode}} {{MedicalCentreCity}}<br/>
+											{{MedicalCentreStreet}} {{MedicalCentreBuildingNumber}}
 											<p>
                                                 <strong>Dane kontaktowe:</strong>
                                                 <p>
-                                                    {{request.MedicalCentre.LegalName}}<br/>
-                                                    {{request.MedicalCentre.PhoneNumber}}<br/>
-                                                    {{request.MedicalCentre.Email}}
+                                                    {{MedicalCentreLegalName}}<br/>
+                                                    {{MedicalCentrePhoneNumber}}<br/>
+                                                    {{MedicalCentreEmail}}
                                                 </p>
                                             </p>
 
@@ -198,10 +198,36 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DT
                                                 <strong>Zapotrzebowanie:</strong>
                                             </p>
                                             <ul>
-                                                <li>maseczki</li>
-                                                <li>płyny</li>
-                                                <li>woda</li>
-                                                <li>płyny</li>
+                               					{% if DisinfectionMeasures == true %}
+												<li>Środki dezynfekujące</li>
+												{% endif %}
+												{% if Gloves == true %}
+												<li>Rękawiczki</li>
+												{% endif %}
+												{% if Groceries == true %}
+												<li>Artykuły spożywcze</li>
+												{% endif %}
+												{% if Masks == true %}
+												<li>Maseczki</li>
+												{% endif %}
+												{% if OtherCleaningMaterials == true %}
+												<li>Inne środki czystości</li>
+												{% endif %}
+												{% if Prints == true %}
+												<li>Wydruki 3D</li>
+												{% endif %}
+												{% if Suits == true %}
+												<li>Kombinezony</li>
+												{% endif %}
+												{% if SewingSupplies == true %}
+												<li>Przybory do szycia</li>
+												{% endif %}
+												{% if PsychologicalSupport == true %}
+												<li>Wsparcie psychologiczne</li>
+												{% endif %}
+												{% if Others == true %}
+												<li>Inne</li>
+												{% endif %}
                                             </ul>
                                             <p>
                                                 Pomagajacy już widzą Twoje zgłoszenie! Każda osoba zgłaszająca
@@ -214,7 +240,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DT
                                             <p>
                                                 W celu usunięcia zgłoszenia
                                                 <a class="link"
-                                                   href="https://pomocnicy.online/api/delete#{{request.Id}}">
+                                                   href="https://pomocnicy.online/api/delete#{{Id}}">
                                                     kliknij
                                                     tutaj
                                                 </a>
