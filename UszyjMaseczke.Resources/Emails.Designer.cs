@@ -51,5 +51,17 @@ namespace UszyjMaseczke.Resources {
                 return ResourceManager.GetString("RequestRegisteredEmailSubject", resourceCulture);
             }
         }
+        
+        public static string HelpOfferRegisteredHelperEmailSubject {
+            get {
+                return ResourceManager.GetString("HelpOfferRegisteredHelperEmailSubject", resourceCulture);
+            }
+        }
+        
+        public static string HelpOfferRegisteredReceiverEmailSubject {
+            get {
+                return ResourceManager.GetString("HelpOfferRegisteredReceiverEmailSubject", resourceCulture);
+            }
+        }
     }
 }
