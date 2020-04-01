@@ -40,6 +40,8 @@ namespace UszyjMaseczke.Infrastructure
         public DbSet<MedicalCentre> MedicalCentres { get; set; }
 
         public DbSet<AggregatedRequestsView> AggregatedRequestsViews { get; set; }
+        public DbSet<RequestedCitiesView> RequestedCitiesViews { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -69,6 +71,7 @@ namespace UszyjMaseczke.Infrastructure
             modelBuilder.ApplyConfiguration(new AggregatedRequestsViewMappings());
             modelBuilder.ApplyConfiguration(new HelperMappings());
             modelBuilder.ApplyConfiguration(new HelpOffersMappings());
+            modelBuilder.ApplyConfiguration(new RequestedCitiesViewMappings());
         }
     }
 }

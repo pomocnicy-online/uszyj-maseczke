@@ -25,7 +25,6 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Requests
             builder.HasOne(x => x.PrintRequest);
             builder.Property(x => x.RemovalToken);
             builder.Property(x => x.Active);
-
         }
     }
 }

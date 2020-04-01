@@ -18,12 +18,17 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
 
         public async Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsView(CancellationToken cancellationToken)
         {
-            return await _dbContext.AggregatedRequestsViews.ToListAsync(cancellationToken: cancellationToken);
+            return await _dbContext.AggregatedRequestsViews.ToListAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsViewByCity(string city, CancellationToken cancellationToken)
         {
-            return await _dbContext.AggregatedRequestsViews.Where(x => x.City == city).ToListAsync(cancellationToken: cancellationToken);
+            return await _dbContext.AggregatedRequestsViews.Where(x => x.City == city).ToListAsync(cancellationToken);
+        }
+
+        public async Task<IEnumerable<RequestedCitiesView>> ListRequestedCitiesView(CancellationToken cancellationToken)
+        {
+            return await _dbContext.RequestedCitiesViews.ToListAsync(cancellationToken);
         }
     }
 }
