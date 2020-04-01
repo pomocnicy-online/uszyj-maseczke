@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UszyjMaseczke.Migrations", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UszyjMaseczke.Application", "UszyjMaseczke.Application\UszyjMaseczke.Application.csproj", "{DBCB4318-7143-4CF4-A46E-9B45F26D6156}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UszyjMaseczke.Resources", "UszyjMaseczke.Resources\UszyjMaseczke.Resources.csproj", "{CED192AF-2C48-4CD1-BBC5-6324A37A9A37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{DBCB4318-7143-4CF4-A46E-9B45F26D6156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBCB4318-7143-4CF4-A46E-9B45F26D6156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBCB4318-7143-4CF4-A46E-9B45F26D6156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED192AF-2C48-4CD1-BBC5-6324A37A9A37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED192AF-2C48-4CD1-BBC5-6324A37A9A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED192AF-2C48-4CD1-BBC5-6324A37A9A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED192AF-2C48-4CD1-BBC5-6324A37A9A37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

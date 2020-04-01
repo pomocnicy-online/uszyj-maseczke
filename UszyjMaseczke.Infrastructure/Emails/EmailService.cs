@@ -1,10 +1,13 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using DotLiquid;
 using UszyjMaseczke.Application.Emails;
 
 namespace UszyjMaseczke.Infrastructure.Emails
@@ -19,7 +22,7 @@ namespace UszyjMaseczke.Infrastructure.Emails
             _emailConfiguration = emailConfiguration;
         }
 
-        public async Task SendAsync(EmailMessage message, CancellationToken cancellationToken)
+        public async Task SendAsync<T>(EmailMessage<T> message, CancellationToken cancellationToken)
         {
             try
             {
@@ -34,13 +37,35 @@ namespace UszyjMaseczke.Infrastructure.Emails
             }
         }
 
-        private SendGridMessage CreateEmailMessage(EmailMessage message)
+        private SendGridMessage CreateEmailMessage<T>(EmailMessage<T> message)
         {
-            var sender = new EmailAddress(_emailConfiguration.FromEmail, _emailConfiguration.FromSender);
-            var recipients = message.To.Select(x => new EmailAddress(x));
+            var @assembly = Assembly.GetAssembly(this.GetType());
+            var templateName = $"UszyjMaseczke.Infrastructure.Emails.Templates.{message.Template.ToString()}.html";
 
-            return MailHelper.CreateSingleEmailToMultipleRecipients(sender, recipients.ToList(), message.Subject,
-                message.PlainTextContent, message.HtmlContent);
+            var content = string.Empty;
+
+            using (var stream = @assembly.GetManifestResourceStream(templateName))
+            {
+                using (var reader = new StreamReader(stream))
+                {    
+                    content = reader.ReadToEnd();
+                }
+            }
+
+            var renderedHtml = Render(content, message.Body);
+
+            var sender = new EmailAddress(_emailConfiguration.FromEmail, _emailConfiguration.FromSender);
+
+            return MailHelper.CreateSingleEmailToMultipleRecipients(sender,
+                message.To.Select(t => new EmailAddress(t)).ToList(), message.Subject, string.Empty,
+                renderedHtml);
+        }
+
+        private static string Render(string template, object body)
+        {
+            var payload = Hash.FromAnonymousObject(body, true);
+            var parsedTemplate = Template.Parse(template);
+            return parsedTemplate.Render(payload);
         }
     }
 }

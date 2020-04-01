@@ -28,12 +28,5 @@
       <ProjectReference Include="..\UszyjMaseczke.Infrastructure\UszyjMaseczke.Infrastructure.csproj" />
       <ProjectReference Include="..\UszyjMaseczke.Migrations\UszyjMaseczke.Migrations.csproj" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <None Include="..\UszyjMaseczke.Resources\MailTemplates\RequestRegistered.html">
-        <Link>MailTemplates/RequestRegistered.html</Link>
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
 
 </Project>

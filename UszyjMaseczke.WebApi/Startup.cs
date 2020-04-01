@@ -10,7 +10,7 @@ using SimpleInjector;
 using UszyjMaseczke.Infrastructure;
 using UszyjMaseczke.WebApi.Bootstrap;
 using UszyjMaseczke.WebApi.Configuration;
-using UszyjMaseczke.WebApi.Middlewars;
+using UszyjMaseczke.WebApi.Middlewares;
 
 namespace UszyjMaseczke.WebApi
 {

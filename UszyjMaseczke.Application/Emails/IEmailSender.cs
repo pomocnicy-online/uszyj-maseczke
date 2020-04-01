@@ -5,6 +5,6 @@ namespace UszyjMaseczke.Application.Emails
 {
     public interface IEmailSender
     {
-        Task SendAsync(EmailMessage message, CancellationToken cancellationToken);
+        Task SendAsync<T>(EmailMessage<T> message, CancellationToken cancellationToken);
     }
 }
