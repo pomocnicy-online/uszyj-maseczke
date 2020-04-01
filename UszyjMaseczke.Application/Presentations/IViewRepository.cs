@@ -8,5 +8,6 @@ namespace UszyjMaseczke.Application.Presentations
     {
         Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsView(CancellationToken cancellationToken);
         Task<IEnumerable<AggregatedRequestsView>> ListAggregatedRequestsViewByCity(string city, CancellationToken cancellationToken);
+        Task<IEnumerable<RequestedCitiesView>> ListRequestedCitiesView(CancellationToken cancellationToken);
     }
 }

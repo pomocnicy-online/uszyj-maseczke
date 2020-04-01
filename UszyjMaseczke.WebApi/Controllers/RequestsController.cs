@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using log4net;
 using Microsoft.AspNetCore.Mvc;
 using UszyjMaseczke.Application.DTOs;
 using UszyjMaseczke.Application.DTOs.Requests;
@@ -48,8 +48,16 @@ namespace UszyjMaseczke.WebApi.Controllers
         [HttpGet("city/{city}")]
         public async Task<IActionResult> GetByCity(string city, CancellationToken cancellationToken)
         {
-            var result = await _requestService.GetAwaitingRequestsByCityAsync(city,cancellationToken);
+            var result = await _requestService.GetAwaitingRequestsByCityAsync(city, cancellationToken);
             return Ok(result);
+        }
+
+        [ProducesResponseType(typeof(ICollection<string>), 200)]
+        [HttpGet("city")]
+        public async Task<IActionResult> GetRequestedCities(CancellationToken cancellationToken)
+        {
+            var result = await _viewRepository.ListRequestedCitiesView(cancellationToken);
+            return Ok(result.Select(x => x.City));
         }
 
         [ProducesResponseType(typeof(int), (int) HttpStatusCode.Created)]
@@ -57,7 +65,7 @@ namespace UszyjMaseczke.WebApi.Controllers
         public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto createRequestDto, CancellationToken cancellationToken)
         {
             var result = await _requestService.CreateRequestAsync(createRequestDto, cancellationToken);
-            return CreatedAtAction(nameof(GetById), new {id= result}, result);
+            return CreatedAtAction(nameof(GetById), new {id = result}, result);
         }
 
         [ProducesResponseType(typeof(int), (int) HttpStatusCode.Created)]
