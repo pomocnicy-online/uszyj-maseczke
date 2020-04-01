@@ -20,5 +20,11 @@
     </resheader>
     <data name="RequestRegisteredEmailSubject" xml:space="preserve">
         <value>Zgłoszenie zostało zarejestrowane.</value>
+    </data>   
+    <data name="HelpOfferRegisteredHelperEmailSubject" xml:space="preserve">
+        <value>Twoja oferta pomocy została zarejestrowana.</value>
+    </data>    
+    <data name="HelpOfferRegisteredReceiverEmailSubject" xml:space="preserve">
+        <value>Nowa oferta pomocy dla twojej placówki.</value>
     </data>
 </root>
