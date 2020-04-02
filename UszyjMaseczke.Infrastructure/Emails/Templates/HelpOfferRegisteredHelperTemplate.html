@@ -198,11 +198,12 @@
                                                 style="font-size: 14px; line-height: 1.8; color: #555555; font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 25px;">
 
                                             <p>Cześć <strong>{{HelperName}}</strong><br />
-                                                Dziękujemy ze chcesz nam pomóc!</p>
+                                                Dziękujemy ze chcesz pomóc!</p>
                                             <strong>Wybrana placówka:</strong>
                                             {{MedicalCentreLegalName}}<br/>
                                             {{MedicalCentrePostalCode}} {{MedicalCentreCity}}<br/>
-                                            {{MedicalCentreStreet}} {{MedicalCentreBuildingNumber}}
+                                            {{MedicalCentreStreet}} {{MedicalCentreBuildingNumber}}<br/>
+                                            {{ MedicalCentreEmail }} {{ MedicalCentrePhoneNumber }}
                                             <p><strong>Produkty które zdecydowałeś się przekazać:</strong></p>
                                             <ul>
                                                 {% if DisinfectionMeasuresCount > 0 %}
