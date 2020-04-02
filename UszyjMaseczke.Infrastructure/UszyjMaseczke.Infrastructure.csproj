@@ -19,6 +19,10 @@
     <ItemGroup>
       <None Remove="Emails\Templates\RequestRegisteredTemplate.html" />
       <EmbeddedResource Include="Emails\Templates\RequestRegisteredTemplate.html" />
+      <None Remove="Emails\Templates\HelpOfferRegisteredReceiverTemplate.html" />
+      <EmbeddedResource Include="Emails\Templates\HelpOfferRegisteredReceiverTemplate.html" />
+      <None Remove="Emails\Templates\HelpOfferRegisteredHelperTemplate.html" />
+      <EmbeddedResource Include="Emails\Templates\HelpOfferRegisteredHelperTemplate.html" />
     </ItemGroup>
 
 </Project>

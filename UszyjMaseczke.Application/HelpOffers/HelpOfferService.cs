@@ -78,10 +78,10 @@ namespace UszyjMaseczke.Application.HelpOffers
                 var helpOfferRegisteredReceiverEmailModel =
                     new HelpOfferRegisteredReceiverEmailModel(helpOffer.MedicalCentre.LegalName,
                         helpOffer.Helper.FirstName, helpOffer.Helper.PhoneNumber, helpOffer.Helper.Email,
-                        helpOffer.MaskSupplies.TotalCount, helpOffer.GloveSupplies.TotalCount,
-                        helpOffer.GrocerySupplies.TotalCount, helpOffer.DisinfectionMeasureSupplies.TotalCount,
-                        helpOffer.SuitSupplies.TotalCount, helpOffer.OtherCleaningMaterialSupplies.TotalCount,
-                        helpOffer.PrintSupplies.TotalCount, helpOffer.SewingSuppliesSupplies != null,
+                        helpOffer.MaskSupplies?.TotalCount ?? 0, helpOffer.GloveSupplies?.TotalCount ?? 0,
+                        helpOffer.GrocerySupplies?.TotalCount ?? 0, helpOffer.DisinfectionMeasureSupplies?.TotalCount ?? 0,
+                        helpOffer.SuitSupplies?.TotalCount ?? 0, helpOffer.OtherCleaningMaterialSupplies?.TotalCount ?? 0,
+                        helpOffer.PrintSupplies?.TotalCount ?? 0, helpOffer.SewingSuppliesSupplies != null,
                         helpOffer.OtherSupplies != null, helpOffer.PsychologicalSupportSupplies != null,
                         helpOffer.Request.Id);
 
@@ -98,13 +98,13 @@ namespace UszyjMaseczke.Application.HelpOffers
                         helpOffer.MedicalCentre.PostalCode, helpOffer.MedicalCentre.Email,
                         helpOffer.MedicalCentre.PhoneNumber,
                         helpOffer.Helper.FirstName,
-                        helpOffer.MaskSupplies.TotalCount, helpOffer.GloveSupplies.TotalCount,
-                        helpOffer.GrocerySupplies.TotalCount, helpOffer.DisinfectionMeasureSupplies.TotalCount,
-                        helpOffer.SuitSupplies.TotalCount, helpOffer.OtherCleaningMaterialSupplies.TotalCount,
-                        helpOffer.PrintSupplies.TotalCount, helpOffer.SewingSuppliesSupplies != null,
+                        helpOffer.MaskSupplies?.TotalCount ?? 0, helpOffer.GloveSupplies?.TotalCount ?? 0,
+                        helpOffer.GrocerySupplies?.TotalCount ?? 0, helpOffer.DisinfectionMeasureSupplies?.TotalCount ?? 0,
+                        helpOffer.SuitSupplies?.TotalCount ?? 0, helpOffer.OtherCleaningMaterialSupplies?.TotalCount ?? 0,
+                        helpOffer.PrintSupplies?.TotalCount ?? 0, helpOffer.SewingSuppliesSupplies != null,
                         helpOffer.OtherSupplies != null, helpOffer.PsychologicalSupportSupplies != null,
                         helpOffer.Request.Id);
-                
+
                 await _emailSender.SendAsync(new EmailMessage<HelpOfferRegisteredHelperEmailModel>(
                         new[] {helpOffer.Helper.Email},
                         EmailTemplate.HelpOfferRegisteredHelperTemplate,
