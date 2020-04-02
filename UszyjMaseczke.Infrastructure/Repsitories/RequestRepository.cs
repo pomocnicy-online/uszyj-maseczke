@@ -20,6 +20,7 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
         public async Task<Request> GetLazyAsync(int id, CancellationToken cancellationToken)
         {
             var result = await _dbContext.Requests
+                .Include(x => x.MedicalCentre)
                 .SingleOrDefaultAsync(x => x.Id == id && x.Active, cancellationToken);
 
             if (result == null)
