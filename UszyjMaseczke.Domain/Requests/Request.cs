@@ -27,6 +27,7 @@ namespace UszyjMaseczke.Domain.Requests
         public virtual OtherRequest OtherRequest { get; set; }
         public virtual PrintRequest PrintRequest { get; set; }
         public string RemovalToken { get; set; }
+        public string AdditionalComment { get; set; }
         public bool Active { get; set; }
 
     }

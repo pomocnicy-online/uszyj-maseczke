@@ -23,10 +23,11 @@ namespace UszyjMaseczke.Application.Emails.Models
         public bool Others { get; }
         public bool Prints { get; }
         public int RequestId { get; }
+        public string RemovalToken { get; }
 
         public RequestEmailModel(CreateRequestMedicalCentreDto medicalCentre, bool masks, bool gloves, bool groceries,
             bool disinfectionMeasures, bool suits, bool otherCleaningMaterials, bool psychologicalSupport,
-            bool sewingSupplies, bool others, bool prints, int requestId)
+            bool sewingSupplies, bool others, bool prints, int requestId, string removalToken)
         {
             MedicalCentreLegalName = medicalCentre.LegalName;
             MedicalCentreCity = medicalCentre.City;
@@ -47,6 +48,7 @@ namespace UszyjMaseczke.Application.Emails.Models
             Others = others;
             Prints = prints;
             RequestId = requestId;
+            RemovalToken = removalToken;
         }
     }
 }

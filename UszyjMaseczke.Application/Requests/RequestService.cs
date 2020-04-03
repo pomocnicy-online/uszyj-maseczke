@@ -58,6 +58,7 @@ namespace UszyjMaseczke.Application.Requests
             var printRequests = createRequestDto.Prints != null
                 ? MapHelper.MapToPrintRequests(createRequestDto.Prints)
                 : default;
+            var additionalComment = createRequestDto.AdditionalComment;
 
             var request = new Request
             {
@@ -73,7 +74,8 @@ namespace UszyjMaseczke.Application.Requests
                 OtherRequest = otherRequest,
                 PrintRequest = printRequests,
                 RemovalToken = Guid.NewGuid().ToString("N"),
-                Active = true
+                Active = true,
+                AdditionalComment = additionalComment
             };
 
             await _requestRepository.SaveAsync(request, cancellationToken);
@@ -91,7 +93,8 @@ namespace UszyjMaseczke.Application.Requests
                 createRequestDto.PsychologicalSupport != null,
                 createRequestDto.Suits != null,
                 createRequestDto.SewingSupplies != null,
-                request.Id
+                request.Id,
+                request.RemovalToken
             );
 
             await _emailSender.SendAsync(new EmailMessage<RequestEmailModel>(
