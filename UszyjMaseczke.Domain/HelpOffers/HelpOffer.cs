@@ -17,6 +17,7 @@ namespace UszyjMaseczke.Domain.HelpOffers
     public class HelpOffer
     {
         public int Id { get; set; }
+        public string AdditionalComment { get; set; }
         public virtual Request Request { get; set; }
         public virtual MedicalCentre MedicalCentre { get; set; }
         public virtual Helper Helper { get; set; }

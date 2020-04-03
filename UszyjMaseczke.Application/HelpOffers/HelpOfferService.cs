@@ -56,6 +56,7 @@ namespace UszyjMaseczke.Application.HelpOffers
                 var printRequests = requestDto.Prints != null
                     ? MapHelper.MapToPrintRequests(requestDto.Prints)
                     : default;
+                var additionalComment = requestDto.AdditionalComment;
 
                 var helpOffer = new HelpOffer
                 {
@@ -71,7 +72,8 @@ namespace UszyjMaseczke.Application.HelpOffers
                     PsychologicalSupportSupplies = psychologicalSupportRequest,
                     SewingSuppliesSupplies = sewingSuppliesRequest,
                     OtherSupplies = otherRequest,
-                    PrintSupplies = printRequests
+                    PrintSupplies = printRequests,
+                    AdditionalComment = additionalComment
                 };
                 await _helpOfferRepository.SaveAsync(helpOffer, cancellationToken);
 
