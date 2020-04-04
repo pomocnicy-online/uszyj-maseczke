@@ -14,6 +14,7 @@ namespace UszyjMaseczke.Application.DTOs
     public class OfferHelpPositionDto
     {
         public int RequestId { get; set; }
+        public string AdditionalComment { get; set; }
         public MaskRequestDto Masks { get; set; }
         public GloveRequestDto Gloves { get; set; }
         public GroceryRequestDto Groceries { get; set; }

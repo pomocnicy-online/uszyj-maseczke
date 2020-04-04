@@ -5,7 +5,7 @@ namespace UszyjMaseczke.Domain.Print
         VenturiNozzle = 0,
         VenturiValve = 1,
         PEEPValve = 2,
-        PosiriveExperienceValve = 3,
+        PositiveExperienceValve = 3,
         PlexiFaceCover = 4,
         CoverMask = 5
     }

@@ -28,7 +28,7 @@ namespace UszyjMaseczke.WebApi.Controllers
             _requestRepository = requestRepository;
         }
 
-        [ProducesResponseType(typeof(AwaitingRequestDto), 200)]
+        [ProducesResponseType(typeof(AwaitingRequestDto), (int) HttpStatusCode.OK)]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
         {
@@ -36,7 +36,7 @@ namespace UszyjMaseczke.WebApi.Controllers
             return Ok(result);
         }
 
-        [ProducesResponseType(typeof(ICollection<AggregatedRequestsView>), 200)]
+        [ProducesResponseType(typeof(ICollection<AggregatedRequestsView>), (int) HttpStatusCode.OK)]
         [HttpGet]
         public async Task<IActionResult> Get(CancellationToken cancellationToken)
         {
@@ -44,7 +44,7 @@ namespace UszyjMaseczke.WebApi.Controllers
             return Ok(result);
         }
 
-        [ProducesResponseType(typeof(ICollection<AwaitingRequestDto>), 200)]
+        [ProducesResponseType(typeof(ICollection<AwaitingRequestDto>), (int) HttpStatusCode.OK)]
         [HttpGet("city/{city}")]
         public async Task<IActionResult> GetByCity(string city, CancellationToken cancellationToken)
         {
@@ -52,7 +52,7 @@ namespace UszyjMaseczke.WebApi.Controllers
             return Ok(result);
         }
 
-        [ProducesResponseType(typeof(ICollection<string>), 200)]
+        [ProducesResponseType(typeof(ICollection<string>), (int) HttpStatusCode.OK)]
         [HttpGet("city")]
         public async Task<IActionResult> GetRequestedCities(CancellationToken cancellationToken)
         {
@@ -68,8 +68,8 @@ namespace UszyjMaseczke.WebApi.Controllers
             return CreatedAtAction(nameof(GetById), new {id = result}, result);
         }
 
-        [ProducesResponseType(typeof(int), (int) HttpStatusCode.Created)]
-        [HttpDelete("{token}", Name = "RemoveRequest")]
+        [ProducesResponseType(typeof(int), (int) HttpStatusCode.NoContent)]
+        [HttpDelete("delete/{token}", Name = "RemoveRequest")]
         public async Task<IActionResult> RemoveRequest(string token, CancellationToken cancellationToken)
         {
             await _requestRepository.RemoveByToken(token, cancellationToken);
