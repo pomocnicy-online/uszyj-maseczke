@@ -68,6 +68,7 @@ namespace UszyjMaseczke.WebApi.Bootstrap
                 cfg.AddProfile<OthersProfile>();
                 cfg.AddProfile<PrintsProfile>();
                 cfg.AddProfile<SuitsProfile>();
+                cfg.AddProfile<DeliveryProfile>();
             });
 
             var mapper = config.CreateMapper();

@@ -24,7 +24,8 @@ namespace UszyjMaseczke.WebApi.Profiles
                 .ForMember(dest => dest.PsychologicalSupport, opt => opt.MapFrom(src => src.PsychologicalSupportRequest))
                 .ForMember(dest => dest.SewingSupplies, opt => opt.MapFrom(src => src.SewingSuppliesRequest))
                 .ForMember(dest => dest.Others, opt => opt.MapFrom(src => src.OtherRequest))
-                .ForMember(dest => dest.Prints, opt => opt.MapFrom(src => src.PrintRequest));
+                .ForMember(dest => dest.Prints, opt => opt.MapFrom(src => src.PrintRequest))
+                .ForMember(dest => dest.Delivery, opt => opt.MapFrom(src => src.DeliveryRequest));
         }
     }
 }

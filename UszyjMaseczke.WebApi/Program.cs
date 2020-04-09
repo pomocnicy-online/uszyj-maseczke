@@ -29,8 +29,6 @@ namespace UszyjMaseczke.WebApi
                         webBuilder.ConfigureAppConfiguration((builderContext, config) =>
                         {
                             config.AddJsonFile("appsettings.json", false, true)
-                                .AddJsonFile("secrets.json", true, true)
-
                                 .AddEnvironmentVariables();
                         });
                         webBuilder.ConfigureKestrel(options =>

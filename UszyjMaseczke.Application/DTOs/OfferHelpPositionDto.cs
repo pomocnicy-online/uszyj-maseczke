@@ -25,5 +25,6 @@ namespace UszyjMaseczke.Application.DTOs
         public SewingSuppliesRequestDto SewingSupplies { get; set; }
         public OtherRequestDto Others { get; set; }
         public PrintRequestDto Prints { get; set; }
+        public DeliveryDto Delivery { get; set; }
     }
 }

@@ -31,5 +31,6 @@ namespace UszyjMaseczke.Domain.HelpOffers
         public virtual SewingSuppliesRequest SewingSuppliesSupplies { get; set; }
         public virtual OtherRequest OtherSupplies { get; set; }
         public virtual PrintRequest PrintSupplies { get; set; }
+        public virtual Delivery Delivery { get; set; }
     }
 }

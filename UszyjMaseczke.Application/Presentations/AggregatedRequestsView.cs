@@ -21,5 +21,6 @@ namespace UszyjMaseczke.Application.Presentations
         public bool PsychologicalSupportNeeded { get; set; }
         public bool SewingSuppliesNeeded { get; set; }
         public bool OtherNeeded { get; set; }
+        public bool DeliveryNeeded { get; set; }
     }
 }
