@@ -44,9 +44,10 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherSupplies)
                 .Include(x => x.PrintSupplies)
                 .Include(x => x.PrintSupplies.Positions)
+                .Include(x => x.Delivery)
                 .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
 
-            if(result == null)
+            if (result == null)
                 throw new NotFoundException($"Could not find Help Offer of id: {id}");
 
             return result;

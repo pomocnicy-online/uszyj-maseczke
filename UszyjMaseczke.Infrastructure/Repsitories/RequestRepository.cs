@@ -50,6 +50,7 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
+                .Include(x => x.DeliveryRequest)
                 .SingleOrDefaultAsync(x => x.Id == id && x.Active, cancellationToken);
 
             if (result == null)
@@ -79,6 +80,7 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
+                .Include(x => x.DeliveryRequest)
                 .Where(x => x.MedicalCentre.City.ToUpper() == id.ToUpper() && x.Active)
                 .ToListAsync(cancellationToken);
         }
@@ -105,7 +107,8 @@ namespace UszyjMaseczke.Infrastructure.Repsitories
                 .Include(x => x.OtherRequest)
                 .Include(x => x.PrintRequest)
                 .Include(x => x.PrintRequest.Positions)
-                .Where(x=> x.Active)
+                .Include(x => x.DeliveryRequest)
+                .Where(x => x.Active)
                 .ToListAsync(cancellationToken);
         }
 

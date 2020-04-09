@@ -4,6 +4,7 @@ using UszyjMaseczke.Application.Presentations;
 using UszyjMaseczke.Domain.HelpOffers;
 using UszyjMaseczke.Domain.MedicalCentres;
 using UszyjMaseczke.Domain.Requests;
+using UszyjMaseczke.Infrastructure.EntityMappings.Deliveries;
 using UszyjMaseczke.Infrastructure.EntityMappings.DisinfectionMeasures;
 using UszyjMaseczke.Infrastructure.EntityMappings.Gloves;
 using UszyjMaseczke.Infrastructure.EntityMappings.Groceries;
@@ -72,6 +73,7 @@ namespace UszyjMaseczke.Infrastructure
             modelBuilder.ApplyConfiguration(new HelperMappings());
             modelBuilder.ApplyConfiguration(new HelpOffersMappings());
             modelBuilder.ApplyConfiguration(new RequestedCitiesViewMappings());
+            modelBuilder.ApplyConfiguration(new DeliveryMappings());
         }
     }
 }

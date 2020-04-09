@@ -178,6 +178,13 @@ namespace UszyjMaseczke.Application.Mappers
             return result;
         }
 
+        public static Delivery MapToDelivery(DeliveryDto delivery)
+        {
+            var result = new Delivery();
+            result.Description = delivery.Description;
+            return result;
+        }
+
         public static SewingSuppliesRequest MapToSewingSuppliesRequest(SewingSuppliesRequestDto sewingSuppliesRequestDto)
         {
             var result = new SewingSuppliesRequest();

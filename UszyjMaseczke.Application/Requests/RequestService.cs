@@ -16,8 +16,8 @@ namespace UszyjMaseczke.Application.Requests
     public class RequestService : IRequestService
     {
         private readonly IEmailSender _emailSender;
-        private readonly IRequestRepository _requestRepository;
         private readonly IMapper _mapper;
+        private readonly IRequestRepository _requestRepository;
 
         public RequestService(IEmailSender emailSender, IRequestRepository requestRepository, IMapper mapper)
         {
@@ -59,6 +59,9 @@ namespace UszyjMaseczke.Application.Requests
                 ? MapHelper.MapToPrintRequests(createRequestDto.Prints)
                 : default;
             var additionalComment = createRequestDto.AdditionalComment;
+            var delivery = createRequestDto.Delivery != null
+                ? MapHelper.MapToDelivery(createRequestDto.Delivery)
+                : default;
 
             var request = new Request
             {
@@ -75,7 +78,8 @@ namespace UszyjMaseczke.Application.Requests
                 PrintRequest = printRequests,
                 RemovalToken = Guid.NewGuid().ToString("N"),
                 Active = true,
-                AdditionalComment = additionalComment
+                AdditionalComment = additionalComment,
+                DeliveryRequest = delivery
             };
 
             await _requestRepository.SaveAsync(request, cancellationToken);

@@ -29,6 +29,7 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Views
             builder.Property(x => x.PsychologicalSupportNeeded);
             builder.Property(x => x.SewingSuppliesNeeded);
             builder.Property(x => x.OtherNeeded);
+            builder.Property(x => x.DeliveryNeeded);
         }
     }
 }

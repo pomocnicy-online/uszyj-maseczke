@@ -5,7 +5,6 @@ using UszyjMaseczke.Application.Emails;
 using UszyjMaseczke.Application.Emails.Models;
 using UszyjMaseczke.Application.Mappers;
 using UszyjMaseczke.Domain.HelpOffers;
-using UszyjMaseczke.Domain.MedicalCentres;
 using UszyjMaseczke.Domain.Requests;
 using UszyjMaseczke.Infrastructure.Emails;
 
@@ -13,9 +12,9 @@ namespace UszyjMaseczke.Application.HelpOffers
 {
     public class HelpOfferService : IHelpOfferService
     {
+        private readonly IEmailSender _emailSender;
         private readonly IHelpOfferRepository _helpOfferRepository;
         private readonly IRequestRepository _requestRepository;
-        private readonly IEmailSender _emailSender;
 
         public HelpOfferService(IHelpOfferRepository helpOfferRepository, IRequestRepository requestRepository,
             IEmailSender emailSender)
@@ -57,6 +56,9 @@ namespace UszyjMaseczke.Application.HelpOffers
                     ? MapHelper.MapToPrintRequests(requestDto.Prints)
                     : default;
                 var additionalComment = requestDto.AdditionalComment;
+                var delivery = requestDto.Delivery != null
+                    ? MapHelper.MapToDelivery(requestDto.Delivery)
+                    : default;
 
                 var helpOffer = new HelpOffer
                 {
@@ -73,7 +75,8 @@ namespace UszyjMaseczke.Application.HelpOffers
                     SewingSuppliesSupplies = sewingSuppliesRequest,
                     OtherSupplies = otherRequest,
                     PrintSupplies = printRequests,
-                    AdditionalComment = additionalComment
+                    AdditionalComment = additionalComment,
+                    Delivery = delivery
                 };
                 await _helpOfferRepository.SaveAsync(helpOffer, cancellationToken);
 

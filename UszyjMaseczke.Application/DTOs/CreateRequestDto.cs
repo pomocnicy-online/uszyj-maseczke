@@ -26,5 +26,6 @@ namespace UszyjMaseczke.Application.DTOs
         public OtherRequestDto Others { get; set; }
         public PrintRequestDto Prints { get; set; }
         public string AdditionalComment { get; set; }
+        public DeliveryDto Delivery { get; set; }
     }
 }
