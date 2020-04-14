@@ -8,8 +8,6 @@ namespace UszyjMaseczke.Application.Presentations
         public string PostalCode { get; set; }
         public string BuildingNumber { get; set; }
         public string ApartmentNumber { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
         public string LegalName { get; set; }
         public int DisinfectionMeasureRequestsTotalCount { get; set; }
         public int GloveRequestsTotalCount { get; set; }

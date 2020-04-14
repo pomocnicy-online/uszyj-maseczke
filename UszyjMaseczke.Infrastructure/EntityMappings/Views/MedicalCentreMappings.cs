@@ -17,8 +17,6 @@ namespace UszyjMaseczke.Infrastructure.EntityMappings.Views
             builder.Property(x => x.BuildingNumber);
             builder.Property(x => x.PostalCode);
             builder.Property(x => x.ApartmentNumber);
-            builder.Property(x => x.Email);
-            builder.Property(x => x.PhoneNumber);
             builder.Property(x => x.DisinfectionMeasureRequestsTotalCount);
             builder.Property(x => x.GloveRequestsTotalCount);
             builder.Property(x => x.GroceryRequestsTotalCount);
